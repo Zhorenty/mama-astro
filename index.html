@@ -2151,7 +2151,7 @@ function settingsHtml() {
     <div class="set-row"><span>Орбы аспектов</span>${seg('orbScale', [[1, 'Обычные'], [0.7, 'Узкие']])}</div>
     <div class="set-row"><span>Малые аспекты на круге</span>${seg('minorOnWheel', [[true, 'Показывать'], [false, 'Скрыть']])}</div>
     <div class="set-row"><span>Семейные пасхалки</span>${seg('eggs', [[true, 'Включены'], [false, 'Выключены']])}</div>
-    ${Cloud.enabled && Cloud.login ? `<div class="set-row"><span>Аккаунт: <b>${esc(Cloud.login)}</b></span><button class="btn small" type="button" data-logout>Выйти</button></div>` : ''}
+    ${Cloud.enabled && Cloud.login ? `<div class="set-row"><span>Аккаунт: <b>${esc(Cloud.login)}</b></span><button class="btn small" type="button" data-logout>Выйти</button></div>` : (SB.url.startsWith('https://') && /^https?:$/.test(location.protocol) ? `<div class="set-row"><span>Вход не выполнен</span><button class="btn small primary" type="button" data-login>Войти</button></div>` : '')}
     <div class="set-row"><span>Знакомство с сайтом</span><button class="btn small" type="button" data-onb>Показать ещё раз</button></div>
     ${Cloud.enabled ? '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся на сервере и открываются с любого устройства после входа.</p>' : '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся в этом браузере.</p>'}`;
 }
@@ -2168,6 +2168,7 @@ function openSettings() {
     }
     if (e.target.closest('[data-onb]')) { closeSheet(); onboarding(0); }
     if (e.target.closest('[data-logout]')) logout();
+    if (e.target.closest('[data-login]')) { closeSheet(); Cloud.enabled = true; showGate('login'); }
   });
 }
 function setSkin(v) { S.skin = v; store.set('skin', v); document.documentElement.dataset.skin = v; drawSky(performance.now()); }
@@ -2286,10 +2287,12 @@ function showGate(mode = 'login', msg = '') {
     <label class="check" style="align-self:start"><input type="checkbox" id="gShow"> Показать пароль</label>
     <p class="form-error" id="gErr" role="alert" ${msg ? '' : 'hidden'}>${esc(msg)}</p>
     <button class="btn primary" type="submit" style="width:100%">${reg ? 'Создать аккаунт' : 'Войти'}</button>
-    <button class="linkish" type="button" id="gSwitch">${reg ? 'Уже есть аккаунт? Войти' : 'Первый раз здесь? Создать аккаунт'}</button></form></div>`;
+    <button class="linkish" type="button" id="gSwitch">${reg ? 'Уже есть аккаунт? Войти' : 'Первый раз здесь? Создать аккаунт'}</button>
+    <button class="linkish" type="button" id="gSkip" style="color:var(--muted)">Продолжить без входа — карты сохранятся только на этом устройстве</button></form></div>`;
   paintPortraits(layer); $('#gLogin').focus();
   $('#gShow').addEventListener('change', e => { $('#gPass').type = e.target.checked ? 'text' : 'password'; });
   $('#gSwitch').addEventListener('click', () => showGate(reg ? 'login' : 'register'));
+  $('#gSkip').addEventListener('click', () => { Cloud.enabled = false; layer.innerHTML = ''; toast('Работаем без входа: карты сохраняются на этом устройстве'); if (!store.get('onb', false)) setTimeout(() => onboarding(0), 400); });
   $('#gateForm').addEventListener('submit', async e => {
     e.preventDefault(); const btn = $('#gateForm [type=submit]'); btn.disabled = true; btn.textContent = 'Секунду…';
     const login = $('#gLogin').value.trim(), pass = $('#gPass').value; let err = '';

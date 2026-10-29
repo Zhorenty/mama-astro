@@ -1,0 +1,2323 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0F0D1C"><meta name="description" content="Мамина Астролябия — натальные карты семьи">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%229%22%20fill%3D%22%230F0D1C%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E6C27A%22%20stroke-width%3D%222%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%2212%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M20%2010V5M8%2022h24M20%2022l7-6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Мамина Астролябия</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Golos+Text:wght@400;500;600&family=Prata&display=swap">
+<style>/* Layout: observatory night — wheel is the hero instrument; arch-window portraits of the family frame the tool */
+:root {
+  --bg: #0F0D1C; --bg-2: #15122A; --surface: #1A1730; --surface-2: #231F3F; --line: #2F2A4E; --line-2: #3F3866;
+  --fg: #EEE8F5; --muted: #A39CBB; --faint: #6F6990;
+  --gold: #E6C27A; --gold-2: #C9A04E; --gold-ink: #1A1426; --rose: #E59AAA;
+  --sky: #86AEE0; --ember: #E47A66;
+  --fire: #E8896A; --earth: #9DBB7C; --air: #E2CF86; --water: #78A6DC;
+  --fire-t: rgba(232,137,106,.13); --earth-t: rgba(157,187,124,.12); --air-t: rgba(226,207,134,.11); --water-t: rgba(120,166,220,.13);
+  --shadow: 0 18px 50px rgba(5,3,14,.45);
+  --star: rgba(255,246,220,.9);
+  --f-display: "Prata", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-hand: "Cormorant Garamond", Georgia, serif;
+  color-scheme: dark;
+}
+:root[data-skin="day"], :root[data-theme="light"]:not([data-skin="night"]) {
+  --bg: #ECE8F3; --bg-2: #E3DEEE; --surface: #FBF9FE; --surface-2: #F2EEF8; --line: #DAD3E7; --line-2: #C8BFDA;
+  --fg: #221A38; --muted: #5C5476; --faint: #8C85A4;
+  --gold: #8E5F14; --gold-2: #A97A2C; --gold-ink: #FFF8EA; --rose: #B24F68;
+  --sky: #3768A8; --ember: #B9452F;
+  --fire: #C2603F; --earth: #5B873C; --air: #98781A; --water: #3D72B0;
+  --fire-t: rgba(194,96,63,.10); --earth-t: rgba(91,135,60,.10); --air-t: rgba(152,120,26,.10); --water-t: rgba(61,114,176,.10);
+  --shadow: 0 14px 40px rgba(60,40,100,.12);
+  --star: rgba(142,95,20,.35);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--bg); color: var(--fg); }
+body { font-family: var(--f-body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 40px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; margin: 0; letter-spacing: .005em; }
+h1 { font-size: clamp(34px, 5.4vw, 56px); line-height: 1.08; }
+h2 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.15; }
+h3 { font-size: 20px; }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--gold); font-weight: 600; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+
+/* Top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); min-width: 0; }
+.brand svg { width: 34px; height: 34px; flex: none; color: var(--gold); }
+.brand span { font-family: var(--f-display); font-size: 21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top-actions { display: flex; gap: 8px; align-items: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 10px 18px; border: 1px solid var(--line-2); background: var(--surface); font-weight: 500; font-size: 15px; transition: background .2s, border-color .2s, transform .15s; }
+.btn:hover { border-color: var(--gold-2); }
+.btn:active { transform: scale(.98); }
+.btn.primary { background: var(--gold); color: var(--gold-ink); border-color: transparent; font-weight: 600; }
+.btn.primary:hover { filter: brightness(1.06); }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 7px 13px; font-size: 14px; }
+.btn svg { width: 18px; height: 18px; }
+.icon-btn { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-2); background: var(--surface); }
+.icon-btn svg { width: 20px; height: 20px; }
+.icon-btn:hover { border-color: var(--gold-2); }
+.badge { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 99px; background: var(--surface-2); color: var(--gold); font-size: 12px; font-weight: 600; }
+
+/* Portraits: arch windows */
+.portrait { position: relative; aspect-ratio: 120 / 140; max-width: 100%; border-radius: 999px 999px 18px 18px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 30%, var(--c1), var(--c2)); box-shadow: inset 0 0 0 1px rgba(230,194,122,.35), var(--shadow); }
+.portrait::after { content: ""; position: absolute; inset: 6px; border-radius: inherit; border: 1px solid rgba(255,240,210,.14); pointer-events: none; }
+.portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portrait.round { border-radius: 50%; aspect-ratio: 1; }
+.portrait.round svg { top: 6%; height: 112%; width: 112%; left: -6%; }
+button.portrait { padding: 0; border: 0; display: block; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 36px; align-items: start; padding-block: 18px 40px; }
+.hero-intro { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 26px; align-items: center; }
+.hero-intro .portrait { width: 170px; }
+.hero-copy { display: grid; gap: 14px; }
+.lead { font-size: 18px; color: var(--muted); max-width: 46ch; }
+.sky-now { display: flex; gap: 14px; align-items: center; margin-top: 8px; padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.sky-now .portrait { width: 54px; flex: none; }
+.sky-now b { font-weight: 600; }
+.sky-now p { font-size: 14.5px; }
+.hand { font-family: var(--f-hand); font-style: italic; font-weight: 500; font-size: 1.15em; }
+
+/* Cards and forms */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
+.form-card { padding: 24px; display: grid; gap: 16px; position: relative; }
+.form-card h2 { font-size: 26px; }
+.field { display: grid; gap: 6px; position: relative; min-width: 0; }
+.field > label, .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input[type=text], input[type=password], input[type=date], input[type=time], input[type=number], select {
+  width: 100%; min-width: 0; font: inherit; font-size: 16px; color: var(--fg); background: var(--surface-2); border: 1px solid var(--line-2);
+  border-radius: 12px; padding: 11px 13px; appearance: none; -webkit-appearance: none; min-height: 46px; }
+select { background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 34px; }
+input:focus, select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 25%, transparent); }
+input:disabled { opacity: .5; }
+.check { display: flex; gap: 10px; align-items: center; font-size: 15px; cursor: pointer; }
+.check input { width: 20px; height: 20px; accent-color: var(--gold); }
+.place-info { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.place-info b { color: var(--fg); font-weight: 500; }
+.linkish { background: none; border: 0; padding: 0; color: var(--gold); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
+.suggest { position: absolute; top: 100%; left: 0; right: 0; margin-top: 6px; z-index: 20; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 14px; max-height: 280px; overflow-y: auto; box-shadow: var(--shadow); padding: 6px; }
+.suggest button { display: flex; width: 100%; justify-content: space-between; gap: 10px; text-align: left; background: none; border: 0; padding: 10px 12px; border-radius: 10px; }
+.suggest button[aria-selected=true], .suggest button:hover { background: var(--surface); }
+.suggest small { color: var(--muted); }
+.manual { display: grid; gap: 12px; padding: 14px; border-radius: 14px; background: var(--surface-2); }
+.manual .row3 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tip { display: flex; gap: 12px; align-items: center; font-size: 14px; color: var(--muted); }
+.tip .portrait { width: 44px; flex: none; }
+details.more summary { cursor: pointer; color: var(--muted); font-size: 14px; list-style: none; display: flex; gap: 8px; align-items: center; }
+details.more summary::before { content: "+"; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--line-2); font-size: 13px; }
+details.more[open] summary::before { content: "−"; }
+details.more > div { display: grid; gap: 12px; margin-top: 12px; }
+.build-wrap { position: relative; }
+.build-wrap .btn { width: 100%; padding-block: 14px; font-size: 16px; }
+.form-error { color: var(--ember); font-size: 14px; }
+
+/* Chart section */
+.chart-sec { padding-block: 10px 30px; scroll-margin-top: 10px; }
+.chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 24px; margin-bottom: 18px; }
+.chart-head .meta { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+.chart-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chart-tools select { width: auto; min-height: 40px; padding-block: 8px; font-size: 14.5px; border-radius: 999px; }
+.chart-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr); gap: 22px; align-items: start; }
+.wheel-wrap { position: relative; padding: 14px; overflow: visible; }
+#wheel { display: block; width: 100%; height: auto; touch-action: manipulation; }
+.perch { position: absolute; width: 78px; bottom: 10px; left: 10px; z-index: 3; border-radius: 0; box-shadow: none; background: none; cursor: pointer; }
+.perch::after { display: none; }
+.perch svg { overflow: visible; }
+.perch:hover { transform: translateY(-2px); }
+.note { font-size: 13.5px; color: var(--muted); padding: 10px 14px; border-radius: 12px; background: var(--surface-2); margin: 10px 4px 2px; }
+.side { display: grid; gap: 16px; position: sticky; top: 16px; }
+.big3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 6px; }
+.big3 button { background: none; border: 0; padding: 14px 8px; border-radius: 16px; display: grid; gap: 4px; justify-items: center; text-align: center; }
+.big3 button:hover { background: var(--surface-2); }
+.big3 .g { width: 30px; height: 30px; color: var(--gold); }
+.big3 .lbl { font-size: 11px; }
+.big3 strong { font-family: var(--f-display); font-weight: 400; font-size: 19px; }
+.big3 small { color: var(--muted); font-size: 13px; }
+.focus { padding: 20px; display: grid; gap: 12px; }
+.focus-head { display: flex; gap: 14px; align-items: center; }
+.focus-head .orb { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--line-2); flex: none; }
+.focus-head .orb .g { width: 28px; height: 28px; color: var(--gold); }
+.focus p { color: var(--fg); font-size: 15px; }
+.focus .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12.5px; padding: 4px 10px; border-radius: 99px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+.tag.good { color: var(--earth); border-color: color-mix(in srgb, var(--earth) 40%, transparent); }
+.tag.bad { color: var(--ember); border-color: color-mix(in srgb, var(--ember) 40%, transparent); }
+.tag.retro { color: var(--rose); border-color: color-mix(in srgb, var(--rose) 40%, transparent); }
+.focus ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+.focus li { display: flex; gap: 8px; align-items: center; }
+.focus li .g, .focus li .a { width: 16px; height: 16px; flex: none; }
+
+/* SVG glyphs */
+.g { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: inline-block; vertical-align: middle; }
+.g-in { width: 18px; height: 18px; }
+
+/* Wheel */
+.wz-band { stroke: var(--line-2); stroke-width: 1; }
+.wz-band.fire { fill: var(--fire-t); } .wz-band.earth { fill: var(--earth-t); } .wz-band.air { fill: var(--air-t); } .wz-band.water { fill: var(--water-t); }
+.wz-glyph { fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.wz-glyph.fire { stroke: var(--fire); } .wz-glyph.earth { stroke: var(--earth); } .wz-glyph.air { stroke: var(--air); } .wz-glyph.water { stroke: var(--water); }
+.w-ring { fill: none; stroke: var(--line-2); stroke-width: 1; }
+.w-ring.gold { stroke: var(--gold-2); stroke-opacity: .55; }
+.w-tick { stroke: var(--faint); stroke-width: .8; }
+.w-cusp { stroke: var(--line-2); stroke-width: 1; }
+.w-axis { stroke: var(--gold); stroke-width: 1.8; }
+.w-axis-lbl { fill: var(--gold); font: 600 13px var(--f-body); letter-spacing: .06em; }
+.w-hnum { fill: var(--faint); font: 500 11px var(--f-body); }
+.w-center { fill: var(--surface-2); stroke: var(--line-2); }
+.w-pl { cursor: pointer; outline: none; }
+.w-pl:focus-visible circle.bg { stroke: var(--gold); stroke-width: 2.2; }
+.w-pl circle.bg { fill: var(--surface); stroke: var(--line-2); stroke-width: 1; transition: stroke .2s, fill .2s; }
+.w-pl .gp { fill: none; stroke: var(--fg); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.w-pl.outer circle.bg { fill: var(--surface-2); stroke-dasharray: 2 2; }
+.w-pl.outer .gp { stroke: var(--sky); }
+.w-pl:hover circle.bg, .w-pl.on circle.bg { stroke: var(--gold); fill: var(--surface-2); }
+.w-pl text { fill: var(--muted); font: 500 11px var(--f-body); }
+#wheel.big .w-pl text { font-size: 15px; }
+#wheel.big .w-hnum { font-size: 14px; }
+#wheel.big .w-axis-lbl { font-size: 17px; }
+.w-pl text.r { fill: var(--rose); font-weight: 600; }
+.w-mark { stroke: var(--gold); stroke-width: 1.4; }
+.w-mark.outer { stroke: var(--sky); }
+.w-lead { stroke: var(--faint); stroke-width: .7; }
+.w-asp { fill: none; stroke-width: 1.2; transition: opacity .2s; }
+.w-asp.soft { stroke: var(--sky); } .w-asp.hard { stroke: var(--ember); } .w-asp.neutral { stroke: var(--gold); } .w-asp.minor { stroke: var(--faint); stroke-dasharray: 3 3; }
+#wheel.focusing .w-asp { opacity: .08 !important; }
+#wheel.focusing .w-asp.hot { opacity: 1 !important; stroke-width: 2; }
+#wheel.focusing .w-pl:not(.on):not(.rel) { opacity: .45; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim .wz { animation: spinIn 1.1s cubic-bezier(.2,.7,.2,1) both; transform-origin: 300px 300px; }
+  .anim .w-pl { animation: fadeUp .5s both; animation-delay: calc(var(--i) * 45ms + .35s); }
+  .anim .w-asp { stroke-dasharray: 600; animation: draw 1.2s ease-out both; animation-delay: .8s; }
+  .anim .w-asp.minor { animation: fadeIn .8s both; animation-delay: .9s; stroke-dasharray: 3 3; }
+}
+@keyframes spinIn { from { transform: rotate(-40deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes draw { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+
+/* Loader with Chipsonchik chasing a comet */
+.loader { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; border-radius: 22px; background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(3px); }
+.loader-inner { display: grid; justify-items: center; gap: 8px; }
+.loader .kit { width: 110px; height: 128px; position: relative; }
+.loader .kit svg { width: 100%; height: 100%; }
+.loader .comet { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 16px 4px color-mix(in srgb, var(--gold) 60%, transparent); left: 50%; top: 50%; }
+@media (prefers-reduced-motion: no-preference) {
+  .loader .kit { animation: hop .45s ease-in-out infinite alternate; }
+  .loader .comet { animation: orbit 1.1s linear infinite; }
+}
+@keyframes hop { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-8px) rotate(3deg); } }
+@keyframes orbit { from { transform: rotate(0) translateX(84px); } to { transform: rotate(360deg) translateX(84px); } }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; overflow-x: auto; margin-top: 26px; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: none; background: none; border: 0; padding: 12px 16px; font-size: 15.5px; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 500; }
+.tabs button[aria-selected=true] { color: var(--fg); border-color: var(--gold); }
+.panel { padding-block: 22px 8px; }
+.tbl-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tbl th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; padding: 12px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { padding: 11px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl tbody tr { cursor: pointer; }
+.tbl tbody tr:hover { background: var(--surface-2); }
+.tbl .g { width: 18px; height: 18px; margin-right: 6px; color: var(--gold); }
+.tbl td.wrap { white-space: normal; min-width: 220px; color: var(--muted); font-size: 14px; }
+.cols2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; }
+.grid-asp { border-collapse: collapse; }
+.grid-asp td, .grid-asp th { width: 32px; height: 32px; text-align: center; border: 1px solid var(--line); padding: 0; }
+.grid-asp th { background: var(--surface-2); }
+.grid-asp th .g { width: 16px; height: 16px; color: var(--gold); margin: 0; }
+.grid-asp td .a { width: 16px; height: 16px; }
+.grid-asp td.empty { border: 0; }
+.a { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.a.soft { stroke: var(--sky); } .a.hard { stroke: var(--ember); } .a.neutral { stroke: var(--gold); } .a.minor { stroke: var(--faint); }
+.list { display: grid; gap: 10px; }
+.item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.item .pair { display: flex; align-items: center; gap: 4px; color: var(--gold); }
+.item .pair .g { width: 18px; height: 18px; }
+.item .pair .a { width: 16px; height: 16px; }
+.item h4 { margin: 0 0 2px; font-size: 15.5px; font-weight: 600; }
+.item p { font-size: 14.5px; color: var(--muted); }
+.item .orbv { font-size: 13px; color: var(--faint); white-space: nowrap; }
+.bars { display: grid; gap: 12px; }
+.bar { display: grid; grid-template-columns: 120px minmax(0, 1fr) 34px; gap: 12px; align-items: center; font-size: 15px; }
+.bar .track { height: 10px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.bar .fill { height: 100%; border-radius: inherit; }
+.stat-card { padding: 20px; display: grid; gap: 14px; }
+.stat-card p { color: var(--muted); font-size: 14.5px; }
+.interp { display: grid; gap: 14px; max-width: 78ch; }
+.interp section { padding: 18px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 8px; }
+.interp h3 { display: flex; align-items: center; gap: 10px; font-size: 20px; }
+.interp h3 .g { width: 22px; height: 22px; color: var(--gold); }
+.interp p { font-size: 15.5px; }
+.interp p + p { color: var(--muted); }
+.outer-ctl { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-bottom: 18px; }
+.outer-ctl .field { min-width: 180px; }
+.empty-state { padding: 22px; border-radius: 16px; border: 1px dashed var(--line-2); color: var(--muted); display: flex; gap: 14px; align-items: center; }
+.empty-state .portrait { width: 56px; flex: none; }
+
+/* Family */
+.family { padding-block: 40px 20px; }
+.family-head { display: grid; gap: 8px; margin-bottom: 22px; }
+.fam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 18px; }
+.fam { display: grid; gap: 10px; justify-items: center; text-align: center; background: none; border: 0; padding: 0; }
+.fam .portrait { width: 100%; transition: transform .25s; }
+.fam:hover .portrait { transform: translateY(-4px); }
+.fam strong { font-family: var(--f-display); font-weight: 400; font-size: 18px; line-height: 1.1; }
+.fam small { color: var(--muted); font-size: 13px; line-height: 1.3; }
+
+/* Footer */
+.foot { margin-top: 30px; padding: 22px; border-radius: 22px; border: 1px solid var(--line); background: var(--surface); display: flex; gap: 18px; align-items: center; }
+.foot .portrait { width: 72px; flex: none; }
+.foot p { color: var(--muted); font-size: 14px; }
+.foot .hand { color: var(--fg); font-size: 22px; }
+
+/* Bubble */
+.bubble { position: fixed; z-index: 60; max-width: min(280px, calc(100vw - 32px)); padding: 12px 16px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--gold-2); box-shadow: var(--shadow); font-family: var(--f-hand); font-style: italic; font-size: 20px; line-height: 1.25; color: var(--fg); pointer-events: none; }
+.bubble small { display: block; font-family: var(--f-body); font-style: normal; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+@media (prefers-reduced-motion: no-preference) { .bubble { animation: pop .25s ease-out; } }
+@keyframes pop { from { opacity: 0; transform: translateY(6px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* Khimera nap on the button */
+.nap { position: absolute; inset: -38px -6px auto auto; width: 110px; z-index: 5; background: none; border: 0; padding: 0; }
+.nap svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
+.nap span { position: absolute; right: 100%; top: 28px; white-space: nowrap; margin-right: 6px; font-family: var(--f-hand); font-style: italic; font-size: 18px; background: var(--surface-2); border: 1px solid var(--line-2); padding: 4px 10px; border-radius: 12px; }
+
+/* Sheets */
+.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(8,6,18,.55); backdrop-filter: blur(3px); display: flex; justify-content: flex-end; }
+.sheet { width: min(440px, 100%); height: 100%; background: var(--bg-2); border-left: 1px solid var(--line); padding: calc(20px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) 20px; overflow-y: auto; display: grid; align-content: start; gap: 16px; }
+@media (prefers-reduced-motion: no-preference) { .sheet { animation: slideIn .28s cubic-bezier(.2,.7,.2,1); } }
+@keyframes slideIn { from { transform: translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.prof { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.prof h4 { margin: 0; font-size: 16px; font-weight: 600; }
+.prof p { font-size: 13.5px; color: var(--muted); }
+.prof .acts { display: flex; gap: 6px; }
+.seg { display: inline-flex; padding: 4px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); }
+.seg button { border: 0; background: none; padding: 7px 14px; border-radius: 99px; font-size: 14px; color: var(--muted); }
+.seg button[aria-pressed=true] { background: var(--gold); color: var(--gold-ink); font-weight: 600; }
+.set-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.onb { position: fixed; inset: 0; z-index: 70; background: rgba(8,6,18,.6); backdrop-filter: blur(4px); display: grid; place-items: center; padding: 16px; }
+.onb-card { width: min(440px, 100%); padding: 26px; display: grid; gap: 16px; text-align: center; justify-items: center; }
+.onb-card .portrait { width: 120px; }
+.onb-dots { display: flex; gap: 6px; }
+.onb-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); }
+.onb-dots i.on { background: var(--gold); }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 80; background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 99px; font-size: 14.5px; font-weight: 500; box-shadow: var(--shadow); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .chart-grid { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; }
+  .cols2 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .hero-intro { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .hero-intro .portrait { width: 96px; }
+  .lead { font-size: 16px; }
+  .brand span { font-size: 18px; }
+  .form-card { padding: 18px; }
+  .wheel-wrap { padding: 6px; }
+  .perch { width: 54px; bottom: 4px; left: 4px; }
+  .bar { grid-template-columns: 90px minmax(0, 1fr) 30px; }
+  .item { grid-template-columns: minmax(0, 1fr) auto; }
+  .item .pair { grid-column: 1 / -1; }
+  .chart-tools { width: 100%; }
+  .top-actions .btn .lbl-long { display: none; }
+  #btnTheme { display: none; }
+  .fam-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 14px; }
+  .nap span { display: none; }
+}
+</style>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="page">
+  <header class="top">
+    <a class="brand" href="#top" id="top">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <circle cx="20" cy="22" r="15"/><circle cx="20" cy="22" r="10.5"/><circle cx="20" cy="22" r="2"/>
+        <path d="M20 7V3.5M17 3.5H23M20 22L29 15M8 22H32M20 10V34"/><path d="M12 14l2 2M28 30l-2-2M12 30l2-2" stroke-width="1"/>
+      </svg>
+      <span>Мамина Астролябия</span>
+    </a>
+    <nav class="top-actions" aria-label="Меню">
+      <button class="btn small" id="btnProfiles" type="button">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 17s-6-3.6-6-8.2A3.4 3.4 0 0 1 10 6.6a3.4 3.4 0 0 1 6 2.2C16 13.4 10 17 10 17Z"/></svg>
+        <span class="lbl-long">Карты семьи</span><span class="badge num" id="profCount">0</span>
+      </button>
+      <button class="icon-btn" id="btnTheme" type="button" aria-label="Сменить оформление: ночь или утро">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15.5 12.5A6.5 6.5 0 0 1 7.5 4.5a6.5 6.5 0 1 0 8 8Z"/></svg>
+      </button>
+      <button class="icon-btn" id="btnSettings" type="button" aria-label="Настройки">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="hero-intro">
+        <button class="portrait" data-char="mom" type="button" aria-label="Мама — Верховная Астрологиня"></button>
+        <div class="hero-copy">
+          <p class="eyebrow">Домашняя обсерватория</p>
+          <h1>Здравствуй, мама!</h1>
+        </div>
+      </div>
+      <p class="lead">Введи дату, время и место рождения, и звёзды покажут всё как есть: планеты, дома, аспекты и подробные толкования. Все карты семьи будут под рукой.</p>
+      <div class="sky-now">
+        <button class="portrait round" data-char="dad" type="button" aria-label="Папа — Хранитель Лунных Вод"></button>
+        <p id="skyNow">Смотрю на небо…</p>
+      </div>
+    </div>
+
+    <form class="card form-card" id="form" novalidate autocomplete="off">
+      <h2>Построить карту</h2>
+      <div class="field">
+        <label for="fName">Чья карта</label>
+        <input type="text" id="fName" placeholder="Например, Эля" maxlength="40">
+      </div>
+      <div class="row">
+        <div class="field"><label for="fDate">Дата рождения</label><input type="date" id="fDate" min="1800-01-01" max="2199-12-31" required></div>
+        <div class="field"><label for="fTime">Время</label><input type="time" id="fTime" step="60"></div>
+      </div>
+      <label class="check"><input type="checkbox" id="fUnknown"> Время рождения неизвестно</label>
+      <div class="field">
+        <label for="fPlace">Место рождения</label>
+        <input type="text" id="fPlace" placeholder="Город, посёлок, село, станица" role="combobox" aria-expanded="false" aria-controls="placeList" aria-autocomplete="list">
+        <div class="suggest" id="placeList" role="listbox" hidden></div>
+      </div>
+      <div class="place-info" id="placeInfo"></div>
+      <div class="manual" id="manual" hidden>
+        <div class="row3">
+          <div class="field"><label for="fLat">Широта</label><input type="number" id="fLat" step="any" min="-89.9" max="89.9" placeholder="45.04"></div>
+          <div class="field"><label for="fLon">Долгота</label><input type="number" id="fLon" step="any" min="-180" max="180" placeholder="38.98"></div>
+        </div>
+        <div class="field"><label for="fTz">Часовой пояс</label><select id="fTz"></select></div>
+        <p class="muted" style="font-size:13px">Северная широта и восточная долгота со знаком «+», южная и западная со знаком «−».</p>
+      </div>
+      <div class="tip">
+        <div class="portrait round" data-char="brother"></div>
+        <p>Места нет в списке? <button type="button" class="linkish" id="toggleManual">Укажите координаты вручную</button> — найду по карте.</p>
+      </div>
+      <details class="more">
+        <summary>Дополнительно</summary>
+        <div>
+          <div class="field"><label for="fSystem">Система домов</label>
+            <select id="fSystem">
+              <option value="placidus">Плацидус</option><option value="koch">Кох</option><option value="equal">Равнодомная</option>
+              <option value="whole">Целые знаки</option><option value="porphyry">Порфирий</option>
+            </select></div>
+          <div class="field"><label for="fOffset">Сдвиг от UTC вручную, часов</label><input type="number" id="fOffset" step="0.25" min="-12" max="14" placeholder="Определяется автоматически"></div>
+        </div>
+      </details>
+      <p class="form-error" id="formError" role="alert" hidden></p>
+      <div class="build-wrap" id="buildWrap"><button class="btn primary" type="submit" id="btnBuild">Построить карту</button></div>
+    </form>
+  </section>
+
+  <section class="chart-sec" id="chartSec" aria-labelledby="chartName">
+    <div class="chart-head">
+      <div><p class="eyebrow" id="chartEyebrow">Натальная карта</p><h2 id="chartName">Небо сейчас</h2><p class="meta num" id="chartMeta"></p></div>
+      <div class="chart-tools">
+        <select id="sysQuick" aria-label="Система домов">
+          <option value="placidus">Плацидус</option><option value="koch">Кох</option><option value="equal">Равнодомная</option>
+          <option value="whole">Целые знаки</option><option value="porphyry">Порфирий</option>
+        </select>
+        <button class="btn small" type="button" id="btnSave">Сохранить в семью</button>
+        <button class="btn small ghost" type="button" id="btnCopy">Скопировать текстом</button>
+        <button class="btn small ghost" type="button" id="btnPng" hidden>Сохранить картинку</button>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="wheel-wrap card">
+        <button class="portrait perch" data-char="lyalya" type="button" aria-label="Ляля — совет дня"></button>
+        <svg id="wheel" viewBox="-30 -30 660 660" role="img" aria-label="Круг натальной карты"></svg>
+        <div id="wheelNote"></div>
+        <div class="loader" id="loader" hidden><div class="loader-inner"><div class="kit" data-char-raw="chips"><span class="comet"></span></div><p class="hand">Чипсончик ловит планеты…</p></div></div>
+      </div>
+      <aside class="side">
+        <div class="card big3" id="big3"></div>
+        <div class="card focus" id="focus" aria-live="polite"></div>
+      </aside>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Разделы карты">
+      <button role="tab" id="t-planets" aria-controls="p-planets" aria-selected="true">Планеты</button>
+      <button role="tab" id="t-houses" aria-controls="p-houses" aria-selected="false">Дома</button>
+      <button role="tab" id="t-aspects" aria-controls="p-aspects" aria-selected="false">Аспекты</button>
+      <button role="tab" id="t-balance" aria-controls="p-balance" aria-selected="false">Стихии</button>
+      <button role="tab" id="t-interp" aria-controls="p-interp" aria-selected="false">Толкования</button>
+      <button role="tab" id="t-outer" aria-controls="p-outer" aria-selected="false">Транзиты и сравнение</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-planets" aria-labelledby="t-planets"></div>
+    <div class="panel" role="tabpanel" id="p-houses" aria-labelledby="t-houses" hidden></div>
+    <div class="panel" role="tabpanel" id="p-aspects" aria-labelledby="t-aspects" hidden></div>
+    <div class="panel" role="tabpanel" id="p-balance" aria-labelledby="t-balance" hidden></div>
+    <div class="panel" role="tabpanel" id="p-interp" aria-labelledby="t-interp" hidden></div>
+    <div class="panel" role="tabpanel" id="p-outer" aria-labelledby="t-outer" hidden></div>
+  </section>
+
+  <section class="family" aria-labelledby="famTitle">
+    <div class="family-head">
+      <p class="eyebrow">Экипаж обсерватории</p>
+      <h2 id="famTitle">Небесная команда</h2>
+      <p class="muted">Нажмите на любого, чтобы услышать, что он думает о звёздах.</p>
+    </div>
+    <div class="fam-grid" id="famGrid"></div>
+  </section>
+
+  <footer class="foot">
+    <button class="portrait" data-char="me" type="button" aria-label="Жора — Звездочёт-программист"></button>
+    <div>
+      <p class="hand">Сделано с любовью для мамы</p>
+      <p>Положения планет рассчитаны по астрономическим эфемеридам с учётом исторических часовых поясов. Хирон вычисляется приближённо, с точностью около градуса.</p>
+    </div>
+  </footer>
+</div>
+<div class="bubble" id="bubble" hidden></div>
+<div id="layer"></div>
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script>
+if (typeof Astronomy === 'undefined') document.write('<script src="https://unpkg.com/astronomy-engine@2.1.19/astronomy.browser.min.js"><\/script>');
+</script>
+<script>/* ===== Cities: name|region|lat|lon|tz ===== */
+const CITIES = (() => {
+  const TZ = { M: 'Europe/Moscow', K: 'Europe/Kiev', Y: 'Asia/Yekaterinburg', B: 'Europe/Berlin', A: 'Asia/Almaty' };
+  const raw = `
+Москва|Россия|55.7558|37.6173|M
+Санкт-Петербург|Россия|59.9386|30.3141|M
+Краснодар|Краснодарский край|45.0355|38.9753|M
+Сочи|Краснодарский край|43.5855|39.7231|M
+Адлер|Краснодарский край|43.4281|39.9236|M
+Новороссийск|Краснодарский край|44.7235|37.7686|M
+Анапа|Краснодарский край|44.8949|37.3166|M
+Геленджик|Краснодарский край|44.5622|38.0848|M
+Туапсе|Краснодарский край|44.1050|39.0802|M
+Армавир|Краснодарский край|44.9892|41.1234|M
+Ейск|Краснодарский край|46.7108|38.2767|M
+Кропоткин|Краснодарский край|45.4375|40.5756|M
+Славянск-на-Кубани|Краснодарский край|45.2600|38.1250|M
+Тимашёвск|Краснодарский край|45.6150|38.9350|M
+Тихорецк|Краснодарский край|45.8547|40.1256|M
+Белореченск|Краснодарский край|44.7650|39.8700|M
+Лабинск|Краснодарский край|44.6347|40.7244|M
+Крымск|Краснодарский край|44.9314|37.9889|M
+Темрюк|Краснодарский край|45.2810|37.3800|M
+Апшеронск|Краснодарский край|44.4650|39.7300|M
+Курганинск|Краснодарский край|44.8867|40.5917|M
+Усть-Лабинск|Краснодарский край|45.2114|39.6894|M
+Кореновск|Краснодарский край|45.4647|39.4519|M
+Горячий Ключ|Краснодарский край|44.6344|39.1356|M
+Абинск|Краснодарский край|44.8667|38.1583|M
+Приморско-Ахтарск|Краснодарский край|46.0464|38.1722|M
+Майкоп|Адыгея|44.6098|40.1006|M
+Ростов-на-Дону|Ростовская область|47.2357|39.7015|M
+Таганрог|Ростовская область|47.2362|38.8969|M
+Новочеркасск|Ростовская область|47.4197|40.0939|M
+Шахты|Ростовская область|47.7086|40.2159|M
+Волгодонск|Ростовская область|47.5136|42.1514|M
+Батайск|Ростовская область|47.1397|39.7518|M
+Азов|Ростовская область|47.1121|39.4233|M
+Новошахтинск|Ростовская область|47.7578|39.9364|M
+Каменск-Шахтинский|Ростовская область|48.3178|40.2594|M
+Сальск|Ростовская область|46.4752|41.5407|M
+Миллерово|Ростовская область|48.9219|40.3984|M
+Ставрополь|Ставропольский край|45.0445|41.9691|M
+Пятигорск|Ставропольский край|44.0486|43.0594|M
+Кисловодск|Ставропольский край|43.9133|42.7208|M
+Ессентуки|Ставропольский край|44.0444|42.8600|M
+Железноводск|Ставропольский край|44.1394|43.0169|M
+Минеральные Воды|Ставропольский край|44.2103|43.1353|M
+Невинномысск|Ставропольский край|44.6333|41.9444|M
+Георгиевск|Ставропольский край|44.1517|43.4697|M
+Будённовск|Ставропольский край|44.7815|44.1653|M
+Михайловск|Ставропольский край|45.1297|42.0289|M
+Черкесск|Карачаево-Черкесия|44.2269|42.0469|M
+Нальчик|Кабардино-Балкария|43.4853|43.6071|M
+Владикавказ|Северная Осетия|43.0205|44.6819|M
+Грозный|Чечня|43.3178|45.6949|M
+Магас|Ингушетия|43.1688|44.8131|M
+Махачкала|Дагестан|42.9849|47.5047|M
+Дербент|Дагестан|42.0578|48.2883|M
+Хасавюрт|Дагестан|43.2509|46.5877|M
+Каспийск|Дагестан|42.8817|47.6390|M
+Элиста|Калмыкия|46.3078|44.2558|M
+Симферополь|Крым|44.9521|34.1024|Europe/Simferopol
+Севастополь|Крым|44.6167|33.5254|Europe/Simferopol
+Ялта|Крым|44.4952|34.1663|Europe/Simferopol
+Керчь|Крым|45.3561|36.4740|Europe/Simferopol
+Евпатория|Крым|45.1904|33.3669|Europe/Simferopol
+Феодосия|Крым|45.0319|35.3824|Europe/Simferopol
+Алушта|Крым|44.6764|34.4100|Europe/Simferopol
+Воронеж|Воронежская область|51.6608|39.2003|M
+Белгород|Белгородская область|50.5977|36.5858|M
+Старый Оскол|Белгородская область|51.2967|37.8417|M
+Курск|Курская область|51.7304|36.1926|M
+Липецк|Липецкая область|52.6031|39.5708|M
+Тамбов|Тамбовская область|52.7212|41.4523|M
+Орёл|Орловская область|52.9651|36.0785|M
+Брянск|Брянская область|53.2434|34.3640|M
+Тула|Тульская область|54.1931|37.6173|M
+Новомосковск|Тульская область|54.0109|38.2963|M
+Калуга|Калужская область|54.5293|36.2754|M
+Обнинск|Калужская область|55.0968|36.6101|M
+Смоленск|Смоленская область|54.7826|32.0453|M
+Рязань|Рязанская область|54.6292|39.7364|M
+Владимир|Владимирская область|56.1290|40.4066|M
+Муром|Владимирская область|55.5793|42.0544|M
+Иваново|Ивановская область|57.0004|40.9739|M
+Ярославль|Ярославская область|57.6261|39.8845|M
+Рыбинск|Ярославская область|58.0446|38.8426|M
+Кострома|Костромская область|57.7677|40.9264|M
+Тверь|Тверская область|56.8587|35.9176|M
+Великий Новгород|Новгородская область|58.5228|31.2698|M
+Псков|Псковская область|57.8136|28.3496|M
+Великие Луки|Псковская область|56.3401|30.5452|M
+Петрозаводск|Карелия|61.7849|34.3469|M
+Мурманск|Мурманская область|68.9585|33.0827|M
+Архангельск|Архангельская область|64.5393|40.5187|M
+Северодвинск|Архангельская область|64.5582|39.8300|M
+Вологда|Вологодская область|59.2181|39.8886|M
+Череповец|Вологодская область|59.1333|37.9000|M
+Сыктывкар|Коми|61.6688|50.8364|M
+Ухта|Коми|63.5672|53.6835|M
+Воркута|Коми|67.4974|64.0611|M
+Нижний Новгород|Нижегородская область|56.3269|44.0059|M
+Дзержинск|Нижегородская область|56.2414|43.4554|M
+Арзамас|Нижегородская область|55.3949|43.8399|M
+Казань|Татарстан|55.7887|49.1221|M
+Набережные Челны|Татарстан|55.7436|52.3958|M
+Нижнекамск|Татарстан|55.6366|51.8245|M
+Альметьевск|Татарстан|54.9014|52.2973|M
+Чебоксары|Чувашия|56.1439|47.2489|M
+Йошкар-Ола|Марий Эл|56.6344|47.8999|M
+Саранск|Мордовия|54.1838|45.1749|M
+Пенза|Пензенская область|53.1959|45.0183|M
+Химки|Московская область|55.8970|37.4297|M
+Балашиха|Московская область|55.7963|37.9382|M
+Подольск|Московская область|55.4312|37.5458|M
+Мытищи|Московская область|55.9116|37.7308|M
+Королёв|Московская область|55.9162|37.8545|M
+Люберцы|Московская область|55.6783|37.8932|M
+Зеленоград|Москва|55.9825|37.1814|M
+Сергиев Посад|Московская область|56.3153|38.1358|M
+Коломна|Московская область|55.1035|38.7531|M
+Серпухов|Московская область|54.9225|37.4114|M
+Электросталь|Московская область|55.7848|38.4447|M
+Одинцово|Московская область|55.6780|37.2777|M
+Волгоград|Волгоградская область|48.7080|44.5133|Europe/Volgograd
+Волжский|Волгоградская область|48.7858|44.7797|Europe/Volgograd
+Камышин|Волгоградская область|50.0833|45.4000|Europe/Volgograd
+Саратов|Саратовская область|51.5331|46.0342|Europe/Saratov
+Энгельс|Саратовская область|51.4989|46.1211|Europe/Saratov
+Балаково|Саратовская область|52.0278|47.8007|Europe/Saratov
+Астрахань|Астраханская область|46.3497|48.0408|Europe/Astrakhan
+Ульяновск|Ульяновская область|54.3142|48.4031|Europe/Ulyanovsk
+Самара|Самарская область|53.1959|50.1002|Europe/Samara
+Тольятти|Самарская область|53.5078|49.4204|Europe/Samara
+Сызрань|Самарская область|53.1559|48.4745|Europe/Samara
+Ижевск|Удмуртия|56.8526|53.2045|Europe/Samara
+Киров|Кировская область|58.6036|49.6680|Europe/Kirov
+Калининград|Калининградская область|54.7104|20.4522|Europe/Kaliningrad
+Екатеринбург|Свердловская область|56.8389|60.6057|Y
+Нижний Тагил|Свердловская область|57.9101|59.9813|Y
+Каменск-Уральский|Свердловская область|56.4149|61.9189|Y
+Челябинск|Челябинская область|55.1644|61.4368|Y
+Магнитогорск|Челябинская область|53.4072|58.9791|Y
+Златоуст|Челябинская область|55.1711|59.6508|Y
+Пермь|Пермский край|58.0105|56.2502|Y
+Уфа|Башкортостан|54.7388|55.9721|Y
+Стерлитамак|Башкортостан|53.6303|55.9306|Y
+Оренбург|Оренбургская область|51.7682|55.0970|Y
+Орск|Оренбургская область|51.2049|58.5668|Y
+Тюмень|Тюменская область|57.1530|65.5343|Y
+Тобольск|Тюменская область|58.2017|68.2538|Y
+Курган|Курганская область|55.4410|65.3411|Y
+Сургут|ХМАО|61.2540|73.3962|Y
+Нижневартовск|ХМАО|60.9344|76.5531|Y
+Ханты-Мансийск|ХМАО|61.0042|69.0019|Y
+Новый Уренгой|ЯНАО|66.0833|76.6333|Y
+Ноябрьск|ЯНАО|63.2018|75.4510|Y
+Салехард|ЯНАО|66.5300|66.6019|Y
+Омск|Омская область|54.9885|73.3242|Asia/Omsk
+Новосибирск|Новосибирская область|55.0084|82.9357|Asia/Novosibirsk
+Барнаул|Алтайский край|53.3474|83.7784|Asia/Barnaul
+Бийск|Алтайский край|52.5414|85.2196|Asia/Barnaul
+Горно-Алтайск|Республика Алтай|51.9581|85.9603|Asia/Barnaul
+Томск|Томская область|56.4847|84.9482|Asia/Tomsk
+Кемерово|Кемеровская область|55.3547|86.0873|Asia/Novokuznetsk
+Новокузнецк|Кемеровская область|53.7576|87.1360|Asia/Novokuznetsk
+Красноярск|Красноярский край|56.0153|92.8932|Asia/Krasnoyarsk
+Норильск|Красноярский край|69.3558|88.1893|Asia/Krasnoyarsk
+Абакан|Хакасия|53.7156|91.4292|Asia/Krasnoyarsk
+Кызыл|Тыва|51.7191|94.4378|Asia/Krasnoyarsk
+Иркутск|Иркутская область|52.2869|104.3050|Asia/Irkutsk
+Братск|Иркутская область|56.1514|101.6342|Asia/Irkutsk
+Ангарск|Иркутская область|52.5448|103.8885|Asia/Irkutsk
+Улан-Удэ|Бурятия|51.8335|107.5841|Asia/Irkutsk
+Чита|Забайкальский край|52.0340|113.4994|Asia/Chita
+Якутск|Якутия|62.0355|129.6755|Asia/Yakutsk
+Благовещенск|Амурская область|50.2907|127.5272|Asia/Yakutsk
+Владивосток|Приморский край|43.1155|131.8855|Asia/Vladivostok
+Находка|Приморский край|42.8240|132.8730|Asia/Vladivostok
+Уссурийск|Приморский край|43.7974|131.9518|Asia/Vladivostok
+Хабаровск|Хабаровский край|48.4802|135.0719|Asia/Vladivostok
+Комсомольск-на-Амуре|Хабаровский край|50.5499|137.0079|Asia/Vladivostok
+Магадан|Магаданская область|59.5682|150.8085|Asia/Magadan
+Южно-Сахалинск|Сахалинская область|46.9591|142.7380|Asia/Sakhalin
+Петропавловск-Камчатский|Камчатский край|53.0452|158.6483|Asia/Kamchatka
+Анадырь|Чукотка|64.7337|177.5089|Asia/Anadyr
+Киев|Украина|50.4501|30.5234|K
+Харьков|Украина|49.9935|36.2304|K
+Одесса|Украина|46.4825|30.7233|K
+Днепр (Днепропетровск)|Украина|48.4647|35.0462|K
+Донецк|Украина|48.0159|37.8028|K
+Луганск|Украина|48.5740|39.3078|K
+Запорожье|Украина|47.8388|35.1396|K
+Мариуполь|Украина|47.0971|37.5434|K
+Львов|Украина|49.8397|24.0297|K
+Николаев|Украина|46.9750|31.9946|K
+Херсон|Украина|46.6354|32.6169|K
+Полтава|Украина|49.5883|34.5514|K
+Винница|Украина|49.2331|28.4682|K
+Чернигов|Украина|51.4982|31.2893|K
+Сумы|Украина|50.9077|34.7981|K
+Житомир|Украина|50.2547|28.6587|K
+Кривой Рог|Украина|47.9105|33.3918|K
+Горловка|Украина|48.3367|38.0526|K
+Макеевка|Украина|48.0478|37.9258|K
+Ужгород|Украина|48.6208|22.2879|K
+Минск|Беларусь|53.9006|27.5590|Europe/Minsk
+Гомель|Беларусь|52.4345|30.9754|Europe/Minsk
+Могилёв|Беларусь|53.9007|30.3314|Europe/Minsk
+Витебск|Беларусь|55.1904|30.2049|Europe/Minsk
+Гродно|Беларусь|53.6694|23.8131|Europe/Minsk
+Брест|Беларусь|52.0976|23.7341|Europe/Minsk
+Кишинёв|Молдова|47.0105|28.8638|Europe/Chisinau
+Тирасполь|Молдова|46.8403|29.6433|Europe/Chisinau
+Рига|Латвия|56.9496|24.1052|Europe/Riga
+Таллин|Эстония|59.4370|24.7536|Europe/Tallinn
+Вильнюс|Литва|54.6872|25.2797|Europe/Vilnius
+Тбилиси|Грузия|41.7151|44.8271|Asia/Tbilisi
+Батуми|Грузия|41.6168|41.6367|Asia/Tbilisi
+Кутаиси|Грузия|42.2679|42.6946|Asia/Tbilisi
+Ереван|Армения|40.1792|44.4991|Asia/Yerevan
+Гюмри|Армения|40.7894|43.8475|Asia/Yerevan
+Баку|Азербайджан|40.4093|49.8671|Asia/Baku
+Гянджа|Азербайджан|40.6828|46.3606|Asia/Baku
+Алматы|Казахстан|43.2220|76.8512|A
+Астана|Казахстан|51.1694|71.4491|A
+Караганда|Казахстан|49.8047|73.1094|A
+Шымкент|Казахстан|42.3417|69.5901|A
+Павлодар|Казахстан|52.2873|76.9674|A
+Усть-Каменогорск|Казахстан|49.9483|82.6279|A
+Семей|Казахстан|50.4111|80.2275|A
+Тараз|Казахстан|42.9000|71.3667|A
+Актобе|Казахстан|50.2839|57.1670|Asia/Aqtobe
+Атырау|Казахстан|47.0945|51.9238|Asia/Atyrau
+Актау|Казахстан|43.6481|51.1722|Asia/Aqtau
+Уральск|Казахстан|51.2333|51.3667|Asia/Oral
+Костанай|Казахстан|53.2198|63.6354|Asia/Qostanay
+Кызылорда|Казахстан|44.8488|65.4823|Asia/Qyzylorda
+Ташкент|Узбекистан|41.2995|69.2401|Asia/Tashkent
+Самарканд|Узбекистан|39.6542|66.9597|Asia/Samarkand
+Бухара|Узбекистан|39.7681|64.4556|Asia/Samarkand
+Бишкек|Кыргызстан|42.8746|74.5698|Asia/Bishkek
+Душанбе|Таджикистан|38.5598|68.7870|Asia/Dushanbe
+Ашхабад|Туркменистан|37.9601|58.3261|Asia/Ashgabat
+Улан-Батор|Монголия|47.8864|106.9057|Asia/Ulaanbaatar
+Франкфурт-на-Майне|Германия|50.1109|8.6821|B
+Берлин|Германия|52.5200|13.4050|B
+Мюнхен|Германия|48.1351|11.5820|B
+Гамбург|Германия|53.5511|9.9937|B
+Кёльн|Германия|50.9375|6.9603|B
+Дюссельдорф|Германия|51.2277|6.7735|B
+Штутгарт|Германия|48.7758|9.1829|B
+Лейпциг|Германия|51.3397|12.3731|B
+Дрезден|Германия|51.0504|13.7373|B
+Ганновер|Германия|52.3759|9.7320|B
+Нюрнберг|Германия|49.4521|11.0767|B
+Майнц|Германия|49.9929|8.2473|B
+Висбаден|Германия|50.0782|8.2398|B
+Дармштадт|Германия|49.8728|8.6512|B
+Вена|Австрия|48.2082|16.3738|Europe/Vienna
+Цюрих|Швейцария|47.3769|8.5417|Europe/Zurich
+Женева|Швейцария|46.2044|6.1432|Europe/Zurich
+Прага|Чехия|50.0755|14.4378|Europe/Prague
+Карловы Вары|Чехия|50.2319|12.8720|Europe/Prague
+Варшава|Польша|52.2297|21.0122|Europe/Warsaw
+Краков|Польша|50.0647|19.9450|Europe/Warsaw
+Будапешт|Венгрия|47.4979|19.0402|Europe/Budapest
+Бухарест|Румыния|44.4268|26.1025|Europe/Bucharest
+София|Болгария|42.6977|23.3219|Europe/Sofia
+Варна|Болгария|43.2141|27.9147|Europe/Sofia
+Бургас|Болгария|42.5048|27.4626|Europe/Sofia
+Белград|Сербия|44.7866|20.4489|Europe/Belgrade
+Черногория (Будва)|Черногория|42.2911|18.8403|Europe/Podgorica
+Афины|Греция|37.9838|23.7275|Europe/Athens
+Салоники|Греция|40.6401|22.9444|Europe/Athens
+Лимассол|Кипр|34.7071|33.0226|Asia/Nicosia
+Стамбул|Турция|41.0082|28.9784|Europe/Istanbul
+Анталья|Турция|36.8969|30.7133|Europe/Istanbul
+Анкара|Турция|39.9334|32.8597|Europe/Istanbul
+Рим|Италия|41.9028|12.4964|Europe/Rome
+Милан|Италия|45.4642|9.1900|Europe/Rome
+Венеция|Италия|45.4408|12.3155|Europe/Rome
+Париж|Франция|48.8566|2.3522|Europe/Paris
+Ницца|Франция|43.7102|7.2620|Europe/Paris
+Мадрид|Испания|40.4168|-3.7038|Europe/Madrid
+Барселона|Испания|41.3874|2.1686|Europe/Madrid
+Лиссабон|Португалия|38.7223|-9.1393|Europe/Lisbon
+Лондон|Великобритания|51.5074|-0.1278|Europe/London
+Амстердам|Нидерланды|52.3676|4.9041|Europe/Amsterdam
+Брюссель|Бельгия|50.8503|4.3517|Europe/Brussels
+Копенгаген|Дания|55.6761|12.5683|Europe/Copenhagen
+Стокгольм|Швеция|59.3293|18.0686|Europe/Stockholm
+Осло|Норвегия|59.9139|10.7522|Europe/Oslo
+Хельсинки|Финляндия|60.1699|24.9384|Europe/Helsinki
+Тель-Авив|Израиль|32.0853|34.7818|Asia/Jerusalem
+Иерусалим|Израиль|31.7683|35.2137|Asia/Jerusalem
+Хайфа|Израиль|32.7940|34.9896|Asia/Jerusalem
+Дубай|ОАЭ|25.2048|55.2708|Asia/Dubai
+Каир|Египет|30.0444|31.2357|Africa/Cairo
+Шарм-эш-Шейх|Египет|27.9158|34.3299|Africa/Cairo
+Хургада|Египет|27.2579|33.8116|Africa/Cairo
+Дели|Индия|28.6139|77.2090|Asia/Kolkata
+Гоа (Панаджи)|Индия|15.4909|73.8278|Asia/Kolkata
+Бангкок|Таиланд|13.7563|100.5018|Asia/Bangkok
+Пхукет|Таиланд|7.8804|98.3923|Asia/Bangkok
+Денпасар (Бали)|Индонезия|-8.6705|115.2126|Asia/Makassar
+Пекин|Китай|39.9042|116.4074|Asia/Shanghai
+Шанхай|Китай|31.2304|121.4737|Asia/Shanghai
+Харбин|Китай|45.8038|126.5350|Asia/Shanghai
+Сеул|Южная Корея|37.5665|126.9780|Asia/Seoul
+Токио|Япония|35.6762|139.6503|Asia/Tokyo
+Нью-Йорк|США|40.7128|-74.0060|America/New_York
+Майами|США|25.7617|-80.1918|America/New_York
+Чикаго|США|41.8781|-87.6298|America/Chicago
+Лос-Анджелес|США|34.0522|-118.2437|America/Los_Angeles
+Сан-Франциско|США|37.7749|-122.4194|America/Los_Angeles
+Торонто|Канада|43.6532|-79.3832|America/Toronto
+Буэнос-Айрес|Аргентина|-34.6037|-58.3816|America/Argentina/Buenos_Aires
+Сидней|Австралия|-33.8688|151.2093|Australia/Sydney`;
+  return raw.trim().split('\n').map(l => {
+    const [name, region, lat, lon, tz] = l.split('|');
+    return { name, region, lat: +lat, lon: +lon, tz: TZ[tz] || tz, key: name.toLowerCase().replace(/ё/g, 'е') };
+  });
+})();
+
+/* ===== Astrology reference data & Russian texts ===== */
+const SIGNS = [
+  { id: 'aries', name: 'Овен', gen: 'Овне', el: 'fire', cross: 'card', style: 'смело, прямо и с огоньком' },
+  { id: 'taurus', name: 'Телец', gen: 'Тельце', el: 'earth', cross: 'fixed', style: 'спокойно, основательно и чувственно' },
+  { id: 'gemini', name: 'Близнецы', gen: 'Близнецах', el: 'air', cross: 'mut', style: 'любознательно, легко и разносторонне' },
+  { id: 'cancer', name: 'Рак', gen: 'Раке', el: 'water', cross: 'card', style: 'бережно, чутко и по-домашнему' },
+  { id: 'leo', name: 'Лев', gen: 'Льве', el: 'fire', cross: 'fixed', style: 'ярко, щедро и от всего сердца' },
+  { id: 'virgo', name: 'Дева', gen: 'Деве', el: 'earth', cross: 'mut', style: 'внимательно, практично и с заботой о деталях' },
+  { id: 'libra', name: 'Весы', gen: 'Весах', el: 'air', cross: 'card', style: 'гармонично, дипломатично и со вкусом' },
+  { id: 'scorpio', name: 'Скорпион', gen: 'Скорпионе', el: 'water', cross: 'fixed', style: 'глубоко, страстно и без полумер' },
+  { id: 'sagittarius', name: 'Стрелец', gen: 'Стрельце', el: 'fire', cross: 'mut', style: 'широко, оптимистично и с жаждой смысла' },
+  { id: 'capricorn', name: 'Козерог', gen: 'Козероге', el: 'earth', cross: 'card', style: 'собранно, ответственно и с прицелом на результат' },
+  { id: 'aquarius', name: 'Водолей', gen: 'Водолее', el: 'air', cross: 'fixed', style: 'свободно, необычно и по-дружески' },
+  { id: 'pisces', name: 'Рыбы', gen: 'Рыбах', el: 'water', cross: 'mut', style: 'мягко, интуитивно и с состраданием' },
+];
+const ELEMENTS = { fire: 'Огонь', earth: 'Земля', air: 'Воздух', water: 'Вода' };
+const ELEMENT_TEXT = {
+  fire: 'Больше всего Огня: энергия, вдохновение и желание действовать. Вы зажигаете других и быстро загораетесь сами.',
+  earth: 'Больше всего Земли: практичность, надёжность и умение доводить дела до результата. На вас можно опереться.',
+  air: 'Больше всего Воздуха: идеи, общение и лёгкость. Вам важно понимать, обсуждать и быть среди людей.',
+  water: 'Больше всего Воды: глубокие чувства, интуиция и эмпатия. Вы тонко чувствуете людей и атмосферу.',
+};
+const CROSSES = { card: 'Кардинальный', fixed: 'Фиксированный', mut: 'Мутабельный' };
+const CROSS_TEXT = {
+  card: 'Кардинальный крест: вы инициатор, умеете начинать и задавать направление.',
+  fixed: 'Фиксированный крест: вы стабильны и упорны, умеете держать курс и сохранять.',
+  mut: 'Мутабельный крест: вы гибки и легко подстраиваетесь под перемены.',
+};
+
+const PLANETS = {
+  sun: { name: 'Солнце', theme: 'воля, самовыражение и жизненная сила', core: 'ядро личности: то, ради чего хочется жить и чем вы светите миру' },
+  moon: { name: 'Луна', theme: 'чувства, привычки и потребность в уюте', core: 'эмоции и внутренний мир: как вы восстанавливаетесь и что даёт чувство безопасности' },
+  mercury: { name: 'Меркурий', theme: 'ум, речь и обучение', core: 'мышление и общение: как вы думаете, учитесь и говорите' },
+  venus: { name: 'Венера', theme: 'любовь, красота и удовольствие', core: 'любовь и вкус: что вы цените, как любите и чем наслаждаетесь' },
+  mars: { name: 'Марс', theme: 'энергия, смелость и напор', core: 'действие и воля: как вы добиваетесь своего и защищаете важное' },
+  jupiter: { name: 'Юпитер', theme: 'рост, удача и вера', core: 'щедрость судьбы: где жизнь расширяется и приходит удача' },
+  saturn: { name: 'Сатурн', theme: 'дисциплина, ответственность и опыт', core: 'зрелость: где нужны терпение и труд и где со временем приходит мастерство' },
+  uranus: { name: 'Уран', theme: 'свобода, перемены и оригинальность', core: 'внезапные озарения и желание жить по-своему' },
+  neptune: { name: 'Нептун', theme: 'мечты, интуиция и вдохновение', core: 'тонкий мир: фантазия, вера, искусство и сострадание' },
+  pluto: { name: 'Плутон', theme: 'глубина, сила и перерождение', core: 'способность меняться до основания и возрождаться сильнее' },
+  chiron: { name: 'Хирон', theme: 'уязвимость и дар исцеления', core: 'рана, которая со временем становится умением помогать другим' },
+  node: { name: 'Сев. узел', theme: 'путь развития', core: 'направление роста: то, к чему душа идёт в этой жизни' },
+  snode: { name: 'Юж. узел', theme: 'прошлый опыт', core: 'привычные таланты и зона комфорта, из которой важно вырастать' },
+  lilith: { name: 'Лилит', theme: 'тайные желания и соблазны', core: 'Чёрная Луна: подавленные желания и место, где важно не терять себя' },
+  fortune: { name: 'Парс Фортуны', theme: 'удача и радость', core: 'точка удачи: где легче всего почувствовать себя счастливой' },
+  asc: { name: 'Асцендент', theme: 'образ и подача себя' },
+  mc: { name: 'MC', theme: 'призвание и цели' },
+};
+const PLANET_ORDER = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'chiron', 'node', 'snode', 'lilith', 'fortune'];
+const ASPECT_POINTS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'chiron', 'node', 'lilith'];
+
+const DIGNITY = {
+  sun: { dom: ['leo'], ex: 'aries' }, moon: { dom: ['cancer'], ex: 'taurus' }, mercury: { dom: ['gemini', 'virgo'], ex: 'virgo' },
+  venus: { dom: ['taurus', 'libra'], ex: 'pisces' }, mars: { dom: ['aries', 'scorpio'], ex: 'capricorn' },
+  jupiter: { dom: ['sagittarius', 'pisces'], ex: 'cancer' }, saturn: { dom: ['capricorn', 'aquarius'], ex: 'libra' },
+  uranus: { dom: ['aquarius'] }, neptune: { dom: ['pisces'] }, pluto: { dom: ['scorpio'] },
+};
+
+const HOUSES = [null,
+  { name: 'личность', sphere: 'личность, внешность и первое впечатление' },
+  { name: 'ресурсы', sphere: 'деньги, имущество и самоценность' },
+  { name: 'общение', sphere: 'общение, учёба, братья и сёстры, короткие поездки' },
+  { name: 'дом', sphere: 'дом, семья, родители и корни' },
+  { name: 'творчество', sphere: 'творчество, любовь, дети и радость жизни' },
+  { name: 'забота', sphere: 'работа, здоровье, режим дня и домашние питомцы' },
+  { name: 'партнёрство', sphere: 'брак, партнёрство и близкие союзы' },
+  { name: 'глубина', sphere: 'общие ресурсы, кризисы, близость и перемены' },
+  { name: 'горизонты', sphere: 'путешествия, мировоззрение, учителя и высшее образование' },
+  { name: 'призвание', sphere: 'карьера, призвание, статус и репутация' },
+  { name: 'друзья', sphere: 'друзья, единомышленники и мечты о будущем' },
+  { name: 'тайное', sphere: 'уединение, подсознание, тайны и духовная жизнь' },
+];
+
+const ASPECTS = [
+  { id: 'conj', name: 'Соединение', angle: 0, orb: 8, kind: 'neutral', verb: 'сливаются в одну силу и усиливают друг друга' },
+  { id: 'opp', name: 'Оппозиция', angle: 180, orb: 8, kind: 'hard', verb: 'тянут в разные стороны, и важно найти между ними баланс' },
+  { id: 'trine', name: 'Трин', angle: 120, orb: 7, kind: 'soft', verb: 'легко поддерживают друг друга: это природный талант' },
+  { id: 'square', name: 'Квадрат', angle: 90, orb: 7, kind: 'hard', verb: 'спорят и создают напряжение, которое подталкивает к росту' },
+  { id: 'sextile', name: 'Секстиль', angle: 60, orb: 5, kind: 'soft', verb: 'дают хорошие возможности, если приложить немного усилий' },
+  { id: 'quincunx', name: 'Квинконс', angle: 150, orb: 3, kind: 'minor', verb: 'требуют постоянной подстройки друг к другу' },
+  { id: 'semisextile', name: 'Полусекстиль', angle: 30, orb: 2, kind: 'minor', verb: 'мягко соседствуют и учатся дополнять друг друга' },
+  { id: 'semisquare', name: 'Полуквадрат', angle: 45, orb: 2, kind: 'minor', verb: 'создают лёгкое раздражение, которое побуждает к делу' },
+  { id: 'sesqui', name: 'Полутораквадрат', angle: 135, orb: 2, kind: 'minor', verb: 'дают внутреннее беспокойство, требующее выхода' },
+  { id: 'quintile', name: 'Квинтиль', angle: 72, orb: 1.5, kind: 'minor', verb: 'рождают творческую искру и особый дар' },
+];
+
+const SUN_TEXT = {
+  aries: 'Вы человек действия: быстро загораетесь, смело начинаете и не боитесь быть первой. Ваша сила в честности и энергии.',
+  taurus: 'Вы цените покой, красоту и надёжность. Ваша сила в терпении, верности и умении создавать уют и достаток.',
+  gemini: 'Вы любознательны и общительны, вам интересно всё на свете. Ваша сила в лёгкости, остроумии и умении находить общий язык.',
+  cancer: 'Семья и дом для вас главное. Ваша сила в заботе, памяти сердца и умении создать вокруг атмосферу тепла.',
+  leo: 'Вы рождены сиять и согревать других. Ваша сила в щедрости, творчестве и большом добром сердце.',
+  virgo: 'Вы видите детали и умеете сделать всё как следует. Ваша сила в заботе на деле, уме и надёжности.',
+  libra: 'Вам важны гармония, красота и справедливость. Ваша сила в дипломатии, вкусе и умении мирить людей.',
+  scorpio: 'Вы чувствуете глубоко и видите людей насквозь. Ваша сила в стойкости, преданности и способности возрождаться.',
+  sagittarius: 'Вам нужны простор, смысл и новые горизонты. Ваша сила в оптимизме, щедрости и вере в лучшее.',
+  capricorn: 'Вы строите жизнь основательно и надолго. Ваша сила в ответственности, выдержке и умении достигать целей.',
+  aquarius: 'Вы мыслите свободно и смотрите в будущее. Ваша сила в независимости, дружелюбии и оригинальных идеях.',
+  pisces: 'Вы тонко чувствуете мир и людей. Ваша сила в сострадании, интуиции и богатом внутреннем мире.',
+};
+const MOON_TEXT = {
+  aries: 'Эмоции вспыхивают быстро и так же быстро гаснут. Чтобы восстановиться, нужно действие: прогулка, движение, новое дело.',
+  taurus: 'Чувства спокойные и устойчивые. Восстанавливают вкусная еда, природа, уют и предсказуемость.',
+  gemini: 'Настроение меняется вместе с впечатлениями. Помогают разговоры, новости, книги и смена обстановки.',
+  cancer: 'Очень чуткая, заботливая Луна. Сил дают дом, семья, воспоминания и ощущение, что вы нужны близким.',
+  leo: 'Важно чувствовать любовь и признание. Радуют праздники, творчество, красивые вещи и тёплые слова.',
+  virgo: 'Спокойствие приходит через порядок. Помогают полезные дела, забота о здоровье и ясный план.',
+  libra: 'Нужны гармония и красота вокруг. Восстанавливают приятная компания, искусство и мирная атмосфера.',
+  scorpio: 'Чувства глубокие и сильные, вы не любите полутонов. Помогают доверие, уединение и честные разговоры.',
+  sagittarius: 'Душе нужен простор. Восстанавливают путешествия, новые знания, смех и вера в хорошее.',
+  capricorn: 'Эмоции сдержанные, вы привыкли быть сильной. Помогают стабильность, понятные цели и признание ваших усилий.',
+  aquarius: 'Нужна свобода быть собой. Восстанавливают друзья, необычные идеи и личное пространство.',
+  pisces: 'Очень тонкая, мечтательная Луна. Помогают музыка, вода, творчество, молитва или медитация и тишина.',
+};
+const ASC_TEXT = {
+  aries: 'Вас воспринимают как энергичного, прямого и решительного человека.',
+  taurus: 'Вы производите впечатление спокойного, надёжного и приятного человека.',
+  gemini: 'Окружающие видят в вас живого, разговорчивого и любознательного собеседника.',
+  cancer: 'Вы кажетесь мягкой, заботливой и немного закрытой при первом знакомстве.',
+  leo: 'Вас трудно не заметить: яркая манера держаться и тёплое обаяние.',
+  virgo: 'Вы выглядите собранной, аккуратной и внимательной к мелочам.',
+  libra: 'Вас воспринимают как обаятельного, тактичного и элегантного человека.',
+  scorpio: 'В вас чувствуют силу, загадку и проницательный взгляд.',
+  sagittarius: 'Вы производите впечатление открытого, весёлого и свободолюбивого человека.',
+  capricorn: 'Вы выглядите серьёзной, сдержанной и уверенной в себе.',
+  aquarius: 'В вас видят необычного, дружелюбного и независимого человека.',
+  pisces: 'Вас воспринимают как мягкого, мечтательного и сочувствующего человека.',
+};
+
+/* Character phrases (easter eggs) */
+const PHRASES = {
+  mom: ['Звёзды сегодня на моей стороне.', 'Главное в карте — сердце, а не градусы.', 'Сначала чай, потом Сатурн.', 'Кто тут спрашивал про ретроградный Меркурий?', 'Каждого в семье я уже давно просчитала.'],
+  dad: ['Луна растёт — клёв будет!', 'Поймал Юпитер, отпустил. Пусть растёт.', 'Рыба в Рыбах — к хорошей ухе.', 'На Сатурн клюёт только на терпение.', 'Самый крупный улов — это ваша мама.'],
+  brother: ['Если город не нашёлся, введи координаты — я так по горам и хожу.', 'Стрелец бы уже собирал рюкзак.', 'Нашёл созвездие Тапка. Шучу.', 'Карта звёздного неба — лучшая карта для похода.', 'Где-то там Марс, а у меня ещё бутерброд.'],
+  elya: ['Венера сегодня в отличном настроении. Как и я.', 'Подмигиваю тебе из пятого дома.', 'Твоя Венера говорит: пора за новым пальто.', 'Красота спасёт мир, а астрология объяснит почему.', 'Мам, а давай посмотрим мою совместимость?'],
+  me: ['Сделал этот сайт с любовью для мамы.', 'Весь код проверен на совместимость со звёздами.', 'Если что-то сломается, это Меркурий ретроградный.', 'Мама, ты лучшая. Это не астрология, это факт.', 'Баги не найдены. Только кометы.'],
+  lyalya: ['Мур. Звёзды говорят: погладь кошку.', 'Сегодня благоприятный день для сна на клавиатуре.', 'Я вижу твоё будущее. Там есть корм.', 'Моё любимое созвездие — Миска.', 'Мягкие лапы — к удаче.'],
+  chips: ['Я поймал комету! Почти.', 'Где тут хвост у Луны?', 'Мяу! Ещё одну планету можно?', 'Я считаю градусы. Их много. Я устал.', 'Мои уши ловят сигналы из космоса.'],
+  khimera: ['Звёзды не сошлись. И я тоже не в восторге.', 'Я и есть Тёмная Луна. Вопросы?', 'Погладь. Потом посчитаем.', 'Лилит — это я в хорошем настроении.', 'Не мешай мне лежать на кнопке.'],
+};
+const ADVICE = [
+  'Сегодня хорошо начинать с малого: одно дело, сделанное спокойно, лучше трёх наспех.',
+  'Позвоните тому, о ком давно думаете. Звёзды за.',
+  'День для уюта: свеча, плед и кошка на коленях.',
+  'Хороший день, чтобы сказать «нет» тому, что забирает силы.',
+  'Луна советует выпить воды и выйти на прогулку.',
+  'Сделайте что-нибудь красивое просто так. Венера оценит.',
+  'Не спорьте с Меркурием: перечитайте сообщение перед отправкой.',
+  'Сегодня ваша интуиция говорит громче обычного. Прислушайтесь.',
+  'День для благодарности: вспомните трёх людей, которые вас радуют.',
+  'Отдых сегодня не лень, а часть плана.',
+  'Самое время доделать то, что давно лежит на полке.',
+  'Обнимите кого-нибудь из семьи. Желательно не Химеру, он против.',
+];
+
+/* ===== Astrological glyphs as stroke paths (20×20 box) — no emoji fallback issues ===== */
+const GLYPH = {
+  aries: 'M3.5 8C3 3.5 9.5 2.5 10 9V18M10 9C10.5 2.5 17 3.5 16.5 8',
+  taurus: 'M3 3C5 7 7.5 8.5 10 8.5C12.5 8.5 15 7 17 3M5.4 13a4.6 4.6 0 1 0 9.2 0a4.6 4.6 0 1 0 -9.2 0',
+  gemini: 'M4 3C8 5 12 5 16 3M4 17C8 15 12 15 16 17M7.5 4.6V15.4M12.5 4.6V15.4',
+  cancer: 'M17 6C14 2.5 6 2 3.5 7M3.5 8a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M3 14C6 17.5 14 18 16.5 13M11.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0',
+  leo: 'M6.5 16.5A2.8 2.8 0 1 1 9 13C8 8 7.5 3 12 3C16.5 3 16.5 8 14 11C12 13.5 13 17 16.5 16.5',
+  virgo: 'M3 5V15M3 7Q5 4 7 7V15M7 7Q9 4 11 7V15Q11 18 14 16.5M11 11.5Q16 8 15.5 13Q15 17 11.5 17.5',
+  libra: 'M3 16.5H17M3 12.5H7.2C5 6 15 6 12.8 12.5H17',
+  scorpio: 'M3 5V15M3 7Q5 4 7 7V15M7 7Q9 4 11 7V15Q11 17 14 17H16.5M14.3 15L16.6 17L14.3 19',
+  sagittarius: 'M4 16L16 4M10 4H16V10M6 10L10 14',
+  capricorn: 'M3 5L6.5 14L9.5 5V13C9.5 17.5 15.5 18 16.5 14.5C17.3 11.5 13 10 11.5 13.5C10.5 16 9 17.5 7 18',
+  aquarius: 'M3 8.5L6 5.5L9 8.5L12 5.5L15 8.5L17 6.5M3 14.5L6 11.5L9 14.5L12 11.5L15 14.5L17 12.5',
+  pisces: 'M4.5 3C9.5 7 9.5 13 4.5 17M15.5 3C10.5 7 10.5 13 15.5 17M5.5 10H14.5',
+  sun: 'M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0M9.7 10h.6',
+  moon: 'M12.5 3A7 7 0 1 0 12.5 17A5.6 5.6 0 1 1 12.5 3Z',
+  mercury: 'M6.5 11a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M10 14.5V19M7.5 16.8H12.5M6.5 2.5C7.5 5.6 12.5 5.6 13.5 2.5',
+  venus: 'M5.5 7a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0M10 11.5V18.5M7 15.2H13',
+  mars: 'M3.5 12a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0M11.3 8.7L17 3M12.2 3H17V7.8',
+  jupiter: 'M4 6.5C4 3 9.5 2.5 9.5 6.5C9.5 10 6 12.5 3.5 13.5H16.5M13 4V18',
+  saturn: 'M6 3V15M3.5 5.5H8.5M6 10.5C8 7.5 13 7.5 13 11C13 14 9.5 15 10 17.5C10.5 19 13 18.5 13.5 17',
+  uranus: 'M5 3V11M15 3V11M5 7H15M10 3V13.6M7.6 16a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0 -4.8 0',
+  neptune: 'M4 4C4 10 7 12 10 12C13 12 16 10 16 4M10 3V19M7 16H13',
+  pluto: 'M6.5 6a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M5 4.5C5 12 15 12 15 4.5M10 11V19M7 16H13',
+  chiron: 'M10 2.5V13.4M10 7.8L15 3.5M10 7.8L15 12M7.4 16a2.6 2.6 0 1 0 5.2 0a2.6 2.6 0 1 0 -5.2 0',
+  node: 'M6.5 13.5C2 10 4 3.5 10 3.5C16 3.5 18 10 13.5 13.5M4.6 15.4a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0 -3.8 0M11.6 15.4a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0 -3.8 0',
+  snode: 'M6.5 6.5C2 10 4 16.5 10 16.5C16 16.5 18 10 13.5 6.5M4.6 4.6a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0 -3.8 0M11.6 4.6a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0 -3.8 0',
+  lilith: 'M11.5 2.5A4.5 4.5 0 1 0 11.5 11.5A3.6 3.6 0 1 1 11.5 2.5ZM9 11V18.5M6 15.5H12',
+  fortune: 'M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0M5.1 5.1L14.9 14.9M14.9 5.1L5.1 14.9',
+};
+const ASP_GLYPH = {
+  conj: 'M4 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M10.8 9.2L16 4',
+  opp: 'M2.5 15a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M12.5 5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M6.8 13.2L13.2 6.8',
+  trine: 'M10 3.5L17 16H3Z',
+  square: 'M4 4H16V16H4Z',
+  sextile: 'M10 3V17M4 6.5L16 13.5M16 6.5L4 13.5',
+  quincunx: 'M4 16L10 5L16 16M4 4H16',
+  semisextile: 'M4 4L10 15L16 4M4 16H16',
+  semisquare: 'M15 4L5 15H16',
+  sesqui: 'M4 8H13V17M13 8L17 3',
+  quintile: 'M4 10a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M12.5 13L17 17.5',
+};
+function aspSvg(id, kind) { return `<svg class="a ${kind}" viewBox="0 0 20 20" aria-hidden="true"><path d="${ASP_GLYPH[id]}"/></svg>`; }
+function glyphSvg(id, cls = '') {
+  return `<svg class="g ${cls}" viewBox="0 0 20 20" aria-hidden="true"><path d="${GLYPH[id]}"/></svg>`;
+}
+
+/* ===== Family characters: hand-drawn vector portraits, one storybook style ===== */
+const Chars = (() => {
+  const INK = '#2B2140';
+  let U = 0;
+  const star = (cx, cy, r, fill = '#F2C76A', sw = 1.1) => {
+    let d = '';
+    for (let i = 0; i < 10; i++) {
+      const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r;
+      d += (i ? 'L' : 'M') + (cx + rr * Math.cos(a)).toFixed(2) + ' ' + (cy + rr * Math.sin(a)).toFixed(2);
+    }
+    return `<path d="${d}Z" fill="${fill}" stroke="${INK}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+  };
+  const wrap = (fn, label) => () => {
+    const id = 'c' + (++U);
+    return `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}" stroke-linejoin="round" stroke-linecap="round">${fn(id)}</svg>`;
+  };
+  const lin = (id, a, b, x2 = 0, y2 = 1) => `<linearGradient id="${id}" x1="0" y1="0" x2="${x2}" y2="${y2}"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`;
+  const rad = (id, a, b, cx = .42, cy = .36, r = .72) => `<radialGradient id="${id}" cx="${cx}" cy="${cy}" r="${r}"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></radialGradient>`;
+  const eye = (id, n, cx, cy, iris, w = 4.3, lash = 1.35) => {
+    const shape = `M${cx - w} ${cy}Q${cx} ${cy - 3.8} ${cx + w} ${cy}Q${cx} ${cy + 2.8} ${cx - w} ${cy}Z`;
+    return `<clipPath id="${id}e${n}"><path d="${shape}"/></clipPath><path d="${shape}" fill="#FBF8F6"/>
+      <g clip-path="url(#${id}e${n})"><circle cx="${cx}" cy="${cy + .1}" r="2.35" fill="${iris}"/><circle cx="${cx}" cy="${cy + .1}" r="2.35" fill="none" stroke="#1a1220" stroke-opacity=".35" stroke-width=".5"/>
+      <circle cx="${cx}" cy="${cy + .1}" r="1.1" fill="#1a1220"/><path d="M${cx - w} ${cy - 1.4}Q${cx} ${cy - 4} ${cx + w} ${cy - 1.4}" stroke="#000" stroke-opacity=".12" stroke-width="1.6" fill="none"/></g>
+      <circle cx="${cx + .85}" cy="${cy - .75}" r=".75" fill="#fff"/>
+      <path d="M${cx - w - .4} ${cy + .25}Q${cx} ${cy - 4.3} ${cx + w + .4} ${cy - .15}" stroke="${INK}" stroke-width="${lash}" fill="none"/>
+      <path d="M${cx - w + 1} ${cy + 1.1}Q${cx} ${cy + 2.6} ${cx + w - 1} ${cy + 1.1}" stroke="${INK}" stroke-opacity=".25" stroke-width=".6" fill="none"/>`;
+  };
+  const smileEye = (cx, cy, w = 4.2) => {
+    const s = cx > 60 ? 1 : -1;
+    return `<path d="M${cx - w} ${cy + .6}Q${cx} ${cy - 3.6} ${cx + w} ${cy + .6}" stroke="${INK}" stroke-width="1.9" fill="none"/>
+      <path d="M${cx + s * w * 1.05} ${cy + 1}l${s * 2} 1.2M${cx + s * w * 1.05} ${cy - .4}l${s * 2.2} -.4" stroke="${INK}" stroke-opacity=".45" stroke-width=".8"/>`;
+  };
+
+  /* --- People: clean flat portraits, natural proportions, soft shading --- */
+  const face = (id, o) => {
+    const sk = o.skin, sh = o.shade;
+    return `
+    <ellipse cx="41.2" cy="56" rx="3.2" ry="5.2" fill="${sh}"/><ellipse cx="78.8" cy="56" rx="3.2" ry="5.2" fill="${sh}"/>
+    <path d="M41.5 52C41.5 34.5 49.5 27 60 27C70.5 27 78.5 34.5 78.5 52C78.5 68 70.5 80 60 81C49.5 80 41.5 68 41.5 52Z" fill="${sk}"/>
+    <path d="M66 29.5C73.5 32 78.5 40 78.5 52C78.5 68 70.5 80 60 81C67 76 71 66 71 52C71 41 69.5 34 66 29.5Z" fill="${sh}" opacity=".45"/>
+    ${o.eyes || `<ellipse cx="52.6" cy="54.2" rx="2.7" ry="1.8" fill="#2A1E22"/><ellipse cx="67.4" cy="54.2" rx="2.7" ry="1.8" fill="#2A1E22"/>
+      <circle cx="53.5" cy="53.6" r=".65" fill="#fff"/><circle cx="68.3" cy="53.6" r=".65" fill="#fff"/>`}
+    <path d="M${o.browL || '48 48.6Q52.4 46.6 56.4 48'}M${o.browR || '63.6 48Q67.6 46.6 72 48.6'}" stroke="${o.brow}" stroke-width="${o.bw || 1.9}" fill="none" stroke-linecap="round"/>
+    <path d="M60.6 55.5L58.6 63Q60.2 64.4 62.4 63.4" stroke="${sh}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <ellipse cx="49" cy="63" rx="3.6" ry="2.2" fill="#E8867E" opacity=".22"/><ellipse cx="71" cy="63" rx="3.6" ry="2.2" fill="#E8867E" opacity=".22"/>
+    ${o.mouth}`;
+  };
+  const neck = (sk, sh) => `<path d="M52.5 68V100Q60 104.5 67.5 100V68Z" fill="${sk}"/><path d="M52.5 74Q60 82.5 67.5 74V80Q60 87 52.5 80Z" fill="${sh}" opacity=".7"/>`;
+  const SK1 = '#F3D3BE', SH1 = '#DDA98F';
+
+  const mom = wrap(id => `
+    ${star(48, 12, 3.4)}${star(60, 7, 4.6)}${star(72, 12, 3.4)}
+    <path d="M37 54C35 31 46 21 60 21C74 21 85 31 83 54C84 68 85 80 82 90H38C35 80 36 68 37 54Z" fill="#1E1A22"/>
+    ${neck(SK1, SH1)}
+    <path d="M14 140C16 112 33 100 60 98C87 100 104 112 106 140Z" fill="#F4F0E9"/>
+    <path d="M47 99L60 122L73 99C70 98.3 65 98 60 98C55 98 50 98.3 47 99Z" fill="#1E1A22"/>
+    <path d="M47 99L42 110L49 112.5L58.5 125L60 122Z" fill="#E4DED3"/><path d="M73 99L78 110L71 112.5L61.5 125L60 122Z" fill="#E4DED3"/>
+    <path d="M60 122V140" stroke="#DCD5C9" stroke-width="1.2"/>
+    ${star(83, 116, 3.2, '#E2B65A', .6)}
+    ${face(id, { skin: SK1, shade: SH1, brow: '#1E1A22',
+      eyes: `<path d="M49.6 54.2Q52.6 51.6 55.6 54.2Q52.6 55.8 49.6 54.2Z" fill="#2A1E22"/><path d="M64.4 54.2Q67.4 51.6 70.4 54.2Q67.4 55.8 64.4 54.2Z" fill="#2A1E22"/>
+        <path d="M49.2 54L47.8 53M70.8 54L72.2 53" stroke="#2A1E22" stroke-width="1" stroke-linecap="round"/><circle cx="53.4" cy="53.6" r=".6" fill="#fff"/><circle cx="68.2" cy="53.6" r=".6" fill="#fff"/>`,
+      mouth: `<path d="M55.2 68.4Q57.6 66.8 60 67.8Q62.4 66.8 64.8 68.4Q62.4 71.6 60 71.6Q57.6 71.6 55.2 68.4Z" fill="#B65A6A"/><path d="M55.6 68.5Q60 69.6 64.4 68.5" stroke="#8E3E4E" stroke-width=".8" fill="none"/>` })}
+    <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#1E1A22"/>
+    <path d="M41 50C40.5 36 48.5 28 60 28.5C60 33 55 37.5 48.5 40.5C45 42.5 42.5 46 41 50Z" fill="#1E1A22"/>
+    <path d="M79 50C79.5 36 71.5 28 60 28.5C60 33 65 37.5 71.5 40.5C75 42.5 77.5 46 79 50Z" fill="#1E1A22"/>
+    <path d="M41.2 44C39 58 39.5 74 41 88L45 88C44 74 43.5 60 44.5 48Z" fill="#1E1A22"/><path d="M78.8 44C81 58 80.5 74 79 88L75 88C76 74 76.5 60 75.5 48Z" fill="#1E1A22"/>
+    <path d="M50 30Q55 27.6 59 28.2M61 28.2Q65 27.6 70 30" stroke="#4A4252" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <circle cx="43.4" cy="67" r="1.3" fill="#E2B65A"/><circle cx="76.6" cy="67" r="1.3" fill="#E2B65A"/>
+  `, 'Мама — Верховная Астрологиня');
+
+  const SK2 = '#EEC5A7', SH2 = '#D59C7E';
+  const dad = wrap(id => `
+    <path d="M90 140L113 18" stroke="#24222B" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M113 18Q114 40 109 60" stroke="#B7B0CC" stroke-width=".7" fill="none"/>
+    <ellipse cx="109" cy="64" rx="2.8" ry="4.6" fill="#E8508A"/><path d="M106.2 64H111.8" stroke="#F2C76A" stroke-width="1.6"/><path d="M109 59.4V54" stroke="#7DBF5A" stroke-width="1.4"/>
+    ${neck(SK2, SH2)}
+    <path d="M12 140C14 110 33 97 60 96C87 97 106 110 108 140Z" fill="#55545E"/>
+    <path d="M44 97.5L52 110L60 101L68 110L76 97.5C71 96.5 65.5 96 60 96C54.5 96 49 96.5 44 97.5Z" fill="#4A4952"/>
+    <path d="M60 103V140" stroke="#44434C" stroke-width="1.4"/>
+    ${face(id, { skin: SK2, shade: SH2, brow: '#5A524A', bw: 2.3,
+      eyes: `<path d="M49 55Q52.6 51.8 56.2 55" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/><path d="M63.8 55Q67.4 51.8 71 55" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M47.2 56.2l-1.8.8M72.8 56.2l1.8.8" stroke="${SH2}" stroke-width="1" stroke-linecap="round"/>`,
+      mouth: '' })}
+    <path d="M42.5 58C42 76 50 87 60 87C70 87 78 76 77.5 58C75.5 66 71 70.5 66 69.5Q60 67.8 54 69.5C49 70.5 44.5 66 42.5 58Z" fill="#857B71"/>
+    <path d="M47 70l1.4 3M50 77l1 2.4M73 70l-1.4 3M70 77l-1 2.4M57 82v2.4M63 82v2.4M60 77v2" stroke="#C9C1B5" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M52.5 68.6Q56 65.8 60 67.4Q64 65.8 67.5 68.6Q63.5 70.2 60 69.3Q56.5 70.2 52.5 68.6Z" fill="#6A6158"/>
+    <path d="M55.6 72.4Q60 76.6 64.4 72.4Z" fill="#8A3E40"/><path d="M56.8 72.8Q60 74 63.2 72.8" stroke="#fff" stroke-width=".9" fill="none"/>
+    <path d="M40.5 45C40 27 49 21 60 21C71 21 80 27 79.5 45Z" fill="#302F37"/>
+    <path d="M40.5 40.5H79.5V45H40.5Z" fill="#45444E"/>
+    <path d="M21 47C31 40.5 89 40.5 99 47C91 53 29 53 21 47Z" fill="#26252C"/>
+    <path d="M50 24.5Q60 28 70 24.5" stroke="#1E1D24" stroke-width="1.2" fill="none"/>
+  `, 'Папа — Хранитель Лунных Вод');
+
+  const SK3 = '#F2CDB2', SH3 = '#DAA486';
+  const shamil = wrap(id => `
+    ${neck(SK3, SH3)}
+    <path d="M12 140C14 112 33 98 60 97C87 98 106 112 108 140Z" fill="#212A44"/>
+    <path d="M13.5 126C36 120 84 120 106.5 126L108 140H12Z" fill="#3E8396"/>
+    <path d="M42 100C46 92 74 92 78 100L71 105C65 99 55 99 49 105Z" fill="#2E3758"/>
+    <path d="M60 104V140" stroke="#161C30" stroke-width="1.4"/>
+    <path d="M33 106L36 140M87 106L84 140" stroke="#121520" stroke-width="5" stroke-linecap="round"/>
+    ${face(id, { skin: SK3, shade: SH3, brow: '#6B4428', bw: 2.2,
+      eyes: `<path d="M49.2 55.4Q52.6 52.4 56 55.4" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/><path d="M64 55.4Q67.4 52.4 70.8 55.4" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/>`,
+      mouth: '' })}
+    <path d="M42 56C41 82 50 93 60 93C70 93 79 82 78 56C76.5 66 73 73 67.5 75.5Q60 78.2 52.5 75.5C47 73 43.5 66 42 56Z" fill="#94603A"/>
+    <path d="M46 72l1.2 3M49 80l1 2.4M74 72l-1.2 3M71 80l-1 2.4M57 87v2.4M63 87v2.4" stroke="#6E4428" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M53 67.6Q60 65 67 67.6Q60 69.2 53 67.6Z" fill="#7A4A2A"/>
+    <path d="M52 70.6Q60 80.6 68 70.6Z" fill="#fff"/><path d="M52 70.6Q60 73 68 70.6" stroke="#E6DED8" stroke-width=".8" fill="none"/>
+    <path d="M42 46C42 29 50 22.5 60 22.5C70 22.5 78 29 78 46Z" fill="#6E717C"/>
+    <path d="M31 53.5L38 43H82L89 53.5C77 58 43 58 31 53.5Z" fill="#5E616B"/>
+    <rect x="62.5" y="31" width="8.5" height="8.5" rx="1.2" fill="#18181F"/><circle cx="66.75" cy="35.25" r="2" fill="none" stroke="#fff" stroke-width=".7"/>
+  `, 'Шамиль — Звёздный Странник');
+
+  const SK4 = '#F4D5C0', SH4 = '#DDAA90';
+  const zhora = wrap(id => `
+    <path d="M37 58C35 33 46 22 60 22C74 22 85 33 83 58C85 71 84 83 78 91H42C36 83 35 71 37 58Z" fill="#4E3020"/>
+    ${neck(SK4, SH4)}
+    <path d="M14 140C16 112 35 100 60 99C85 100 104 112 106 140Z" fill="#A6A5A0"/>
+    <path d="M50.5 99.5Q60 107 69.5 99.5" stroke="#8C8B86" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    ${face(id, { skin: SK4, shade: SH4, brow: '#4E3020', bw: 2,
+      eyes: `<ellipse cx="52.6" cy="54.2" rx="2.9" ry="1.9" fill="#fff"/><ellipse cx="67.4" cy="54.2" rx="2.9" ry="1.9" fill="#fff"/>
+        <circle cx="52.8" cy="54.2" r="1.6" fill="#6F8DAD"/><circle cx="67.6" cy="54.2" r="1.6" fill="#6F8DAD"/><circle cx="52.8" cy="54.2" r=".75" fill="#1E1A22"/><circle cx="67.6" cy="54.2" r=".75" fill="#1E1A22"/>
+        <path d="M49.6 53.4Q52.6 51.2 55.6 53.4M64.4 53.4Q67.4 51.2 70.4 53.4" stroke="#3A2A24" stroke-width="1.1" fill="none" stroke-linecap="round"/>`,
+      mouth: `<path d="M55.8 69.4Q60 71.6 64.2 69.4" stroke="#A55E57" stroke-width="1.6" fill="none" stroke-linecap="round"/>` })}
+    <path d="M44 61C44.5 75 52 81 60 81C68 81 75.5 75 76 61C73.5 69 69 72.6 65 73.2Q60 74 55 73.2C51 72.6 46.5 69 44 61Z" fill="#7A4E33" opacity=".32"/>
+    <path d="M55.4 66.2Q60 64.8 64.6 66.2" stroke="#7A4E33" stroke-width="1.3" fill="none" opacity=".4"/>
+    <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#4E3020"/>
+    <path d="M41.5 56C40 38 49 29.5 60 30.5C60 34.5 55 37 49 39C45 40.5 42.5 47 41.5 56Z" fill="#4E3020"/>
+    <path d="M78.5 56C80 38 71 29.5 60 30.5C60 34.5 65 37 71 39C75 40.5 77.5 47 78.5 56Z" fill="#4E3020"/>
+    <path d="M41.5 52C38.5 62 41.5 72 38.5 84M78.5 52C81.5 62 78.5 72 81.5 84" stroke="#3A2216" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M47 34Q52 31 57 31.6M63 31.6Q68 31 73 34" stroke="#6E4A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+  `, 'Жора — Звездочёт-программист');
+
+  const SK5 = '#F6DACA', SH5 = '#E2B09A';
+  const elya = wrap(id => `
+    <path d="M36 58C34 32 46 21 60 21C74 21 86 32 84 58C86 72 86 84 81 93H39C34 84 34 72 36 58Z" fill="#5C3A2A"/>
+    <path d="M38 70Q33.5 80 39 90M82 70Q86.5 80 81 90" stroke="#43291D" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    ${neck(SK5, SH5)}
+    <path d="M14 140C16 112 34 99 60 98C86 99 104 112 106 140Z" fill="#F1E6D2"/>
+    <path d="M49 84Q60 88 71 84V102Q60 106 49 102Z" fill="#1E1A22"/>
+    <path d="M49 102L60 122L71 102" fill="#1E1A22"/>
+    <path d="M49 102L43 113L51 116L60 122M71 102L77 113L69 116L60 122" fill="#E6D9C1"/>
+    <circle cx="52" cy="128" r="2" fill="#D3A24A"/><circle cx="68" cy="128" r="2" fill="#D3A24A"/><circle cx="52" cy="136.5" r="2" fill="#D3A24A"/><circle cx="68" cy="136.5" r="2" fill="#D3A24A"/>
+    ${face(id, { skin: SK5, shade: SH5, brow: '#4A2E20', bw: 1.7,
+      eyes: `<path d="M49.4 55Q52.6 57.2 55.8 55" stroke="#2A1E22" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <path d="M64.4 54.6Q67.4 52 70.4 54.6Q67.4 56.2 64.4 54.6Z" fill="#2A1E22"/><circle cx="68.2" cy="54" r=".6" fill="#fff"/><path d="M70.8 54.4L72.2 53.4" stroke="#2A1E22" stroke-width="1" stroke-linecap="round"/>`,
+      mouth: `<ellipse cx="60.4" cy="69.8" rx="3.1" ry="2.2" fill="#C94A5E"/><path d="M58 68.6Q60.4 67.6 62.8 68.6" stroke="#9E3346" stroke-width=".8" fill="none"/>` })}
+    <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#5C3A2A"/>
+    <path d="M41 58C39.5 39 49 29.5 61 30.5C72 31 80 39 79 55C75.5 44.5 69 39.5 62.5 38.5C57 42.5 49.5 48.5 41 58Z" fill="#5C3A2A"/>
+    <path d="M52 33.5Q58 31 65 32.2" stroke="#8A6248" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    ${star(93, 46, 3.6, '#F2C76A', .5)}${star(99.5, 56, 2.2, '#F2C76A', .4)}
+  `, 'Эля — Посланница Венеры');
+
+  const lyalya = wrap(id => `<defs>${lin(id + 'f', '#5A3A30', '#2E1C18')}${rad(id + 'hd', '#5E3D33', '#2E1C18', .5, .3, .8)}${lin(id + 'e', '#F2B4BA', '#D98A93')}${rad(id + 'ey', '#D7E98F', '#86A84A', .5, .4, .6)}</defs>
+    <path d="M73 134C97 136 107 116 96 103C91 98 93 92 98 90" stroke="#1E1414" stroke-width="8.6" fill="none"/>
+    <path d="M73 134C97 136 107 116 96 103C91 98 93 92 98 90" stroke="url(#${id}f)" stroke-width="6.2" fill="none"/>
+    <path d="M43 140C41 118 44 101 50.5 89C53 84 54 79 55 74H65C66 79 67 84 69.5 89C76 101 79 118 77 140Z" fill="url(#${id}f)" stroke="#1E1414" stroke-width="1.3"/>
+    <path d="M54.5 96Q60 91 65.5 96Q62.5 114 60 124Q57.5 114 54.5 96Z" fill="#6A4538" opacity=".75"/>
+    <path d="M56 80q4 3 8 0" stroke="#6A4538" stroke-width="1.2" fill="none" opacity=".7"/>
+    <path d="M51.5 108V136M68.5 108V136" stroke="#1A100E" stroke-width="1.3"/>
+    <ellipse cx="51" cy="137.4" rx="5.2" ry="3.1" fill="#3E2722" stroke="#1E1414" stroke-width="1.1"/>
+    <ellipse cx="69" cy="137.4" rx="5.2" ry="3.1" fill="#3E2722" stroke="#1E1414" stroke-width="1.1"/>
+    <path d="M49.4 137v1.6M51 137.2v1.8M52.6 137v1.6M67.4 137v1.6M69 137.2v1.8M70.6 137v1.6" stroke="#1E1414" stroke-width=".7"/>
+    <path d="M45 58L27 9L59 40Z" fill="url(#${id}hd)" stroke="#1E1414" stroke-width="1.3"/>
+    <path d="M45.5 51L32.5 19L55 41Z" fill="url(#${id}e)"/>
+    <path d="M37 26l4 4m-6 2l5 2m-2 6l4 0" stroke="#FBE3E5" stroke-width=".7" opacity=".8"/>
+    <path d="M75 58L93 9L61 40Z" fill="url(#${id}hd)" stroke="#1E1414" stroke-width="1.3"/>
+    <path d="M74.5 51L87.5 19L65 41Z" fill="url(#${id}e)"/>
+    <path d="M83 26l-4 4m6 2l-5 2m2 6l-4 0" stroke="#FBE3E5" stroke-width=".7" opacity=".8"/>
+    <path d="M42 52C42 42 50 36 60 36C70 36 78 42 78 52C78 66 68 82 60 85C52 82 42 66 42 52Z" fill="url(#${id}hd)" stroke="#1E1414" stroke-width="1.3"/>
+    <path d="M50 43.5Q60 39.5 70 43.5" stroke="#7A5246" stroke-width="1.8" fill="none" opacity=".7"/>
+    <path d="M46.2 57Q52 50 57.8 57Q52 60.8 46.2 57Z" fill="url(#${id}ey)" stroke="#1E1414" stroke-width="1"/>
+    <path d="M62.2 57Q68 50 73.8 57Q68 60.8 62.2 57Z" fill="url(#${id}ey)" stroke="#1E1414" stroke-width="1"/>
+    <ellipse cx="52" cy="56.6" rx="1.1" ry="3.1" fill="#120C0C"/><ellipse cx="68" cy="56.6" rx="1.1" ry="3.1" fill="#120C0C"/>
+    <circle cx="53.8" cy="55" r=".95" fill="#fff"/><circle cx="69.8" cy="55" r=".95" fill="#fff"/>
+    <path d="M57.6 70H62.4L60 72.8Z" fill="#8A524B"/>
+    <path d="M60 72.8Q58.4 75.2 56.2 74.4M60 72.8Q61.6 75.2 63.8 74.4" stroke="#1E1414" stroke-width="1" fill="none"/>
+    <circle cx="54.5" cy="71.5" r=".5" fill="#1E1414"/><circle cx="53.2" cy="73" r=".5" fill="#1E1414"/><circle cx="65.5" cy="71.5" r=".5" fill="#1E1414"/><circle cx="66.8" cy="73" r=".5" fill="#1E1414"/>
+    <path d="M52 71.2L35 67.6M52 73.2L36 75.4M68 71.2L85 67.6M68 73.2L84 75.4" stroke="#B8A59C" stroke-width=".7" opacity=".85"/>
+  `, 'Ляля — Кошка-Оракул');
+
+  const chips = wrap(id => `<defs>${lin(id + 'f', '#F6E6BB', '#E2C47E')}${rad(id + 'hd', '#FAEDC8', '#E4C885', .45, .35, .8)}${lin(id + 'e', '#F6B8C0', '#E2909C')}${rad(id + 'ey', '#C9D88E', '#7F9A4A', .5, .4, .6)}</defs>
+    <path d="M72 135C91 137 97 124 89 116" stroke="#8A7348" stroke-width="8.2" fill="none"/>
+    <path d="M72 135C91 137 97 124 89 116" stroke="url(#${id}f)" stroke-width="6" fill="none"/>
+    <path d="M79 133.5l1.5 4m5-5.5l3 3m1-8.5l4 1" stroke="#C3964E" stroke-width="2.2"/>
+    <path d="M43 140C41 122 44 104 50 92C52 88 53 85 54 82H66C67 85 68 88 70 92C76 104 79 122 77 140Z" fill="url(#${id}f)" stroke="#8A7348" stroke-width="1.3"/>
+    <path d="M53 96Q60 91 67 96Q63.5 112 60 120Q56.5 112 53 96Z" fill="#FBF3DC"/>
+    <path d="M45.5 112q5 2.5 8.5-1M44.5 124q5 2.5 8.5-1M74.5 112q-5 2.5-8.5-1M75.5 124q-5 2.5-8.5-1M47 102q4 1 6-1M73 102q-4 1-6-1" stroke="#C3964E" stroke-width="2.1" fill="none"/>
+    <path d="M54 118V137M66 118V137" stroke="#C3964E" stroke-width="1.3"/>
+    <ellipse cx="53.4" cy="137.8" rx="5.2" ry="2.9" fill="#FBF0D2" stroke="#8A7348" stroke-width="1.1"/>
+    <ellipse cx="66.6" cy="137.8" rx="5.2" ry="2.9" fill="#FBF0D2" stroke="#8A7348" stroke-width="1.1"/>
+    <path d="M51.8 137.4v1.6M53.4 137.6v1.8M55 137.4v1.6M65 137.4v1.6M66.6 137.6v1.8M68.2 137.4v1.6" stroke="#8A7348" stroke-width=".7"/>
+    <path d="M42 66L19 19L57 49Z" fill="url(#${id}hd)" stroke="#8A7348" stroke-width="1.3"/>
+    <path d="M42.5 59L25.5 28.5L53 50Z" fill="url(#${id}e)"/>
+    <path d="M78 66L101 19L63 49Z" fill="url(#${id}hd)" stroke="#8A7348" stroke-width="1.3"/>
+    <path d="M77.5 59L94.5 28.5L67 50Z" fill="url(#${id}e)"/>
+    <path d="M30 34l4 3m-5 3l5 1M90 34l-4 3m5 3l-5 1" stroke="#FFF4F0" stroke-width=".7"/>
+    <ellipse cx="60" cy="72" rx="22" ry="19.2" fill="url(#${id}hd)" stroke="#8A7348" stroke-width="1.3"/>
+    <ellipse cx="60" cy="81.5" rx="10" ry="6.4" fill="#FCF4DE"/>
+    <path d="M51.5 54.5Q53.5 60 54.5 63M60 52.6V62M68.5 54.5Q66.5 60 65.5 63M56 53.6q1 4 1.4 7M64 53.6q-1 4-1.4 7" stroke="#C3964E" stroke-width="2.1"/>
+    <path d="M39 69.5l5.5 1M39 74.5l5.5-.2M81 69.5l-5.5 1M81 74.5l-5.5-.2M46 64l3 3M74 64l-3 3" stroke="#C3964E" stroke-width="2"/>
+    <circle cx="51" cy="72" r="5.4" fill="url(#${id}ey)" stroke="${INK}" stroke-width="1"/>
+    <circle cx="69" cy="72" r="5.4" fill="url(#${id}ey)" stroke="${INK}" stroke-width="1"/>
+    <circle cx="51" cy="72.6" r="2.8" fill="#161626"/><circle cx="69" cy="72.6" r="2.8" fill="#161626"/>
+    <circle cx="52.9" cy="70.3" r="1.5" fill="#fff"/><circle cx="70.9" cy="70.3" r="1.5" fill="#fff"/><circle cx="49.6" cy="74" r=".6" fill="#fff"/><circle cx="67.6" cy="74" r=".6" fill="#fff"/>
+    <path d="M57.3 79.4H62.7L60 82.4Z" fill="#E58E9C" stroke="#B9727E" stroke-width=".6"/>
+    <path d="M60 82.4Q58.2 85 56 84.2M60 82.4Q61.8 85 64 84.2" stroke="#8A7348" stroke-width="1" fill="none"/>
+    <ellipse cx="46" cy="79" rx="3" ry="1.7" fill="#F2A8A8" opacity=".45"/><ellipse cx="74" cy="79" rx="3" ry="1.7" fill="#F2A8A8" opacity=".45"/>
+    <path d="M50 81L35 79M50 83L36 86.4M70 81L85 79M70 83L84 86.4" stroke="#B59E77" stroke-width=".7"/>
+  `, 'Чипсончик — Котёнок-Комета');
+
+  const khimera = wrap(id => `<defs>${lin(id + 'f', '#2E2938', '#100E15')}${rad(id + 'hd', '#332D40', '#121017', .5, .32, .8)}${rad(id + 'ey', '#E2EA86', '#A7B24A', .5, .45, .6)}</defs>
+    <path d="M72 131C92 139 114 127 110 104C108 95 100 95 98 101C101 116 92 123 76 120Z" fill="url(#${id}f)" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M101 103l5-3m-3 10l6 0m-8 9l5 3m-14 3l3 5m-12-1l1 5M104 107l3-1m-3 8l3 1" stroke="#4E4562" stroke-width="1.5"/>
+    <path d="M23 140C21 116 31 88 50 78H70C89 88 99 116 97 140Z" fill="url(#${id}f)" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M48 106q3 5 6 0q3 5 6 0q3 5 6 0q3 5 6 0M40 120q3 4 6 0M74 120q3 4 6 0M44 132q3 4 6 0M70 132q3 4 6 0M29 126l4 3m54-3l-4 3" stroke="#3D3650" stroke-width="1.4" fill="none"/>
+    <path d="M36 102Q38 116 35 132M84 102Q82 116 85 132" stroke="#4E4562" stroke-width="1.1" fill="none" opacity=".7"/>
+    <path d="M34 72C27 86 36 100 46 100L50 93L54 101L60 94L66 101L70 93L74 100C84 100 93 86 86 72Z" fill="#1C1924" stroke="#433B54" stroke-width="1.2"/>
+    <path d="M42 90l2 4m6-1l1 3m18-3l-1 3m6-2l-2 4" stroke="#4E4562" stroke-width="1.1"/>
+    <path d="M38 55L33 19L57 40Z" fill="url(#${id}hd)" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M33 19L30.5 10M33 19L37 11M33 19L34 9.5" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M40.5 49L37 29L52.5 41Z" fill="#4A3646"/><path d="M41 44l3 1m-4-6l4 2" stroke="#7A6680" stroke-width=".8"/>
+    <path d="M82 55L87 19L63 40Z" fill="url(#${id}hd)" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M87 19L89.5 10M87 19L83 11M87 19L86 9.5" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M79.5 49L83 29L67.5 41Z" fill="#4A3646"/><path d="M79 44l-3 1m4-6l-4 2" stroke="#7A6680" stroke-width=".8"/>
+    <path d="M35 56C35 40 47 34 60 34C73 34 85 40 85 56C85 71 74 81 60 81C46 81 35 71 35 56Z" fill="url(#${id}hd)" stroke="#433B54" stroke-width="1.3"/>
+    <path d="M36 60L28.5 63L36 66.5L30.5 72.5L39 71.5M84 60L91.5 63L84 66.5L89.5 72.5L81 71.5" fill="#1A1721" stroke="#433B54" stroke-width="1.1"/>
+    <path d="M50 42Q60 38.6 70 42" stroke="#4E4562" stroke-width="1.6" fill="none"/>
+    <path d="M44.2 58Q50.5 52 56.8 58Q50.5 62 44.2 58Z" fill="url(#${id}ey)"/>
+    <path d="M63.2 58Q69.5 52 75.8 58Q69.5 62 63.2 58Z" fill="url(#${id}ey)"/>
+    <ellipse cx="50.5" cy="58.3" rx=".95" ry="2.7" fill="#0B0A0E"/><ellipse cx="69.5" cy="58.3" rx=".95" ry="2.7" fill="#0B0A0E"/>
+    <path d="M42.6 52.6H58L57.2 58Q50.5 55.4 43.8 57.6Z" fill="#17141E"/>
+    <path d="M62 52.6H77.4L76.2 57.6Q69.5 55.4 62.8 58Z" fill="#17141E"/>
+    <path d="M43.8 57.6Q50.5 55.4 57.2 58.2M62.8 58.2Q69.5 55.4 76.2 57.6" stroke="#5A5170" stroke-width="1.2" fill="none"/>
+    <circle cx="53" cy="59.2" r=".6" fill="#fff" opacity=".8"/><circle cx="72" cy="59.2" r=".6" fill="#fff" opacity=".8"/>
+    <path d="M57.5 67.5H62.5L60 70.4Z" fill="#5A5170"/>
+    <path d="M55.2 73.8Q60 70.8 64.8 73.8" stroke="#7A7090" stroke-width="1.2" fill="none"/>
+    <path d="M50 68L33 64.6M50 70.6L34 73.4M70 68L87 64.6M70 70.6L86 73.4" stroke="#7A7090" stroke-width=".7"/>
+  `, 'Химера — Тёмная Луна');
+
+  const ALL = {
+    mom: { svg: mom, name: 'Мама', role: 'Верховная Астрологиня', sky: ['#3B2E63', '#1C1736'] },
+    dad: { svg: dad, name: 'Папа', role: 'Хранитель Лунных Вод', sky: ['#24466B', '#14223A'] },
+    brother: { svg: shamil, name: 'Шамиль', role: 'Звёздный Странник', sky: ['#2D5A57', '#152A2C'] },
+    elya: { svg: elya, name: 'Эля', role: 'Посланница Венеры', sky: ['#6B3A5A', '#2B1628'] },
+    me: { svg: zhora, name: 'Жора', role: 'Звездочёт-программист', sky: ['#5A3550', '#251626'] },
+    lyalya: { svg: lyalya, name: 'Ляля', role: 'Кошка-Оракул', sky: ['#7A5C3A', '#3A2A1C'] },
+    chips: { svg: chips, name: 'Чипсончик', role: 'Котёнок-Комета', sky: ['#4D4A7A', '#232140'] },
+    khimera: { svg: khimera, name: 'Химера', role: 'Тёмная Луна', sky: ['#8A5E86', '#3E2740'] },
+  };
+  return { ALL, star };
+})();
+
+/* ===== Ephemeris & houses (uses astronomy-engine global `Astronomy`) ===== */
+const D2R = Math.PI / 180, R2D = 180 / Math.PI;
+const norm = a => ((a % 360) + 360) % 360;
+const sind = a => Math.sin(a * D2R), cosd = a => Math.cos(a * D2R), tand = a => Math.tan(a * D2R);
+const angDiff = (a, b) => { let d = norm(a - b); return d > 180 ? d - 360 : d; }; // a-b in (-180,180]
+
+const Eph = (() => {
+  function trueObliquity(T) {
+    const eps0 = 23.439291111 - 0.0130041667 * T - 1.6389e-7 * T * T + 5.0361e-7 * T * T * T;
+    const om = 125.04452 - 1934.136261 * T, Ls = 280.4665 + 36000.7698 * T, Lm = 218.3165 + 481267.8813 * T;
+    const de = (9.20 * cosd(om) + 0.57 * cosd(2 * Ls) + 0.10 * cosd(2 * Lm) - 0.09 * cosd(2 * om)) / 3600;
+    return eps0 + de;
+  }
+  function eclFromEqd(x, y, z, eps) {
+    const ce = cosd(eps), se = sind(eps);
+    const X = x, Y = y * ce + z * se, Z = -y * se + z * ce;
+    const r = Math.hypot(X, Y, Z);
+    return { lon: norm(Math.atan2(Y, X) * R2D), lat: Math.asin(Z / r) * R2D, dist: r };
+  }
+  function eqjToEcl(v, time, eps) {
+    const rot = Astronomy.Rotation_EQJ_EQD(time);
+    const d = Astronomy.RotateVector(rot, v);
+    return eclFromEqd(d.x, d.y, d.z, eps);
+  }
+  // --- Chiron: two-body orbit (osculating elements, J2000 ecliptic) ---
+  const CH = { a: 13.692, e: 0.3789, i: 6.926, node: 209.30, peri: 339.25, tp: 2450078.5 }; // Tp tuned to observed sign ingresses 2010, 2018, 2026
+  function chironHelioEqj(jd) {
+    const n = 0.9856076686 / Math.pow(CH.a, 1.5);
+    let M = norm(n * (jd - CH.tp)) * D2R, E = M;
+    for (let k = 0; k < 30; k++) E = E - (E - CH.e * Math.sin(E) - M) / (1 - CH.e * Math.cos(E));
+    const xp = CH.a * (Math.cos(E) - CH.e), yp = CH.a * Math.sqrt(1 - CH.e * CH.e) * Math.sin(E);
+    const co = cosd(CH.peri), so = sind(CH.peri), cn = cosd(CH.node), sn = sind(CH.node), ci = cosd(CH.i), si = sind(CH.i);
+    const X = xp * (co * cn - so * sn * ci) + yp * (-so * cn - co * sn * ci);
+    const Y = xp * (co * sn + so * cn * ci) + yp * (-so * sn + co * cn * ci);
+    const Z = xp * (so * si) + yp * (co * si);
+    const e0 = 23.4392911;
+    return { x: X, y: Y * cosd(e0) - Z * sind(e0), z: Y * sind(e0) + Z * cosd(e0) };
+  }
+  function chiron(time, eps) {
+    const jd = time.tt + 2451545.0;
+    const c = chironHelioEqj(jd);
+    const e = Astronomy.HelioVector(Astronomy.Body.Earth, time);
+    const v = new Astronomy.Vector(c.x - e.x, c.y - e.y, c.z - e.z, time);
+    return eqjToEcl(v, time, eps).lon;
+  }
+  // --- Lunar nodes and Black Moon Lilith (Meeus) ---
+  function meanNode(T) { return norm(125.0445479 - 1934.1362891 * T + 0.0020754 * T * T + T * T * T / 467441 - T * T * T * T / 60616000); }
+  function trueNode(T) {
+    const D = 297.8501921 + 445267.1114034 * T, M = 357.5291092 + 35999.0502909 * T;
+    const Mp = 134.9633964 + 477198.8675055 * T, F = 93.2720950 + 483202.0175233 * T;
+    return norm(meanNode(T) - 1.4979 * sind(2 * (D - F)) - 0.1500 * sind(M) - 0.1226 * sind(2 * D) + 0.1176 * sind(2 * F) - 0.0801 * sind(2 * (F - Mp)));
+  }
+  function lilith(T) { return norm(83.3532465 + 4069.0137287 * T - 0.0103200 * T * T - T * T * T / 80053 + T * T * T * T / 18999000 + 180); }
+
+  const BODIES = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  const ENG = { sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars', jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto' };
+
+  function rawPositions(date, opts) {
+    const time = Astronomy.MakeTime(date);
+    const T = time.tt / 36525, eps = trueObliquity(T);
+    const out = {};
+    for (const b of BODIES) out[b] = eqjToEcl(Astronomy.GeoVector(Astronomy.Body[ENG[b]], time, true), time, eps).lon;
+    out.chiron = chiron(time, eps);
+    out.node = opts && opts.meanNode ? meanNode(T) : trueNode(T);
+    out.lilith = lilith(T);
+    return { out, time, T, eps };
+  }
+
+  /** Planet positions with daily speed (deg/day). */
+  function planets(date, opts) {
+    const base = rawPositions(date, opts);
+    const ms = date.getTime();
+    const a = rawPositions(new Date(ms - 43200000), opts).out, b = rawPositions(new Date(ms + 43200000), opts).out;
+    const res = {};
+    for (const k in base.out) res[k] = { lon: base.out[k], speed: angDiff(b[k], a[k]) };
+    res.snode = { lon: norm(res.node.lon + 180), speed: res.node.speed };
+    return { pos: res, time: base.time, T: base.T, eps: base.eps };
+  }
+
+  // ---------- Houses ----------
+  function ascOf(ramc, eps, phi) {
+    return norm(Math.atan2(cosd(ramc), -(sind(ramc) * cosd(eps) + tand(phi) * sind(eps))) * R2D);
+  }
+  function mcOf(ramc, eps) { return norm(Math.atan2(sind(ramc), cosd(ramc) * cosd(eps)) * R2D); }
+  function lonFromRa(ra, eps) { return norm(Math.atan2(sind(ra), cosd(ra) * cosd(eps)) * R2D); }
+
+  function placidusCusp(ramc, eps, phi, f, upper) {
+    let ra0 = upper ? ramc + f * 90 : ramc + 180 - f * 90;
+    let lam = lonFromRa(ra0, eps);
+    for (let i = 0; i < 60; i++) {
+      const dec = Math.asin(sind(eps) * sind(lam)) * R2D;
+      const x = tand(phi) * tand(dec);
+      if (Math.abs(x) >= 1) return NaN;
+      const ad = Math.asin(x) * R2D;
+      const ra = upper ? ramc + f * (90 + ad) : ramc + 180 - f * (90 - ad);
+      const nl = lonFromRa(ra, eps);
+      if (Math.abs(angDiff(nl, lam)) < 1e-7) { lam = nl; break; }
+      lam = nl;
+    }
+    return lam;
+  }
+
+  function houses(ramc, eps, phi, system) {
+    const asc = ascOf(ramc, eps, phi), mc = mcOf(ramc, eps), ic = norm(mc + 180), dsc = norm(asc + 180);
+    let c = new Array(13), used = system, note = '';
+    const porphyry = () => {
+      const d1 = norm(asc - mc), d2 = norm(ic - asc);
+      c[10] = mc; c[11] = norm(mc + d1 / 3); c[12] = norm(mc + 2 * d1 / 3);
+      c[1] = asc; c[2] = norm(asc + d2 / 3); c[3] = norm(asc + 2 * d2 / 3);
+    };
+    if (system === 'placidus') {
+      c[10] = mc; c[1] = asc;
+      c[11] = placidusCusp(ramc, eps, phi, 1 / 3, true); c[12] = placidusCusp(ramc, eps, phi, 2 / 3, true);
+      c[2] = placidusCusp(ramc, eps, phi, 2 / 3, false); c[3] = placidusCusp(ramc, eps, phi, 1 / 3, false);
+      if ([11, 12, 2, 3].some(k => isNaN(c[k]))) { porphyry(); used = 'porphyry'; note = 'На этой широте Плацидус не строится, использована система Порфирия.'; }
+    } else if (system === 'koch') {
+      const dmc = Math.asin(sind(eps) * sind(mc)) * R2D, x = tand(phi) * tand(dmc);
+      if (Math.abs(x) >= 1) { porphyry(); used = 'porphyry'; note = 'На этой широте Кох не строится, использована система Порфирия.'; }
+      else {
+        const dsa = 90 + Math.asin(x) * R2D;
+        c[10] = mc; c[1] = asc;
+        c[11] = ascOf(ramc - 2 * dsa / 3, eps, phi); c[12] = ascOf(ramc - dsa / 3, eps, phi);
+        c[2] = ascOf(ramc + dsa / 3, eps, phi); c[3] = ascOf(ramc + 2 * dsa / 3, eps, phi);
+      }
+    } else if (system === 'porphyry') porphyry();
+    else if (system === 'equal') { for (let k = 1; k <= 12; k++) c[k] = norm(asc + 30 * (k - 1)); }
+    else if (system === 'whole') { const s = Math.floor(asc / 30) * 30; for (let k = 1; k <= 12; k++) c[k] = norm(s + 30 * (k - 1)); }
+    if (system !== 'equal' && system !== 'whole') {
+      c[4] = norm(c[10] + 180); c[5] = norm(c[11] + 180); c[6] = norm(c[12] + 180);
+      c[7] = norm(c[1] + 180); c[8] = norm(c[2] + 180); c[9] = norm(c[3] + 180);
+    }
+    return { cusps: c, asc, mc, ic, dsc, used, note };
+  }
+
+  function houseOf(lon, cusps) {
+    for (let k = 1; k <= 12; k++) {
+      const a = cusps[k], b = cusps[k === 12 ? 1 : k + 1];
+      const span = norm(b - a), d = norm(lon - a);
+      if (d < span) return k;
+    }
+    return 1;
+  }
+
+  /** Full chart. date = JS Date (UTC instant). */
+  function chart(date, lat, lon, system, opts) {
+    const p = planets(date, opts);
+    const gast = Astronomy.SiderealTime(p.time); // hours
+    const ramc = norm(gast * 15 + lon);
+    const h = houses(ramc, p.eps, lat, system || 'placidus');
+    const pos = p.pos;
+    // Part of Fortune (day / night formula)
+    const isDay = norm(pos.sun.lon - h.asc) > 180; // Sun between DSC and ASC via MC = above horizon
+    pos.fortune = { lon: norm(isDay ? h.asc + pos.moon.lon - pos.sun.lon : h.asc + pos.sun.lon - pos.moon.lon), speed: 0 };
+    for (const k in pos) pos[k].house = houseOf(pos[k].lon, h.cusps);
+    return { pos, houses: h, ramc, eps: p.eps, isDay, date };
+  }
+
+  /** Local civil time in an IANA zone → UTC Date. Returns {date, offsetSec}. */
+  function tzOffsetSec(utcMs, tz) {
+    const f = new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', era: 'short' });
+    const p = {}; for (const x of f.formatToParts(new Date(utcMs))) p[x.type] = x.value;
+    let y = +p.year; if (p.era === 'BC' || p.era === 'B') y = 1 - y;
+    const d = new Date(0); d.setUTCFullYear(y, +p.month - 1, +p.day); d.setUTCHours(+p.hour % 24, +p.minute, +p.second, 0);
+    return Math.round((d.getTime() - utcMs) / 1000);
+  }
+  function localToUtc(y, mo, d, h, mi, tz) {
+    const L = new Date(0); L.setUTCFullYear(y, mo - 1, d); L.setUTCHours(h, mi, 0, 0);
+    const local = L.getTime();
+    let off = tzOffsetSec(local, tz);
+    for (let i = 0; i < 3; i++) off = tzOffsetSec(local - off * 1000, tz);
+    return { date: new Date(local - off * 1000), offsetSec: off };
+  }
+
+  return { chart, planets, houses, houseOf, localToUtc, tzOffsetSec, trueObliquity, ascOf, mcOf };
+})();
+
+/* ===== App ===== */
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('astrolabe.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('astrolabe.' + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+};
+/* ---------- Cloud sync via Supabase (auth + one JSON row per user) ---------- */
+const SB = { url: '__SB_URL__', key: '__SB_KEY__' };
+const SYNC_KEYS = ['profiles', 'current', 'system', 'meanNode', 'minorOnWheel', 'orbScale', 'eggs', 'skin', 'onb'];
+const loginEmail = l => 'u' + [...new TextEncoder().encode(l.trim().toLowerCase())].map(b => b.toString(16).padStart(2, '0')).join('') + '@mama-astro.app';
+const ERR_RU = m => /already|registered|exists/i.test(m) ? 'Такой логин уже есть. Попробуйте войти.' : /invalid login|credentials/i.test(m) ? 'Неверный логин или пароль.'
+  : /password/i.test(m) && /6|short|least/i.test(m) ? 'Пароль должен быть не короче 6 символов.' : /rate|too many/i.test(m) ? 'Слишком много попыток. Подождите минуту.' : 'Не получилось: ' + m;
+const Cloud = {
+  enabled: false, sess: store.get('sess', null), timer: null,
+  get login() { return this.sess && this.sess.login; },
+  async auth(path, body) {
+    const r = await fetch(SB.url + '/auth/v1/' + path, { method: 'POST', headers: { apikey: SB.key, 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.access_token) throw new Error(d.msg || d.error_description || d.message || d.error || ('HTTP ' + r.status));
+    return d;
+  },
+  keep(d, login) {
+    this.sess = { access: d.access_token, refresh: d.refresh_token, exp: Date.now() + (d.expires_in || 3600) * 1000 - 60000, uid: d.user && d.user.id, login: login || (this.sess && this.sess.login) };
+    _set('sess', this.sess);
+  },
+  async signIn(login, password, register) {
+    const email = loginEmail(login);
+    const d = register ? await this.auth('signup', { email, password, data: { login } }) : await this.auth('token?grant_type=password', { email, password });
+    this.keep(d, login.trim());
+  },
+  async fresh() {
+    if (!this.sess) return false;
+    if (Date.now() < this.sess.exp) return true;
+    try { this.keep(await this.auth('token?grant_type=refresh_token', { refresh_token: this.sess.refresh })); return true; } catch (e) { return false; }
+  },
+  async rest(method, query, body) {
+    if (!(await this.fresh())) throw Object.assign(new Error('auth'), { auth: true });
+    const headers = { apikey: SB.key, authorization: 'Bearer ' + this.sess.access, 'content-type': 'application/json' };
+    if (method === 'POST') headers.prefer = 'resolution=merge-duplicates,return=minimal';
+    const r = await fetch(SB.url + '/rest/v1/user_data' + query, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    if (r.status === 401) throw Object.assign(new Error('auth'), { auth: true });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return method === 'GET' ? r.json() : null;
+  },
+  async pull() { const rows = await this.rest('GET', '?select=data&user_id=eq.' + this.sess.uid); return rows[0] ? rows[0].data : null; },
+  detect() {
+    if (!/^https?:$/.test(location.protocol) || !SB.url.startsWith('https://')) return Promise.resolve(false);
+    this.enabled = true; return this.fresh().then(ok => ok ? 'in' : 'out');
+  },
+  snapshot() { const settings = {}; SYNC_KEYS.slice(2).forEach(k => { settings[k] = store.get(k, null); }); return { profiles: store.get('profiles', []), current: store.get('current', null), settings }; },
+  schedule() { if (!this.enabled || !this.sess) return; clearTimeout(this.timer); this.timer = setTimeout(() => this.push(), 800); },
+  async push() {
+    try { await this.rest('POST', '', { user_id: this.sess.uid, data: this.snapshot(), updated_at: new Date().toISOString() }); }
+    catch (e) {
+      if (e.auth) { showGate('login', 'Сессия закончилась, войдите снова.'); return; }
+      toast('Не удалось сохранить на сервер. Повторю через минуту.'); clearTimeout(this.timer); this.timer = setTimeout(() => this.push(), 60000);
+    }
+  },
+};
+const _set = store.set.bind(store);
+store.set = (k, v) => { _set(k, v); if (SYNC_KEYS.includes(k)) Cloud.schedule(); };
+const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const signOf = lon => SIGNS[Math.floor(norm(lon) / 30) % 12];
+const degIn = lon => { const d = norm(lon) % 30; const deg = Math.floor(d); const min = Math.floor((d - deg) * 60); return { deg, min }; };
+const fmtDeg = lon => { const { deg, min } = degIn(lon); return `${deg}°${String(min).padStart(2, '0')}′`; };
+const fmtOrb = o => { const d = Math.floor(o), m = Math.floor((o - d) * 60); return `${d}°${String(m).padStart(2, '0')}′`; };
+const pad = n => String(n).padStart(2, '0');
+const fmtOffset = sec => {
+  const sgn = sec < 0 ? '−' : '+'; const a = Math.abs(sec); const h = Math.floor(a / 3600), m = Math.floor(a % 3600 / 60), s = a % 60;
+  return 'UTC' + sgn + h + (m || s ? ':' + pad(m) : '') + (s ? ':' + pad(s) : '');
+};
+const fmtDate = iso => { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y}`; };
+const pName = id => PLANETS[id] ? PLANETS[id].name : id;
+const glyphId = id => id === 'asc' || id === 'mc' ? null : id;
+
+/* ---------- State ---------- */
+const now = new Date();
+const todayIso = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+const MOSCOW = CITIES[0];
+const S = {
+  profiles: store.get('profiles', []),
+  cur: store.get('current', null),
+  system: store.get('system', 'placidus'),
+  meanNode: store.get('meanNode', false),
+  minorOnWheel: store.get('minorOnWheel', false),
+  orbScale: store.get('orbScale', 1),
+  eggs: store.get('eggs', true),
+  skin: store.get('skin', null),
+  outer: { mode: 'none', date: todayIso, profileId: null },
+  chart: null, outerChart: null, focus: null, tab: 'planets', builds: 0, napDone: false,
+  manualTzTouched: false, place: null,
+};
+if (!S.cur) {
+  S.cur = { id: null, name: 'Небо сейчас', date: todayIso, time: `${pad(now.getHours())}:${pad(now.getMinutes())}`, unknown: false,
+    place: { name: MOSCOW.name, region: MOSCOW.region, lat: MOSCOW.lat, lon: MOSCOW.lon, tz: MOSCOW.tz }, offset: null, isSky: true };
+}
+if (S.skin) document.documentElement.dataset.skin = S.skin;
+
+/* ---------- Characters into DOM ---------- */
+function paintPortraits(root = document) {
+  $$('[data-char]', root).forEach(el => {
+    const c = Chars.ALL[el.dataset.char]; if (!c) return;
+    el.style.setProperty('--c1', c.sky[0]); el.style.setProperty('--c2', c.sky[1]);
+    if (!el.querySelector('svg')) el.insertAdjacentHTML('afterbegin', c.svg());
+  });
+  $$('[data-char-raw]', root).forEach(el => { if (!el.querySelector('svg')) el.insertAdjacentHTML('afterbegin', Chars.ALL[el.dataset.charRaw].svg()); });
+}
+
+/* ---------- Bubble & toast ---------- */
+let bubbleTimer;
+function bubble(target, who, text) {
+  const b = $('#bubble'); const c = Chars.ALL[who];
+  b.innerHTML = `<small>${esc(c ? c.name : '')}</small>${esc(text)}`;
+  b.hidden = false;
+  const r = target.getBoundingClientRect(); const bw = b.offsetWidth, bh = b.offsetHeight;
+  let x = r.left + r.width / 2 - bw / 2; x = Math.max(12, Math.min(innerWidth - bw - 12, x));
+  let y = r.top - bh - 10; if (y < 10) y = Math.min(innerHeight - bh - 10, r.bottom + 10);
+  b.style.left = x + 'px'; b.style.top = y + 'px';
+  clearTimeout(bubbleTimer); bubbleTimer = setTimeout(() => (b.hidden = true), 4200);
+}
+addEventListener('scroll', () => { $('#bubble').hidden = true; }, { passive: true });
+const phraseIdx = {};
+function say(target, who) {
+  const list = PHRASES[who]; if (!list) return;
+  phraseIdx[who] = ((phraseIdx[who] ?? Math.floor(Math.random() * list.length)) + 1) % list.length;
+  bubble(target, who, list[phraseIdx[who]]);
+}
+let toastTimer;
+function toast(msg) {
+  let t = $('.toast'); if (!t) { t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 2600);
+}
+
+/* ---------- Starfield ---------- */
+const sky = $('#sky'); const sctx = sky.getContext('2d'); let stars = [];
+function initSky() {
+  const dpr = Math.min(devicePixelRatio || 1, 2); sky.width = innerWidth * dpr; sky.height = innerHeight * dpr; sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.round(innerWidth * innerHeight / 7000);
+  stars = Array.from({ length: n }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.2 + .25, p: Math.random() * 6.28, s: .4 + Math.random() * 1.4 }));
+  drawSky(0);
+}
+function drawSky(t) {
+  const col = getComputedStyle(document.documentElement).getPropertyValue('--star').trim() || 'rgba(255,246,220,.9)';
+  sctx.clearRect(0, 0, innerWidth, innerHeight); sctx.fillStyle = col;
+  for (const s of stars) { sctx.globalAlpha = .35 + .65 * (0.5 + 0.5 * Math.sin(s.p + t / 1000 * s.s)); sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, 6.283); sctx.fill(); }
+  sctx.globalAlpha = 1;
+}
+function loopSky(t) { if (!document.hidden) drawSky(t); requestAnimationFrame(loopSky); }
+addEventListener('resize', () => { clearTimeout(initSky.t); initSky.t = setTimeout(() => { initSky(); if (S.chart) { const big = $('#wheel').clientWidth < 480; if (big !== $('#wheel').classList.contains('big')) renderWheel(false); } }, 200); });
+
+/* ---------- Aspects ---------- */
+function pointsOf(ch, withAngles = true) {
+  const pts = ASPECT_POINTS.map(id => ({ id, lon: ch.pos[id].lon }));
+  if (withAngles && !ch.unknown) { pts.push({ id: 'asc', lon: ch.houses.asc }); pts.push({ id: 'mc', lon: ch.houses.mc }); }
+  return pts;
+}
+function findAspects(A, B, opt) {
+  const res = []; const same = A === B;
+  for (let i = 0; i < A.length; i++) for (let j = same ? i + 1 : 0; j < B.length; j++) {
+    const a = A[i], b = B[j];
+    if (same && ((a.id === 'asc' && b.id === 'mc') || (a.id === 'mc' && b.id === 'asc'))) continue;
+    const d = Math.abs(angDiff(a.lon, b.lon));
+    for (const asp of ASPECTS) {
+      if (opt.majorOnly && asp.kind === 'minor') continue;
+      let orb = asp.orb * (opt.scale || 1);
+      if (opt.lumBonus && asp.kind !== 'minor' && ['sun', 'moon'].some(x => x === a.id || x === b.id)) orb += 2;
+      if (['node', 'lilith', 'chiron', 'asc', 'mc'].some(x => x === a.id || x === b.id)) orb = Math.min(orb, asp.kind === 'minor' ? 1 : 4);
+      if (opt.fixedOrb != null) orb = asp.kind === 'minor' ? 0 : opt.fixedOrb * (asp.id === 'sextile' ? .8 : 1);
+      const o = Math.abs(d - asp.angle);
+      if (o <= orb) { res.push({ a: a.id, b: b.id, la: a.lon, lb: b.lon, asp, orb: o }); break; }
+    }
+  }
+  return res.sort((x, y) => x.orb - y.orb);
+}
+
+function dignity(pid, signId) {
+  const d = DIGNITY[pid]; if (!d) return null;
+  const opp = s => SIGNS[(SIGNS.findIndex(x => x.id === s) + 6) % 12].id;
+  if (d.dom.includes(signId)) return { t: 'Обитель', c: 'good' };
+  if (d.ex === signId) return { t: 'Экзальтация', c: 'good' };
+  if (d.dom.map(opp).includes(signId)) return { t: 'Изгнание', c: 'bad' };
+  if (d.ex && opp(d.ex) === signId) return { t: 'Падение', c: 'bad' };
+  return null;
+}
+
+/* ---------- Compute ---------- */
+function computeFrom(inp) {
+  const [y, m, d] = inp.date.split('-').map(Number);
+  const [hh, mm] = (inp.unknown || !inp.time ? '12:00' : inp.time).split(':').map(Number);
+  let utc, off;
+  if (inp.offset != null && inp.offset !== '' && !isNaN(inp.offset)) {
+    off = Math.round(+inp.offset * 3600); const L = new Date(0); L.setUTCFullYear(y, m - 1, d); L.setUTCHours(hh, mm, 0, 0);
+    utc = new Date(L.getTime() - off * 1000);
+  } else { const r = Eph.localToUtc(y, m, d, hh, mm, inp.place.tz); utc = r.date; off = r.offsetSec; }
+  const ch = Eph.chart(utc, inp.place.lat, inp.place.lon, S.system, { meanNode: S.meanNode });
+  ch.offsetSec = off; ch.unknown = !!inp.unknown; ch.inp = inp;
+  ch.rot = ch.unknown ? 0 : ch.houses.asc;
+  const pts = pointsOf(ch); ch.aspects = findAspects(pts, pts, { lumBonus: true, scale: S.orbScale });
+  return ch;
+}
+function computeOuter() {
+  S.outerChart = null;
+  const nat = S.chart; if (!nat) return;
+  if (S.outer.mode === 'transit') {
+    const inp = { date: S.outer.date || todayIso, time: '12:00', unknown: false, place: nat.inp.place, offset: null };
+    const oc = computeFrom(inp); oc.label = 'Транзиты на ' + fmtDate(inp.date);
+    oc.cross = findAspects(pointsOf(oc, false), pointsOf(nat), { majorOnly: true, fixedOrb: 1.5 });
+    S.outerChart = oc;
+  } else if (S.outer.mode === 'syn') {
+    const p = S.profiles.find(x => x.id === S.outer.profileId); if (!p) return;
+    const oc = computeFrom(p); oc.label = p.name;
+    oc.cross = findAspects(pointsOf(oc, !p.unknown), pointsOf(nat), { majorOnly: true, scale: .7 });
+    S.outerChart = oc;
+  }
+}
+
+/* ---------- Wheel ---------- */
+function renderWheel(animate) {
+  const ch = S.chart, oc = S.outerChart, svg = $('#wheel');
+  const big = (svg.clientWidth || 600) < 480; const K = big ? 1.4 : 1;
+  const G = oc ? { zo: 292, zi: 256, oR: 236, oIn: big ? 210 : 216, pr: big ? 182 : 192, lr: big ? 150 : 165, ar: big ? 130 : 146, hn: big ? 119 : 134 }
+    : { zo: 292, zi: 256, pr: big ? 222 : 224, lr: big ? 184 : 194, ar: big ? 160 : 172, hn: big ? 147 : 160 };
+  svg.classList.toggle('big', big);
+  const markR = oc ? G.oIn : G.zi;
+  const P = (r, lon) => { const a = (180 + (lon - ch.rot)) * D2R; return [+(300 + r * Math.cos(a)).toFixed(2), +(300 - r * Math.sin(a)).toFixed(2)]; };
+  const line = (r1, l1, r2, l2, cls, extra = '') => { const [x1, y1] = P(r1, l1), [x2, y2] = P(r2, l2); return `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${extra}/>`; };
+  const sector = (r1, r2, l1, l2) => { const [x1, y1] = P(r2, l1), [x2, y2] = P(r2, l2), [x3, y3] = P(r1, l2), [x4, y4] = P(r1, l1); return `M${x1} ${y1}A${r2} ${r2} 0 0 0 ${x2} ${y2}L${x3} ${y3}A${r1} ${r1} 0 0 1 ${x4} ${y4}Z`; };
+  let h = '<g class="wz">';
+  SIGNS.forEach((s, i) => {
+    h += `<path class="wz-band ${s.el}" d="${sector(G.zi, G.zo, i * 30, i * 30 + 30)}"/>`;
+    const [x, y] = P((G.zi + G.zo) / 2, i * 30 + 15);
+    const zs = big ? 1.25 : .95; h += `<g transform="translate(${x - 10 * zs} ${y - 10 * zs}) scale(${zs})"><path class="wz-glyph ${s.el}" d="${GLYPH[s.id]}"/></g>`;
+  });
+  for (let d = 0; d < 360; d++) { const len = d % 10 === 0 ? 9 : d % 5 === 0 ? 6 : 3; h += line(G.zi, d, G.zi - len, d, 'w-tick'); }
+  h += '</g>';
+  h += `<circle class="w-ring gold" cx="300" cy="300" r="${G.zo}"/><circle class="w-ring" cx="300" cy="300" r="${G.zi}"/>`;
+  if (oc) h += `<circle class="w-ring" cx="300" cy="300" r="${G.oIn}"/>`;
+  h += `<circle class="w-center" cx="300" cy="300" r="${G.ar}" fill-opacity=".55"/>`;
+  // houses
+  if (!ch.unknown) {
+    const c = ch.houses.cusps;
+    for (let k = 1; k <= 12; k++) {
+      const axis = k === 1 || k === 4 || k === 7 || k === 10;
+      if (axis) h += line(G.ar, c[k], 300, c[k], 'w-axis');
+      else h += line(G.ar, c[k], markR, c[k], 'w-cusp');
+      const mid = c[k] + norm(c[k === 12 ? 1 : k + 1] - c[k]) / 2; const [x, y] = P(G.hn, mid);
+      h += `<text class="w-hnum" x="${x}" y="${y + 4}" text-anchor="middle">${k}</text>`;
+    }
+    [[1, 'ASC'], [10, 'MC'], [7, 'DSC'], [4, 'IC']].forEach(([k, t]) => { const [x, y] = P(313, c[k]); h += `<text class="w-axis-lbl" x="${x}" y="${y + 4.5}" text-anchor="middle">${t}</text>`; });
+  }
+  // aspects
+  const aspList = ch.aspects.filter(a => S.minorOnWheel || a.asp.kind !== 'minor').filter(a => a.asp.id !== 'conj');
+  aspList.forEach(a => {
+    const op = Math.max(.35, 1 - a.orb / (a.asp.orb + 2)).toFixed(2);
+    h += line(G.ar, a.la, G.ar, a.lb, `w-asp ${a.asp.kind}`, `data-a="${a.a}" data-b="${a.b}" opacity="${op}"`);
+  });
+  if (oc) oc.cross.filter(a => a.asp.id !== 'conj').forEach(a => {
+    h += line(G.ar, a.la, G.ar, a.lb, `w-asp ${a.asp.kind}`, `data-a="o-${a.a}" data-b="${a.b}" opacity=".9" stroke-dasharray="5 3"`);
+  });
+  // planets
+  const drawSet = (chart, ids, r, lr, outer, minSep) => {
+    const items = ids.filter(id => !(chart.unknown && id === 'fortune')).map(id => ({ id, lon: chart.pos[id].lon }));
+    const arr = items.map(o => ({ o, a: o.lon })).sort((x, y) => x.a - y.a);
+    for (let it = 0; it < 60 && arr.length > 1; it++) {
+      let moved = false;
+      for (let i = 0; i < arr.length; i++) {
+        const A = arr[i], B = arr[(i + 1) % arr.length]; const gap = norm(B.a - A.a);
+        if (gap < minSep) { const push = (minSep - gap) / 2 + .01; A.a = norm(A.a - push); B.a = norm(B.a + push); moved = true; }
+      }
+      if (!moved) break;
+    }
+    let out = '';
+    arr.forEach(({ o, a: disp }, i) => {
+      const p = chart.pos[o.id];
+      const [mx, my] = P(outer ? G.zi : markR, o.lon);
+      out += line(outer ? G.zi : markR, o.lon, (outer ? G.zi : markR) - 7, o.lon, 'w-mark' + (outer ? ' outer' : ''));
+      if (Math.abs(angDiff(disp, o.lon)) > .6) out += line((outer ? G.zi : markR) - 7, o.lon, r + (outer ? 11 : 14) * K, disp, 'w-lead');
+      const [x, y] = P(r, disp); const [tx, ty] = P(lr, disp); const rad = (outer ? 11 : 13.5) * K; const sc = (outer ? .8 : .95) * K;
+      const lab = degIn(p.lon); const retro = p.speed < 0 && !['node', 'snode', 'lilith', 'fortune'].includes(o.id);
+      out += `<g class="w-pl${outer ? ' outer' : ''}" data-p="${outer ? 'o-' : ''}${o.id}" tabindex="0" role="button" style="--i:${i}" aria-label="${esc(pName(o.id))}: ${lab.deg}° ${signOf(p.lon).name}">
+        <circle class="bg" cx="${x}" cy="${y}" r="${rad}"/><g transform="translate(${x - 10 * sc} ${y - 10 * sc}) scale(${sc})"><path class="gp" d="${GLYPH[o.id]}"/></g>
+        ${outer ? '' : `<text x="${tx}" y="${ty + 4}" text-anchor="middle">${lab.deg}°</text>`}${retro ? `<text class="r" x="${x + rad * .82}" y="${y - rad * .55}" text-anchor="middle">R</text>` : ''}</g>`;
+      void mx; void my;
+    });
+    return out;
+  };
+  const natIds = PLANET_ORDER.filter(id => id !== 'snode');
+  h += drawSet(ch, natIds, G.pr, G.lr, false, (oc ? 8.2 : 7.4) * K * (big ? 1.05 : 1));
+  if (oc) h += drawSet(oc, natIds.filter(id => id !== 'fortune' && id !== 'lilith'), G.oR, 0, true, 6.4 * K);
+  svg.innerHTML = h;
+  svg.classList.toggle('anim', !!animate && !REDUCED);
+  if (S.focus) setFocus(S.focus, true);
+  const note = [];
+  if (ch.unknown) note.push('Время рождения неизвестно: карта построена на полдень, дома и Асцендент не показаны, Луна может отличаться на несколько градусов.');
+  if (ch.houses.note && !ch.unknown) note.push(ch.houses.note);
+  $('#wheelNote').innerHTML = note.map(n => `<p class="note">${esc(n)}</p>`).join('');
+}
+
+/* ---------- Focus card ---------- */
+function planetStory(ch, pid) {
+  const p = ch.pos[pid], s = signOf(p.lon), P = PLANETS[pid];
+  const out = [];
+  if (pid === 'sun') out.push(SUN_TEXT[s.id]); else if (pid === 'moon') out.push(MOON_TEXT[s.id]);
+  else out.push(cap(P.core) + '.');
+  out.push(`В ${s.gen} ${P.name.toLowerCase().startsWith('парс') ? 'она' : 'это'} проявляется ${s.style}.`);
+  if (!ch.unknown && p.house) out.push(`${p.house}-й дом (${HOUSES[p.house].sphere}): здесь ${P.theme} раскрываются ярче всего.`);
+  if (p.speed < 0 && !['node', 'snode', 'lilith', 'fortune'].includes(pid)) out.push('Планета ретроградна: её сила обращена внутрь, к переосмыслению и возвращению к прошлому опыту.');
+  return out;
+}
+function renderFocus() {
+  const box = $('#focus'), ch = S.chart, id = S.focus;
+  if (!id) {
+    box.innerHTML = `<div class="focus-head"><div class="portrait round" data-char="mom" style="width:52px"></div><div><p class="eyebrow">Подсказка</p><h3>Нажмите на планету</h3></div></div>
+      <p class="muted">Нажмите на любой значок в круге или строку в таблице, и здесь появится толкование: знак, дом, аспекты и сила планеты.</p>`;
+    paintPortraits(box); return;
+  }
+  const outer = id.startsWith('o-'); const pid = outer ? id.slice(2) : id; const src = outer ? S.outerChart : ch;
+  if (!src || !src.pos[pid]) { S.focus = null; return renderFocus(); }
+  const p = src.pos[pid], s = signOf(p.lon), dg = dignity(pid, s.id);
+  const retro = p.speed < 0 && !['node', 'snode', 'lilith', 'fortune'].includes(pid);
+  const asps = outer ? src.cross.filter(a => a.a === pid) : ch.aspects.filter(a => a.a === pid || a.b === pid);
+  const crossNat = !outer && S.outerChart ? S.outerChart.cross.filter(a => a.b === pid) : [];
+  const tags = [`<span class="tag">${s.name}</span>`];
+  if (!src.unknown && p.house) tags.push(`<span class="tag">${p.house}-й дом</span>`);
+  if (dg) tags.push(`<span class="tag ${dg.c}">${dg.t}</span>`);
+  if (retro) tags.push('<span class="tag retro">Ретроградна</span>');
+  if (Math.abs(p.speed) < 0.03 && !['node', 'snode', 'lilith', 'fortune'].includes(pid)) tags.push('<span class="tag">Стационарна</span>');
+  const li = a => { const other = outer ? a.b : (a.a === pid ? a.b : a.a); return `<li>${aspSvg(a.asp.id, a.asp.kind)} ${a.asp.name} — ${esc(pName(other))}${outer ? ' (натал)' : ''} <span class="muted num">· ${fmtOrb(a.orb)}</span></li>`; };
+  box.innerHTML = `<div class="focus-head"><div class="orb">${glyphSvg(pid)}</div><div><p class="eyebrow">${outer ? esc(src.label) : 'Натальная карта'}</p><h3>${esc(PLANETS[pid].name)} в ${s.gen}, <span class="num">${fmtDeg(p.lon)}</span></h3></div></div>
+    <div class="tags">${tags.join('')}</div>
+    ${outer ? `<p>${cap(PLANETS[pid].theme)} сейчас проходят через ${s.name} и касаются вашей карты.</p>` : planetStory(ch, pid).map(t => `<p>${esc(t)}</p>`).join('')}
+    ${asps.length ? `<div><p class="lbl" style="margin-bottom:6px">Аспекты</p><ul>${asps.slice(0, 8).map(li).join('')}</ul></div>` : ''}
+    ${crossNat.length ? `<div><p class="lbl" style="margin-bottom:6px">${esc(S.outerChart.label)}</p><ul>${crossNat.slice(0, 6).map(a => `<li>${aspSvg(a.asp.id, a.asp.kind)} ${a.asp.name} — ${esc(pName(a.a))} <span class="muted num">· ${fmtOrb(a.orb)}</span></li>`).join('')}</ul></div>` : ''}`;
+}
+function setFocus(id, silent) {
+  S.focus = id;
+  const svg = $('#wheel'); svg.classList.toggle('focusing', !!id);
+  const rel = new Set();
+  $$('.w-asp', svg).forEach(l => { const hot = !!id && (l.dataset.a === id || l.dataset.b === id); l.classList.toggle('hot', hot); if (hot) { rel.add(l.dataset.a); rel.add(l.dataset.b); } });
+  $$('.w-pl', svg).forEach(g => { g.classList.toggle('on', g.dataset.p === id); g.classList.toggle('rel', rel.has(g.dataset.p)); });
+  renderFocus();
+  if (!silent && id === 'moon' && S.eggs && Math.random() < .5) bubble($('.sky-now .portrait'), 'dad', `Луна в ${signOf(S.chart.pos.moon.lon).gen}! Клюёт!`);
+  if (!silent && id === 'lilith' && S.eggs) bubble($('#focus'), 'khimera', 'Тёмная Луна — это про меня. Уважай.');
+}
+$('#wheel').addEventListener('click', e => {
+  const g = e.target.closest('.w-pl'); setFocus(g ? (S.focus === g.dataset.p ? null : g.dataset.p) : null);
+});
+$('#wheel').addEventListener('keydown', e => { const g = e.target.closest('.w-pl'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setFocus(g.dataset.p); } });
+
+/* ---------- Big three ---------- */
+function renderBig3() {
+  const ch = S.chart;
+  const tile = (key, label, lon) => {
+    if (lon == null) return `<button type="button" disabled><svg class="g" viewBox="0 0 20 20"><path d="M10 4v8M10 15.5h.01"/></svg><span class="lbl">${label}</span><strong>—</strong><small>нужно время</small></button>`;
+    const s = signOf(lon);
+    return `<button type="button" data-focus="${key}">${glyphSvg(s.id)}<span class="lbl">${label}</span><strong>${s.name}</strong><small class="num">${fmtDeg(lon)}</small></button>`;
+  };
+  $('#big3').innerHTML = tile('sun', 'Солнце', ch.pos.sun.lon) + tile('moon', 'Луна', ch.pos.moon.lon) + tile('asc', 'Асцендент', ch.unknown ? null : ch.houses.asc);
+}
+$('#big3').addEventListener('click', e => {
+  const b = e.target.closest('[data-focus]'); if (!b) return;
+  if (b.dataset.focus === 'asc') { selectTab('interp'); return; }
+  setFocus(b.dataset.focus);
+});
+
+/* ---------- Panels ---------- */
+function renderPlanets() {
+  const ch = S.chart;
+  const rows = PLANET_ORDER.filter(id => !(ch.unknown && id === 'fortune')).map(id => {
+    const p = ch.pos[id], s = signOf(p.lon), dg = dignity(id, s.id);
+    const retro = p.speed < 0 && !['node', 'snode', 'lilith', 'fortune'].includes(id);
+    return `<tr data-focus="${id}"><td>${glyphSvg(id)}${esc(PLANETS[id].name)}</td><td>${glyphSvg(s.id)}${s.name}</td><td class="num">${fmtDeg(p.lon)}</td>
+      <td class="num">${ch.unknown ? '—' : p.house}</td><td>${retro ? '<span class="tag retro">R</span>' : ''}</td><td>${dg ? `<span class="tag ${dg.c}">${dg.t}</span>` : ''}</td>
+      <td class="num muted">${['fortune', 'lilith'].includes(id) ? '' : (p.speed >= 0 ? '+' : '−') + Math.abs(p.speed).toFixed(2) + '°'}</td></tr>`;
+  }).join('');
+  const angles = ch.unknown ? '' : [['Асцендент', ch.houses.asc], ['MC (середина неба)', ch.houses.mc], ['Десцендент', ch.houses.dsc], ['IC (глубина неба)', ch.houses.ic]]
+    .map(([n, l]) => { const s = signOf(l); return `<tr><td>${n}</td><td>${glyphSvg(s.id)}${s.name}</td><td class="num">${fmtDeg(l)}</td><td></td><td></td><td></td><td></td></tr>`; }).join('');
+  $('#p-planets').innerHTML = `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Планета</th><th>Знак</th><th>Градус</th><th>Дом</th><th>Ретро</th><th>Сила</th><th>Скорость в сутки</th></tr></thead><tbody>${rows}${angles}</tbody></table></div>`;
+}
+function renderHouses() {
+  const ch = S.chart;
+  if (ch.unknown) { $('#p-houses').innerHTML = emptyState('brother', 'Чтобы построить дома, нужно точное время рождения. Если его можно узнать у родных или в свидетельстве о рождении, добавьте его в форме.'); paintPortraits($('#p-houses')); return; }
+  const c = ch.houses.cusps;
+  const rows = [];
+  for (let k = 1; k <= 12; k++) {
+    const s = signOf(c[k]); const inH = PLANET_ORDER.filter(id => ch.pos[id].house === k);
+    rows.push(`<tr><td class="num">${k}</td><td>${glyphSvg(s.id)}${s.name}</td><td class="num">${fmtDeg(c[k])}</td><td>${inH.map(id => `<span title="${esc(PLANETS[id].name)}">${glyphSvg(id)}</span>`).join('') || '<span class="muted">—</span>'}</td><td class="wrap">${cap(HOUSES[k].sphere)}</td></tr>`);
+  }
+  const sysName = { placidus: 'Плацидус', koch: 'Кох', equal: 'Равнодомная', whole: 'Целые знаки', porphyry: 'Порфирий' }[ch.houses.used];
+  $('#p-houses').innerHTML = `<p class="muted" style="margin-bottom:12px">Система домов: ${sysName}. Её можно поменять над кругом.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Дом</th><th>Знак куспида</th><th>Градус</th><th>Планеты</th><th>Сфера жизни</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+function aspectSentence(a) {
+  const A = PLANETS[a.a], B = PLANETS[a.b];
+  return `${cap(A.theme)} и ${B.theme} ${a.asp.verb}.`;
+}
+function renderAspects() {
+  const ch = S.chart; const pts = pointsOf(ch).map(p => p.id);
+  const map = {}; ch.aspects.forEach(a => { map[a.a + '|' + a.b] = a; map[a.b + '|' + a.a] = a; });
+  let g = '<table class="grid-asp"><tbody>';
+  pts.forEach((r, i) => {
+    g += '<tr>';
+    for (let j = 0; j < i; j++) { const a = map[r + '|' + pts[j]]; g += `<td title="${a ? esc(a.asp.name + ' · ' + fmtOrb(a.orb)) : ''}">${a ? aspSvg(a.asp.id, a.asp.kind) : ''}</td>`; }
+    g += `<th title="${esc(pName(r))}">${glyphId(r) ? glyphSvg(r) : `<small>${r === 'asc' ? 'Asc' : 'MC'}</small>`}</th></tr>`;
+  });
+  g += '</tbody></table>';
+  const list = ch.aspects.map(a => `<div class="item" data-focus="${PLANETS[a.a] && glyphId(a.a) ? a.a : a.b}"><div class="pair">${glyphId(a.a) ? glyphSvg(a.a) : '<b>Asc</b>'}${aspSvg(a.asp.id, a.asp.kind)}${glyphId(a.b) ? glyphSvg(a.b) : `<b>${a.b === 'asc' ? 'Asc' : 'MC'}</b>`}</div>
+    <div><h4>${esc(pName(a.a))} — ${a.asp.name.toLowerCase()} — ${esc(pName(a.b))}</h4><p>${esc(aspectSentence(a))}</p></div><span class="orbv num">орб ${fmtOrb(a.orb)}</span></div>`).join('');
+  $('#p-aspects').innerHTML = `<div class="cols2"><div><p class="lbl" style="margin-bottom:10px">Сетка аспектов</p><div class="tbl-wrap" style="padding:12px;width:fit-content;max-width:100%">${g}</div>
+    <p class="muted" style="margin-top:12px;font-size:14px">Голубые линии — гармоничные аспекты, красные — напряжённые, золотые — соединения, пунктир — малые.</p></div>
+    <div><p class="lbl" style="margin-bottom:10px">Все аспекты, от самых точных</p><div class="list">${list}</div></div></div>`;
+}
+function renderBalance() {
+  const ch = S.chart; const W = { sun: 2, moon: 2, mercury: 1, venus: 1, mars: 1, jupiter: 1, saturn: 1, uranus: 1, neptune: 1, pluto: 1 };
+  const el = { fire: 0, earth: 0, air: 0, water: 0 }, cr = { card: 0, fixed: 0, mut: 0 };
+  const add = (lon, w) => { const s = signOf(lon); el[s.el] += w; cr[s.cross] += w; };
+  for (const k in W) add(ch.pos[k].lon, W[k]);
+  if (!ch.unknown) { add(ch.houses.asc, 2); add(ch.houses.mc, 1); }
+  const tot = Object.values(el).reduce((a, b) => a + b, 0);
+  const domEl = Object.entries(el).sort((a, b) => b[1] - a[1])[0][0], domCr = Object.entries(cr).sort((a, b) => b[1] - a[1])[0][0];
+  const lacking = Object.entries(el).filter(([, v]) => v === 0).map(([k]) => ELEMENTS[k]);
+  const bar = (label, v, color) => `<div class="bar"><span>${label}</span><div class="track"><div class="fill" style="width:${(v / tot * 100).toFixed(1)}%;background:${color}"></div></div><span class="num muted">${v}</span></div>`;
+  let hemi = '';
+  if (!ch.unknown) {
+    let above = 0, east = 0; const ids = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+    ids.forEach(id => { const h = ch.pos[id].house; if (h >= 7) above++; if (h >= 10 || h <= 3) east++; });
+    hemi = `<div class="card stat-card"><p class="lbl">Полушария</p>
+      ${bar('Над горизонтом', above, 'var(--gold)')}${bar('Под горизонтом', 10 - above, 'var(--faint)')}${bar('Восток', east, 'var(--rose)')}${bar('Запад', 10 - east, 'var(--sky)')}
+      <p>${above > 5 ? 'Больше планет над горизонтом: вы направлены вовне, к миру, людям и общественной жизни.' : above < 5 ? 'Больше планет под горизонтом: для вас важны внутренний мир, семья и личное пространство.' : 'Планеты поровну над и под горизонтом: внешнее и внутреннее в равновесии.'}
+      ${east > 5 ? ' Восток сильнее: вы сами строите свою жизнь и любите полагаться на себя.' : east < 5 ? ' Запад сильнее: многое в жизни приходит через других людей и партнёрство.' : ''}</p></div>`;
+  }
+  $('#p-balance').innerHTML = `<div class="cols2"><div class="card stat-card"><p class="lbl">Стихии</p>
+    ${bar('Огонь', el.fire, 'var(--fire)')}${bar('Земля', el.earth, 'var(--earth)')}${bar('Воздух', el.air, 'var(--air)')}${bar('Вода', el.water, 'var(--water)')}
+    <p>${ELEMENT_TEXT[domEl]}${lacking.length ? ' Почти нет стихии: ' + lacking.join(', ') + '. Её качества приходят через других людей и опыт.' : ''}</p></div>
+    <div class="card stat-card"><p class="lbl">Кресты</p>
+    ${bar('Кардинальный', cr.card, 'var(--gold)')}${bar('Фиксированный', cr.fixed, 'var(--rose)')}${bar('Мутабельный', cr.mut, 'var(--sky)')}
+    <p>${CROSS_TEXT[domCr]}</p></div>${hemi}</div>`;
+}
+function renderInterp() {
+  const ch = S.chart; const sec = [];
+  const sS = signOf(ch.pos.sun.lon), sM = signOf(ch.pos.moon.lon);
+  sec.push(`<section><h3>${glyphSvg('sun')}Солнце в ${sS.gen}</h3>${planetStory(ch, 'sun').map(t => `<p>${esc(t)}</p>`).join('')}</section>`);
+  sec.push(`<section><h3>${glyphSvg('moon')}Луна в ${sM.gen}</h3>${planetStory(ch, 'moon').map(t => `<p>${esc(t)}</p>`).join('')}</section>`);
+  if (!ch.unknown) { const sA = signOf(ch.houses.asc); sec.push(`<section><h3>${glyphSvg(sA.id)}Асцендент в ${sA.gen}</h3><p>${ASC_TEXT[sA.id]}</p><p>Асцендент — это маска и манера, то, как вы входите в новую ситуацию и как вас видят при первой встрече. Он проявляется ${sA.style}.</p></section>`); }
+  ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'chiron', 'node', 'lilith'].forEach(id => {
+    const s = signOf(ch.pos[id].lon);
+    sec.push(`<section><h3>${glyphSvg(id)}${PLANETS[id].name} в ${s.gen}${ch.unknown ? '' : `, ${ch.pos[id].house}-й дом`}</h3>${planetStory(ch, id).map(t => `<p>${esc(t)}</p>`).join('')}</section>`);
+  });
+  const top = ch.aspects.filter(a => a.asp.kind !== 'minor' && PLANETS[a.a] && PLANETS[a.b] && glyphId(a.a) && glyphId(a.b)).slice(0, 6);
+  if (top.length) sec.push(`<section><h3>Главные аспекты</h3>${top.map(a => `<p><b>${esc(pName(a.a))} — ${a.asp.name.toLowerCase()} — ${esc(pName(a.b))}.</b> ${esc(aspectSentence(a))}</p>`).join('')}</section>`);
+  $('#p-interp').innerHTML = `<div class="interp">${sec.join('')}<p class="muted" style="font-size:13.5px">Толкования — это ориентиры, а не приговор. Самое точное толкование всегда рождается в разговоре.</p></div>`;
+}
+function emptyState(who, text) { return `<div class="empty-state"><div class="portrait round" data-char="${who}"></div><p>${esc(text)}</p></div>`; }
+function renderOuter() {
+  const box = $('#p-outer'); const others = S.profiles.filter(p => p.id !== S.cur.id);
+  const seg = (v, t) => `<button type="button" data-mode="${v}" aria-pressed="${S.outer.mode === v}">${t}</button>`;
+  let h = `<div class="outer-ctl"><div class="field"><span class="lbl">Внешний круг</span><div class="seg">${seg('none', 'Нет')}${seg('transit', 'Транзиты')}${seg('syn', 'Сравнение')}</div></div>`;
+  if (S.outer.mode === 'transit') h += `<div class="field"><label for="oDate">На дату</label><input type="date" id="oDate" value="${S.outer.date}"></div><button class="btn small" type="button" id="oToday">Сегодня</button>`;
+  if (S.outer.mode === 'syn') h += others.length ? `<div class="field" style="min-width:220px"><label for="oProf">С картой</label><select id="oProf">${others.map(p => `<option value="${p.id}" ${p.id === S.outer.profileId ? 'selected' : ''}>${esc(p.name)}</option>`).join('')}</select></div>` : '';
+  h += '</div>';
+  if (S.outer.mode === 'none') h += emptyState('dad', 'Выберите «Транзиты», чтобы увидеть, как сегодняшнее небо касается этой карты, или «Сравнение», чтобы наложить карту другого члена семьи.');
+  else if (S.outer.mode === 'syn' && !others.length) h += emptyState('brother', 'Для сравнения нужна ещё одна сохранённая карта. Постройте карту кого-нибудь из семьи и нажмите «Сохранить в семью».');
+  else if (S.outerChart) {
+    const oc = S.outerChart; const tr = S.outer.mode === 'transit';
+    const KIND = { soft: 'поддерживает и открывает возможности:', hard: 'испытывает на прочность и подталкивает к переменам:', neutral: 'усиливает и запускает новое:', minor: 'слегка задевает:' };
+    const list = oc.cross.map(a => `<div class="item" data-focus="${a.b}"><div class="pair">${glyphSvg(a.a)}${aspSvg(a.asp.id, a.asp.kind)}${glyphId(a.b) ? glyphSvg(a.b) : `<b>${a.b === 'asc' ? 'Asc' : 'MC'}</b>`}</div>
+      <div><h4>${esc(pName(a.a))} ${tr ? '(транзит)' : '(' + esc(oc.label) + ')'} — ${a.asp.name.toLowerCase()} — ${esc(pName(a.b))} (${esc(S.cur.name || 'натал')})</h4>
+      <p>${tr ? `${PLANETS[a.a].name} ${KIND[a.asp.kind]} ${PLANETS[a.b].theme}.` : `${cap(PLANETS[a.a].theme)} одного и ${PLANETS[a.b].theme} другого ${a.asp.verb}.`}</p></div><span class="orbv num">орб ${fmtOrb(a.orb)}</span></div>`).join('');
+    h += `<p class="muted" style="margin-bottom:12px">${tr ? 'Положения планет на выбранную дату нарисованы во внешнем круге голубым. Показаны точные аспекты с орбом до 1,5°.' : `Планеты карты «${esc(oc.label)}» нарисованы во внешнем круге голубым.`}</p>
+      <div class="list">${list || emptyState('lyalya', 'Точных аспектов на эту дату нет. Звёзды отдыхают, и вы отдохните.')}</div>`;
+  }
+  box.innerHTML = h; paintPortraits(box);
+}
+$('#p-outer').addEventListener('click', e => {
+  const m = e.target.closest('[data-mode]');
+  if (m) { S.outer.mode = m.dataset.mode; if (S.outer.mode === 'syn' && !S.outer.profileId) { const o = S.profiles.find(p => p.id !== S.cur.id); S.outer.profileId = o ? o.id : null; } refreshOuter(); return; }
+  if (e.target.id === 'oToday') { S.outer.date = todayIso; refreshOuter(); }
+});
+$('#p-outer').addEventListener('change', e => {
+  if (e.target.id === 'oDate' && e.target.value) { S.outer.date = e.target.value; refreshOuter(); }
+  if (e.target.id === 'oProf') { S.outer.profileId = e.target.value; refreshOuter(); }
+});
+function refreshOuter() { computeOuter(); renderWheel(false); renderOuter(); renderFocus(); }
+['#p-planets', '#p-aspects', '#p-outer'].forEach(sel => $(sel).addEventListener('click', e => {
+  const r = e.target.closest('[data-focus]'); if (!r || e.target.closest('button')) return;
+  setFocus(r.dataset.focus); $('.wheel-wrap').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center' });
+}));
+
+/* ---------- Tabs ---------- */
+function selectTab(name) {
+  S.tab = name;
+  $$('.tabs [role=tab]').forEach(t => t.setAttribute('aria-selected', String(t.id === 't-' + name)));
+  $$('.panel').forEach(p => { p.hidden = p.id !== 'p-' + name; });
+}
+$('.tabs').addEventListener('click', e => { const t = e.target.closest('[role=tab]'); if (t) selectTab(t.id.slice(2)); });
+$('.tabs').addEventListener('keydown', e => {
+  if (!['ArrowRight', 'ArrowLeft'].includes(e.key)) return;
+  const tabs = $$('.tabs [role=tab]'); const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+  const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); selectTab(n.id.slice(2));
+});
+
+/* ---------- Render all ---------- */
+function renderAll(animate) {
+  const ch = S.chart, inp = ch.inp;
+  $('#chartName').textContent = inp.name || 'Без имени';
+  $('#chartEyebrow').textContent = inp.isSky ? 'Небо прямо сейчас' : 'Натальная карта';
+  const sys = { placidus: 'Плацидус', koch: 'Кох', equal: 'Равнодомная', whole: 'Целые знаки', porphyry: 'Порфирий' }[ch.houses.used];
+  $('#chartMeta').textContent = `${fmtDate(inp.date)}, ${inp.unknown ? 'время неизвестно' : inp.time} (${fmtOffset(ch.offsetSec)}) · ${inp.place.name}${inp.place.region ? ', ' + inp.place.region : ''} · ${sys}`;
+  $('#sysQuick').value = S.system; $('#btnSave').textContent = inp.id && S.profiles.some(p => p.id === inp.id) ? 'Обновить в семье' : 'Сохранить в семью';
+  computeOuter();
+  renderWheel(animate); renderBig3(); renderFocus(); renderPlanets(); renderHouses(); renderAspects(); renderBalance(); renderInterp(); renderOuter();
+}
+
+/* ---------- Form ---------- */
+const F = { name: $('#fName'), date: $('#fDate'), time: $('#fTime'), unknown: $('#fUnknown'), place: $('#fPlace'), lat: $('#fLat'), lon: $('#fLon'), tz: $('#fTz'), system: $('#fSystem'), offset: $('#fOffset') };
+const tzList = (() => { try { return Intl.supportedValuesOf('timeZone'); } catch (e) { return [...new Set(CITIES.map(c => c.tz))].sort(); } })();
+F.tz.innerHTML = tzList.map(z => `<option value="${z}">${z.replace(/_/g, ' ')}</option>`).join('');
+function nearestCity(lat, lon) { let best = null, bd = 1e9; for (const c of CITIES) { const d = (c.lat - lat) ** 2 + ((c.lon - lon) * Math.cos(lat * D2R)) ** 2; if (d < bd) { bd = d; best = c; } } return best; }
+function fillForm(inp) {
+  F.name.value = inp.isSky ? '' : (inp.name || ''); F.date.value = inp.date; F.time.value = inp.time || ''; F.unknown.checked = !!inp.unknown; F.time.disabled = !!inp.unknown;
+  S.place = { ...inp.place }; F.place.value = inp.place.name; F.offset.value = inp.offset ?? ''; F.system.value = S.system;
+  if (inp.place.manual) { $('#manual').hidden = false; F.lat.value = inp.place.lat; F.lon.value = inp.place.lon; F.tz.value = inp.place.tz; }
+  updatePlaceInfo();
+}
+function updatePlaceInfo() {
+  const p = S.place; const box = $('#placeInfo');
+  if (!p) { box.innerHTML = '<span>Выберите город из списка или укажите координаты.</span>'; return; }
+  let off = '';
+  try { if (F.date.value) { const [y, m, d] = F.date.value.split('-').map(Number); const [hh, mm] = (F.unknown.checked || !F.time.value ? '12:00' : F.time.value).split(':').map(Number); off = fmtOffset(Eph.localToUtc(y, m, d, hh, mm, p.tz).offsetSec); } } catch (e) { off = ''; }
+  const lat = `${Math.abs(p.lat).toFixed(2)}° ${p.lat >= 0 ? 'с. ш.' : 'ю. ш.'}`, lon = `${Math.abs(p.lon).toFixed(2)}° ${p.lon >= 0 ? 'в. д.' : 'з. д.'}`;
+  box.innerHTML = `<span><b>${esc(p.name)}</b>${p.region ? ', ' + esc(p.region) : ''}</span><span class="num">${lat}, ${lon}</span>${off ? `<span class="num">${off} в момент рождения</span>` : ''}`;
+}
+let sugIdx = -1, sugItems = [];
+let geoCtl = null, geoTimer = null, geoOk = true;
+const FEATURE = { PPLC: 'столица', PPLA: 'центр региона', PPLA2: 'райцентр', PPLX: 'район города', PPLF: 'деревня', PPLL: 'посёлок', PPLS: 'населённый пункт' };
+function renderSuggest(note) {
+  const list = $('#placeList');
+  list.innerHTML = (sugItems.length ? sugItems.map((c, i) => `<button type="button" role="option" id="opt${i}" aria-selected="${i === sugIdx}" data-i="${i}"><span>${esc(c.name)}</span><small>${esc(c.region)}</small></button>`).join('')
+    : `<p class="muted" style="padding:10px 12px;font-size:14px">${note === 'loading' ? 'Ищу населённый пункт…' : 'Ничего не нашлось. Попробуйте другое написание или укажите координаты вручную, кнопка ниже.'}</p>`)
+    + (note === 'loading' && sugItems.length ? '<p class="muted" style="padding:6px 12px;font-size:12.5px">Ищу ещё посёлки и сёла…</p>' : '');
+  list.hidden = false; F.place.setAttribute('aria-expanded', 'true');
+}
+function showSuggest() {
+  const raw = F.place.value.trim(); const q = raw.toLowerCase().replace(/ё/g, 'е'); const list = $('#placeList');
+  if (q.length < 1) { list.hidden = true; F.place.setAttribute('aria-expanded', 'false'); return; }
+  const starts = CITIES.filter(c => c.key.startsWith(q)), inc = CITIES.filter(c => !c.key.startsWith(q) && (c.key.includes(q) || c.region.toLowerCase().replace(/ё/g, 'е').includes(q)));
+  const local = [...starts, ...inc].slice(0, 8);
+  sugItems = local; sugIdx = sugItems.length ? 0 : -1;
+  const online = geoOk && /^https?:$/.test(location.protocol) && q.length >= 2;
+  renderSuggest(online ? 'loading' : '');
+  clearTimeout(geoTimer); if (geoCtl) geoCtl.abort();
+  if (!online) return;
+  geoTimer = setTimeout(async () => {
+    geoCtl = new AbortController();
+    try {
+      const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?count=15&format=json&language=ru&name=' + encodeURIComponent(raw), { signal: geoCtl.signal });
+      const d = await r.json();
+      const found = (d.results || []).filter(x => x.timezone && x.latitude != null).map(x => ({
+        name: x.name, lat: +x.latitude, lon: +x.longitude, tz: x.timezone,
+        region: [x.admin2, x.admin1, x.country].filter((v, i, arr) => v && arr.indexOf(v) === i).join(', ') + (FEATURE[x.feature_code] && !x.population ? ' · ' + FEATURE[x.feature_code] : ''),
+      }));
+      if (F.place.value.trim() !== raw) return;
+      const seen = new Set(local.map(c => c.name + '|' + c.lat.toFixed(1) + '|' + c.lon.toFixed(1)));
+      const extra = found.filter(c => !seen.has(c.name + '|' + c.lat.toFixed(1) + '|' + c.lon.toFixed(1)));
+      sugItems = [...local, ...extra].slice(0, 16); sugIdx = sugItems.length ? Math.max(0, sugIdx) : -1;
+      renderSuggest('');
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+      geoOk = false; renderSuggest('');
+    }
+  }, 320);
+}
+function pickCity(c) {
+  S.place = { name: c.name, region: c.region, lat: c.lat, lon: c.lon, tz: c.tz }; F.place.value = c.name; $('#placeList').hidden = true; F.place.setAttribute('aria-expanded', 'false');
+  $('#manual').hidden = true; updatePlaceInfo();
+}
+F.place.addEventListener('input', () => { S.place = null; updatePlaceInfo(); showSuggest(); });
+F.place.addEventListener('focus', () => { if (F.place.value && !S.place) showSuggest(); });
+F.place.addEventListener('keydown', e => {
+  const list = $('#placeList'); if (list.hidden || !sugItems.length) return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sugIdx = (sugIdx + (e.key === 'ArrowDown' ? 1 : sugItems.length - 1)) % sugItems.length; $$('#placeList [role=option]').forEach((b, i) => b.setAttribute('aria-selected', String(i === sugIdx))); F.place.setAttribute('aria-activedescendant', 'opt' + sugIdx); }
+  else if (e.key === 'Enter') { e.preventDefault(); if (sugIdx >= 0) pickCity(sugItems[sugIdx]); }
+  else if (e.key === 'Escape') { list.hidden = true; }
+});
+$('#placeList').addEventListener('mousedown', e => e.preventDefault());
+$('#placeList').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) pickCity(sugItems[+b.dataset.i]); });
+document.addEventListener('click', e => { if (!e.target.closest('.field')) $('#placeList').hidden = true; });
+$('#toggleManual').addEventListener('click', () => {
+  const m = $('#manual'); m.hidden = !m.hidden;
+  if (!m.hidden) { const p = S.place || { lat: '', lon: '', tz: 'Europe/Moscow' }; F.lat.value = p.lat; F.lon.value = p.lon; F.tz.value = p.tz; F.lat.focus(); }
+});
+function manualChanged(e) {
+  const lat = parseFloat(F.lat.value), lon = parseFloat(F.lon.value);
+  if (e && e.target === F.tz) S.manualTzTouched = true;
+  if (isNaN(lat) || isNaN(lon) || Math.abs(lat) > 89.9 || Math.abs(lon) > 180) { return; }
+  const near = nearestCity(lat, lon);
+  if (!S.manualTzTouched && near) F.tz.value = near.tz;
+  S.place = { name: `${lat.toFixed(3)}°, ${lon.toFixed(3)}°`, region: near ? 'рядом с: ' + near.name : '', lat, lon, tz: F.tz.value, manual: true };
+  F.place.value = S.place.name; updatePlaceInfo();
+}
+[F.lat, F.lon, F.tz].forEach(i => i.addEventListener('input', manualChanged));
+F.tz.addEventListener('change', manualChanged);
+F.unknown.addEventListener('change', () => { F.time.disabled = F.unknown.checked; updatePlaceInfo(); });
+[F.date, F.time].forEach(i => i.addEventListener('change', updatePlaceInfo));
+
+function readForm() {
+  const err = m => { const e = $('#formError'); e.textContent = m; e.hidden = false; return null; };
+  $('#formError').hidden = true;
+  if (!F.date.value) return err('Укажите дату рождения.');
+  const y = +F.date.value.slice(0, 4); if (y < 1800 || y > 2199) return err('Дата должна быть между 1800 и 2199 годом.');
+  if (!F.unknown.checked && !F.time.value) return err('Укажите время рождения или отметьте, что оно неизвестно.');
+  if (!S.place) return err('Выберите место рождения из списка или укажите координаты вручную.');
+  const off = F.offset.value === '' ? null : parseFloat(F.offset.value);
+  return { id: S.cur && !S.cur.isSky ? S.cur.id : null, name: F.name.value.trim() || 'Без имени', date: F.date.value, time: F.time.value, unknown: F.unknown.checked, place: { ...S.place }, offset: off };
+}
+function build(inp, opts = {}) {
+  S.cur = inp; store.set('current', inp);
+  const run = () => {
+    try { S.chart = computeFrom(inp); } catch (e) { $('#loader').hidden = true; $('#formError').textContent = 'Не получилось посчитать карту. Проверьте дату и место.'; $('#formError').hidden = false; if (S.eggs) bubble($('#btnBuild'), 'khimera', PHRASES.khimera[0]); console.error(e); return; }
+    renderAll(true); $('#loader').hidden = true; S.builds++;
+    if (S.eggs && !opts.silent) nameEgg(inp.name);
+  };
+  if (opts.silent || REDUCED) { run(); return; }
+  $('#loader').hidden = false; setTimeout(run, 750);
+}
+function nameEgg(name) {
+  const n = (name || '').toLowerCase();
+  const map = [[/ляля/, 'lyalya', 'Это же я! Мур. Моя карта самая красивая.'], [/чипс/, 'chips', 'Моя карта! Можно я в ней поживу?'], [/химер/, 'khimera', 'Моя карта. Не трогай Лилит.'],
+    [/папа|отец/, 'dad', 'Моя карта! Где тут Луна для рыбалки?'], [/мама/, 'mom', 'Моя карта. Всё сходится, я так и знала.'], [/эля|эльвир/, 'elya', 'О, это я! Венера, привет!'], [/жора|георг/, 'me', 'Моя карта! Код сходится со звёздами.'], [/брат|шамил/, 'brother', 'Моя карта! Сразу видно Стрельца в душе.']];
+  const hit = map.find(([re]) => re.test(n)); if (hit) setTimeout(() => bubble($('#chartName'), hit[1], hit[2]), 400);
+}
+$('#form').addEventListener('submit', e => {
+  e.preventDefault(); const inp = readForm(); if (!inp) return;
+  if (S.eggs && S.builds > 0 && !S.napDone && Math.random() < .22 && !$('.nap')) {
+    S.napDone = true;
+    $('#buildWrap').insertAdjacentHTML('beforeend', `<button type="button" class="nap" aria-label="Погладить Химеру">${Chars.ALL.khimera.svg()}<span>Погладь меня, потом посчитаем</span></button>`);
+    $('.nap').addEventListener('click', ev => { ev.stopPropagation(); bubble($('#btnBuild'), 'khimera', 'Мрр… ладно, считай.'); $('.nap').remove(); goBuild(inp); });
+    return;
+  }
+  const nap = $('.nap'); if (nap) nap.remove();
+  goBuild(inp);
+});
+function goBuild(inp) {
+  build(inp);
+  setTimeout(() => $('#chartSec').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' }), 60);
+}
+F.system.addEventListener('change', () => { S.system = F.system.value; store.set('system', S.system); });
+$('#sysQuick').addEventListener('change', e => { S.system = e.target.value; F.system.value = S.system; store.set('system', S.system); build(S.cur, { silent: true }); });
+
+/* ---------- Profiles ---------- */
+function saveCurrent() {
+  if (S.cur.isSky && !F.name.value.trim()) { const inp = readForm(); if (inp) { inp.name = inp.name === 'Без имени' ? 'Небо ' + fmtDate(inp.date) : inp.name; S.cur = inp; } }
+  const inp = { ...S.cur }; delete inp.isSky;
+  if (!inp.id || !S.profiles.some(p => p.id === inp.id)) { inp.id = 'p' + Date.now().toString(36); S.profiles.push(inp); toast(`«${inp.name}» добавлена в карты семьи`); }
+  else { S.profiles = S.profiles.map(p => p.id === inp.id ? inp : p); toast(`Карта «${inp.name}» обновлена`); }
+  S.cur = inp; store.set('current', inp); store.set('profiles', S.profiles); updateCount(); renderAll(false);
+}
+$('#btnSave').addEventListener('click', saveCurrent);
+function updateCount() { $('#profCount').textContent = S.profiles.length; }
+function openSheet(html, onClick) {
+  const layer = $('#layer'); layer.innerHTML = `<div class="overlay"><div class="sheet" role="dialog" aria-modal="true">${html}</div></div>`;
+  const ov = $('.overlay', layer); paintPortraits(ov);
+  ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('[data-close]')) closeSheet(); else onClick && onClick(e); });
+  const k = e => { if (e.key === 'Escape') closeSheet(); }; document.addEventListener('keydown', k); layer._k = k;
+  setTimeout(() => { const f = $('[data-close]', ov); f && f.focus(); }, 30);
+}
+function closeSheet() { const layer = $('#layer'); if (layer._k) document.removeEventListener('keydown', layer._k); layer.innerHTML = ''; }
+function profilesHtml() {
+  const items = S.profiles.map(p => `<div class="prof"><div><h4>${esc(p.name)}</h4><p class="num">${fmtDate(p.date)}${p.unknown ? '' : ', ' + p.time} · ${esc(p.place.name)}</p></div>
+    <div class="acts"><button class="btn small primary" type="button" data-open="${p.id}">Открыть</button><button class="btn small ghost" type="button" data-del="${p.id}" aria-label="Удалить карту ${esc(p.name)}">Удалить</button></div></div>`).join('');
+  return `<div class="sheet-head"><h2>Карты семьи</h2><button class="icon-btn" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div>
+    ${items || emptyState('lyalya', 'Пока здесь пусто. Постройте карту и нажмите «Сохранить в семью» над кругом — она появится в этом списке.')}
+    <button class="btn" type="button" data-new>Новая карта</button>`;
+}
+$('#btnProfiles').addEventListener('click', () => {
+  openSheet(profilesHtml(), e => {
+    const o = e.target.closest('[data-open]'), d = e.target.closest('[data-del]'), n = e.target.closest('[data-new]');
+    if (o) { const p = S.profiles.find(x => x.id === o.dataset.open); closeSheet(); fillForm(p); build(p); setTimeout(() => $('#chartSec').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' }), 60); }
+    if (d) {
+      if (d.dataset.armed) { S.profiles = S.profiles.filter(x => x.id !== d.dataset.del); store.set('profiles', S.profiles); updateCount(); $('.sheet').innerHTML = profilesHtml(); paintPortraits($('.sheet')); toast('Карта удалена'); }
+      else { d.dataset.armed = '1'; d.textContent = 'Точно удалить?'; d.classList.remove('ghost'); }
+    }
+    if (n) { closeSheet(); S.cur = { ...S.cur, id: null, isSky: false }; F.name.value = ''; F.name.focus(); $('#form').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center' }); }
+  });
+});
+
+/* ---------- Settings ---------- */
+function settingsHtml() {
+  const seg = (key, opts) => `<div class="seg">${opts.map(([v, t]) => `<button type="button" data-set="${key}" data-v="${v}" aria-pressed="${String(S[key]) === String(v)}">${t}</button>`).join('')}</div>`;
+  const skinNow = S.skin || (document.documentElement.dataset.theme === 'light' ? 'day' : 'night');
+  return `<div class="sheet-head"><h2>Настройки</h2><button class="icon-btn" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div>
+    <div class="set-row"><span>Оформление</span><div class="seg"><button type="button" data-set="skin" data-v="night" aria-pressed="${skinNow === 'night'}">Ночь</button><button type="button" data-set="skin" data-v="day" aria-pressed="${skinNow === 'day'}">Утро</button></div></div>
+    <div class="set-row"><span>Лунные узлы</span>${seg('meanNode', [[false, 'Истинные'], [true, 'Средние']])}</div>
+    <div class="set-row"><span>Орбы аспектов</span>${seg('orbScale', [[1, 'Обычные'], [0.7, 'Узкие']])}</div>
+    <div class="set-row"><span>Малые аспекты на круге</span>${seg('minorOnWheel', [[true, 'Показывать'], [false, 'Скрыть']])}</div>
+    <div class="set-row"><span>Семейные пасхалки</span>${seg('eggs', [[true, 'Включены'], [false, 'Выключены']])}</div>
+    ${Cloud.enabled && Cloud.login ? `<div class="set-row"><span>Аккаунт: <b>${esc(Cloud.login)}</b></span><button class="btn small" type="button" data-logout>Выйти</button></div>` : ''}
+    <div class="set-row"><span>Знакомство с сайтом</span><button class="btn small" type="button" data-onb>Показать ещё раз</button></div>
+    ${Cloud.enabled ? '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся на сервере и открываются с любого устройства после входа.</p>' : '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся в этом браузере.</p>'}`;
+}
+$('#btnSettings').addEventListener('click', () => openSettings());
+function openSettings() {
+  openSheet(settingsHtml(), e => {
+    const b = e.target.closest('[data-set]');
+    if (b) {
+      const k = b.dataset.set; let v = b.dataset.v; v = v === 'true' ? true : v === 'false' ? false : isNaN(+v) ? v : +v;
+      if (k === 'skin') setSkin(v); else { S[k] = v; store.set(k, v); }
+      if (['meanNode', 'orbScale', 'minorOnWheel'].includes(k)) { S.chart = computeFrom(S.cur); renderAll(false); }
+      if (k === 'eggs') applyEggs();
+      $('.sheet').innerHTML = settingsHtml(); paintPortraits($('.sheet'));
+    }
+    if (e.target.closest('[data-onb]')) { closeSheet(); onboarding(0); }
+    if (e.target.closest('[data-logout]')) logout();
+  });
+}
+function setSkin(v) { S.skin = v; store.set('skin', v); document.documentElement.dataset.skin = v; drawSky(performance.now()); }
+$('#btnTheme').addEventListener('click', () => {
+  const cur = S.skin || (document.documentElement.dataset.theme === 'light' ? 'day' : 'night'); setSkin(cur === 'night' ? 'day' : 'night');
+  toast(S.skin === 'day' ? 'Утреннее оформление' : 'Ночное оформление');
+});
+function applyEggs() { $('.perch').hidden = !S.eggs; }
+
+/* ---------- Sky now + family ---------- */
+function skyNow() {
+  try {
+    const p = Eph.planets(new Date()).pos; const e = norm(p.moon.lon - p.sun.lon);
+    const phase = e < 12 || e > 348 ? 'новолуние' : e < 80 ? 'растущая Луна' : e < 100 ? 'первая четверть' : e < 168 ? 'растущая Луна' : e < 192 ? 'полнолуние' : e < 260 ? 'убывающая Луна' : e < 280 ? 'последняя четверть' : 'убывающая Луна';
+    const retro = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].filter(k => p[k].speed < 0).map(k => PLANETS[k].name);
+    $('#skyNow').innerHTML = `<b>Небо сейчас:</b> Солнце в ${signOf(p.sun.lon).gen}, Луна в ${signOf(p.moon.lon).gen}, ${phase}.${retro.length ? ' Ретроградны: ' + retro.join(', ') + '.' : ''} <span class="hand">${e < 180 ? 'Папа говорит: Луна растёт, клёв будет.' : 'Папа говорит: Луна убывает, пора чинить снасти.'}</span>`;
+  } catch (err) { $('#skyNow').textContent = 'Небо сейчас затянуто облаками.'; }
+}
+function renderFamily() {
+  const order = ['mom', 'dad', 'brother', 'elya', 'me', 'lyalya', 'chips', 'khimera'];
+  $('#famGrid').innerHTML = order.map(k => { const c = Chars.ALL[k]; return `<button class="fam" type="button" data-say="${k}"><div class="portrait" data-char="${k}"></div><strong>${c.name}</strong><small>${c.role}</small></button>`; }).join('');
+  paintPortraits($('#famGrid'));
+}
+document.addEventListener('click', e => {
+  const s = e.target.closest('[data-say]'); if (s) { say(s.querySelector('.portrait') || s, s.dataset.say); return; }
+  const c = e.target.closest('button[data-char]');
+  if (c && c.classList.contains('perch')) { const d = new Date(); const i = (d.getFullYear() * 372 + d.getMonth() * 31 + d.getDate()) % ADVICE.length; bubble(c, 'lyalya', 'Совет дня: ' + ADVICE[i]); return; }
+  if (c) say(c, c.dataset.char);
+});
+
+/* ---------- Copy & PNG ---------- */
+function chartText() {
+  const ch = S.chart, inp = ch.inp; const L = [];
+  L.push(`Натальная карта: ${inp.name}`); L.push(`${fmtDate(inp.date)}, ${inp.unknown ? 'время неизвестно' : inp.time} (${fmtOffset(ch.offsetSec)}), ${inp.place.name}`);
+  if (!ch.unknown) { L.push(`Асцендент: ${fmtDeg(ch.houses.asc)} ${signOf(ch.houses.asc).name}`); L.push(`MC: ${fmtDeg(ch.houses.mc)} ${signOf(ch.houses.mc).name}`); }
+  PLANET_ORDER.filter(id => !(ch.unknown && id === 'fortune')).forEach(id => { const p = ch.pos[id]; L.push(`${PLANETS[id].name}: ${fmtDeg(p.lon)} ${signOf(p.lon).name}${ch.unknown ? '' : ', ' + p.house + ' дом'}${p.speed < 0 && !['node', 'snode', 'lilith', 'fortune'].includes(id) ? ', R' : ''}`); });
+  L.push('', 'Аспекты:'); ch.aspects.filter(a => a.asp.kind !== 'minor').forEach(a => L.push(`${pName(a.a)} ${a.asp.name.toLowerCase()} ${pName(a.b)} (орб ${fmtOrb(a.orb)})`));
+  return L.join('\n');
+}
+$('#btnCopy').addEventListener('click', async () => {
+  const text = chartText();
+  try { await navigator.clipboard.writeText(text); toast('Карта скопирована текстом'); }
+  catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (er) { ok = false; } ta.remove(); toast(ok ? 'Карта скопирована текстом' : 'Не удалось скопировать: браузер не разрешил доступ к буферу');
+  }
+});
+let downloads = null;
+if (window.claude && typeof window.claude.use === 'function') window.claude.use('downloads').then(ns => { downloads = ns; $('#btnPng').hidden = !ns; }).catch(() => {});
+$('#btnPng').addEventListener('click', async () => {
+  if (!downloads) return;
+  const svg = $('#wheel'); const clone = svg.cloneNode(true);
+  const src = $$('*', svg), dst = $$('*', clone);
+  const props = ['fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'opacity', 'fill-opacity', 'stroke-opacity', 'font-family', 'font-size', 'font-weight'];
+  src.forEach((el, i) => { const cs = getComputedStyle(el); props.forEach(p => dst[i].setAttribute(p, cs.getPropertyValue(p))); dst[i].removeAttribute('class'); });
+  clone.setAttribute('width', 1320); clone.setAttribute('height', 1320); clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--surface').trim(), fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim();
+  const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' }));
+  const img = new Image();
+  img.onload = async () => {
+    const cv = document.createElement('canvas'); cv.width = 1400; cv.height = 1520; const c = cv.getContext('2d');
+    c.fillStyle = bg; c.fillRect(0, 0, cv.width, cv.height); c.drawImage(img, 40, 160, 1320, 1320); URL.revokeObjectURL(url);
+    c.fillStyle = fg; c.font = '56px Prata, Georgia, serif'; c.fillText(S.chart.inp.name, 60, 90);
+    c.font = '26px "Golos Text", sans-serif'; c.globalAlpha = .7; c.fillText($('#chartMeta').textContent, 60, 134); c.globalAlpha = 1;
+    cv.toBlob(async blob => {
+      try { await downloads.save({ filename: `Карта ${S.chart.inp.name}.png`, data: blob }); toast('Картинка сохранена'); }
+      catch (e) { if (e && e.code !== 'declined') toast('Сохранить картинку здесь не получилось'); }
+    }, 'image/png');
+  };
+  img.src = url;
+});
+
+/* ---------- Onboarding ---------- */
+const ONB = [
+  ['Привет! Я Шамиль, Звёздный Странник', 'Покажу, как тут всё устроено. Это займёт полминуты.'],
+  ['Дата, время и город', 'Введите дату, время и место рождения. Если города нет в списке, укажите координаты — их легко найти на любой карте.'],
+  ['Нажимайте на планеты', 'Каждый значок в круге можно нажать: справа появится толкование, а связанные аспекты подсветятся.'],
+  ['Вся семья под рукой', 'Сохраняйте карты родных и сравнивайте их во вкладке «Транзиты и сравнение». А ещё здесь живут наши коты. Ищите их!'],
+];
+function onboarding(i) {
+  const layer = $('#layer'); const [t, d] = ONB[i];
+  layer.innerHTML = `<div class="onb" role="dialog" aria-modal="true" aria-labelledby="onbT"><div class="card onb-card"><div class="portrait" data-char="brother"></div><h2 id="onbT">${t}</h2><p class="muted">${d}</p>
+    <div class="onb-dots">${ONB.map((_, j) => `<i class="${j === i ? 'on' : ''}"></i>`).join('')}</div>
+    <div style="display:flex;gap:10px"><button class="btn ghost" type="button" data-skip>Пропустить</button><button class="btn primary" type="button" data-next>${i === ONB.length - 1 ? 'Начать' : 'Дальше'}</button></div></div></div>`;
+  paintPortraits(layer); $('[data-next]', layer).focus();
+  $('.onb', layer).addEventListener('click', e => {
+    if (e.target.closest('[data-skip]') || (e.target.closest('[data-next]') && i === ONB.length - 1)) { layer.innerHTML = ''; store.set('onb', true); }
+    else if (e.target.closest('[data-next]')) onboarding(i + 1);
+  });
+}
+
+/* ---------- Login gate ---------- */
+function applyData(d) {
+  const st = d.settings || {};
+  ['system', 'meanNode', 'minorOnWheel', 'orbScale', 'eggs', 'skin', 'onb'].forEach(k => { if (st[k] !== null && st[k] !== undefined) { _set(k, st[k]); if (k in S) S[k] = st[k]; } });
+  S.profiles = Array.isArray(d.profiles) ? d.profiles : []; _set('profiles', S.profiles);
+  if (d.current) { S.cur = d.current; _set('current', d.current); }
+  if (S.skin) document.documentElement.dataset.skin = S.skin; else delete document.documentElement.dataset.skin;
+  applyEggs(); updateCount(); fillForm(S.cur); build(S.cur, { silent: true }); S.builds = 0; drawSky(performance.now());
+}
+async function afterLogin() {
+  try {
+    const d = await Cloud.pull(); const local = store.get('profiles', []);
+    if ((!d || !d.profiles || !d.profiles.length) && local.length) await Cloud.push(); else if (d) applyData(d); else await Cloud.push();
+  } catch (e) { toast('Вошли, но данные не загрузились. Обновите страницу.'); }
+  _set('wasIn', true); $('#layer').innerHTML = ''; $('#bubble').hidden = true; toast('Добро пожаловать, ' + Cloud.login + '!');
+  if (!store.get('onb', false)) setTimeout(() => onboarding(0), 500);
+}
+function showGate(mode = 'login', msg = '') {
+  const layer = $('#layer'); const reg = mode === 'register';
+  layer.innerHTML = `<div class="onb gate" role="dialog" aria-modal="true" aria-labelledby="gateT"><form class="card onb-card" id="gateForm" novalidate>
+    <div class="portrait" data-char="mom"></div><h2 id="gateT">${reg ? 'Новый аккаунт' : 'Вход в обсерваторию'}</h2>
+    <p class="muted">${reg ? 'Придумайте логин и пароль. Все карты семьи будут храниться под ними и откроются с любого устройства.' : 'Войдите, чтобы открыть карты семьи с любого устройства.'}</p>
+    <div class="field" style="width:100%;text-align:left"><label for="gLogin">Логин</label><input type="text" id="gLogin" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="32"></div>
+    <div class="field" style="width:100%;text-align:left"><label for="gPass">Пароль</label><input type="password" id="gPass" autocomplete="${reg ? 'new-password' : 'current-password'}" maxlength="100" minlength="6"></div>
+    <label class="check" style="align-self:start"><input type="checkbox" id="gShow"> Показать пароль</label>
+    <p class="form-error" id="gErr" role="alert" ${msg ? '' : 'hidden'}>${esc(msg)}</p>
+    <button class="btn primary" type="submit" style="width:100%">${reg ? 'Создать аккаунт' : 'Войти'}</button>
+    <button class="linkish" type="button" id="gSwitch">${reg ? 'Уже есть аккаунт? Войти' : 'Первый раз здесь? Создать аккаунт'}</button></form></div>`;
+  paintPortraits(layer); $('#gLogin').focus();
+  $('#gShow').addEventListener('change', e => { $('#gPass').type = e.target.checked ? 'text' : 'password'; });
+  $('#gSwitch').addEventListener('click', () => showGate(reg ? 'login' : 'register'));
+  $('#gateForm').addEventListener('submit', async e => {
+    e.preventDefault(); const btn = $('#gateForm [type=submit]'); btn.disabled = true; btn.textContent = 'Секунду…';
+    const login = $('#gLogin').value.trim(), pass = $('#gPass').value; let err = '';
+    if (login.length < 2) err = 'Логин должен быть не короче 2 символов.'; else if (pass.length < 6) err = 'Пароль должен быть не короче 6 символов.';
+    if (!err) { try { await Cloud.signIn(login, pass, reg); } catch (ex) { err = ex instanceof TypeError ? 'Нет связи с сервером. Проверьте интернет.' : ERR_RU(ex.message); } }
+    if (!err) afterLogin();
+    else { const er = $('#gErr'); er.textContent = err; er.hidden = false; btn.disabled = false; btn.textContent = reg ? 'Создать аккаунт' : 'Войти'; if (S.eggs) bubble(btn, 'khimera', 'Пароль не тот. Я бы тоже не пустил.'); }
+  });
+}
+function logout() { Cloud.sess = null; _set('sess', null); closeSheet(); showGate('login'); }
+
+/* ---------- Boot ---------- */
+function boot() {
+  paintPortraits(); renderFamily(); applyEggs(); updateCount(); initSky();
+  if (!REDUCED) requestAnimationFrame(loopSky);
+  if (typeof Astronomy === 'undefined') {
+    $('#skyNow').textContent = 'Не удалось загрузить астрономическую библиотеку. Проверьте интернет и обновите страницу.';
+    $('#chartMeta').textContent = 'Расчёты недоступны без подключения к интернету.'; return;
+  }
+  if (S.cur.isSky) { const n = new Date(); S.cur.date = `${n.getFullYear()}-${pad(n.getMonth() + 1)}-${pad(n.getDate())}`; S.cur.time = `${pad(n.getHours())}:${pad(n.getMinutes())}`; }
+  fillForm(S.cur); skyNow(); build(S.cur, { silent: true }); S.builds = 0;
+  Cloud.detect().then(state => {
+    if (state === 'out') showGate(store.get('wasIn', false) ? 'login' : 'register', Cloud.sess ? 'Сессия закончилась, войдите снова.' : '');
+    else if (state === 'in') Cloud.pull().then(d => { if (d) applyData(d); }).catch(e => { if (e.auth) showGate('login', 'Сессия закончилась, войдите снова.'); }).finally(() => { if (!store.get('onb', false)) setTimeout(() => onboarding(0), 500); });
+    else if (!store.get('onb', false)) setTimeout(() => onboarding(0), 700);
+  });
+}
+boot();
+})();
+</script>
+</body></html>

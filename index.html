@@ -1463,7 +1463,7 @@ const store = {
   set(k, v) { try { localStorage.setItem('astrolabe.' + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
 };
 /* ---------- Cloud sync via Supabase (auth + one JSON row per user) ---------- */
-const SB = { url: '__SB_URL__', key: '__SB_KEY__' };
+const SB = { url: "https://rsoevybduysxtdeziqsw.supabase.co", key: "sb_publishable_0UzGugyiyZg632z_cpMDNA_piIgoqKH" };
 const SYNC_KEYS = ['profiles', 'current', 'system', 'meanNode', 'minorOnWheel', 'orbScale', 'eggs', 'skin', 'onb'];
 const loginEmail = l => 'u' + [...new TextEncoder().encode(l.trim().toLowerCase())].map(b => b.toString(16).padStart(2, '0')).join('') + '@mama-astro.app';
 const ERR_RU = m => /already|registered|exists/i.test(m) ? 'Такой логин уже есть. Попробуйте войти.' : /invalid login|credentials/i.test(m) ? 'Неверный логин или пароль.'

@@ -175,6 +175,7 @@ details.more > div { display: grid; gap: 12px; margin-top: 12px; }
 .w-cusp { stroke: var(--line-2); stroke-width: 1; }
 .w-axis { stroke: var(--gold); stroke-width: 1.8; }
 .w-axis-lbl { fill: var(--gold); font: 600 13px var(--f-body); letter-spacing: .06em; }
+.w-axis-lbl.clickable { cursor: pointer; }
 .w-hnum { fill: var(--faint); font: 500 11px var(--f-body); }
 .w-center { fill: var(--surface-2); stroke: var(--line-2); }
 .w-pl { cursor: pointer; outline: none; }
@@ -1720,7 +1721,7 @@ function renderWheel(animate) {
       const mid = c[k] + norm(c[k === 12 ? 1 : k + 1] - c[k]) / 2; const [x, y] = P(G.hn, mid);
       h += `<text class="w-hnum" x="${x}" y="${y + 4}" text-anchor="middle">${k}</text>`;
     }
-    [[1, 'ASC'], [10, 'MC'], [7, 'DSC'], [4, 'IC']].forEach(([k, t]) => { const [x, y] = P(313, c[k]); h += `<text class="w-axis-lbl" x="${x}" y="${y + 4.5}" text-anchor="middle">${t}</text>`; });
+    [[1, 'ASC', 'asc'], [10, 'MC', 'mc'], [7, 'DSC'], [4, 'IC']].forEach(([k, t, f]) => { const [x, y] = P(313, c[k]); h += `<text class="w-axis-lbl${f ? ' clickable' : ''}" ${f ? `data-axis="${f}"` : ''} x="${x}" y="${y + 4.5}" text-anchor="middle">${t}</text>`; });
   }
   // aspects
   const aspList = ch.aspects.filter(a => S.minorOnWheel || a.asp.kind !== 'minor').filter(a => a.asp.id !== 'conj');
@@ -1788,6 +1789,17 @@ function renderFocus() {
       <p class="muted">Нажмите на любой значок в круге или строку в таблице, и здесь появится толкование: знак, дом, аспекты и сила планеты.</p>`;
     paintPortraits(box); return;
   }
+  if ((id === 'asc' || id === 'mc') && !ch.unknown) {
+    const lon = ch.houses[id], s = signOf(lon);
+    const asps = ch.aspects.filter(a => a.a === id || a.b === id);
+    const text = id === 'asc' ? [ASC_TEXT[s.id], `Асцендент — это маска и манера: как вы входите в новую ситуацию и как вас видят при первой встрече. Он проявляется ${s.style}.`]
+      : [`MC — вершина карты: призвание, цели и то, каким вас видит общество. Здесь это проявляется ${s.style}.`];
+    box.innerHTML = `<div class="focus-head"><div class="orb">${glyphSvg(s.id)}</div><div><p class="eyebrow">Натальная карта</p><h3>${id === 'asc' ? 'Асцендент' : 'MC'} в ${s.gen}, <span class="num">${fmtDeg(lon)}</span></h3></div></div>
+      <div class="tags"><span class="tag">${s.name}</span><span class="tag">${id === 'asc' ? '1-й дом' : '10-й дом'}</span></div>
+      ${text.map(t => `<p>${esc(t)}</p>`).join('')}
+      ${asps.length ? `<div><p class="lbl" style="margin-bottom:6px">Аспекты</p><ul>${asps.slice(0, 8).map(a => { const o = a.a === id ? a.b : a.a; return `<li>${aspSvg(a.asp.id, a.asp.kind)} ${a.asp.name} — ${esc(pName(o))} <span class="muted num">· ${fmtOrb(a.orb)}</span></li>`; }).join('')}</ul></div>` : ''}`;
+    return;
+  }
   const outer = id.startsWith('o-'); const pid = outer ? id.slice(2) : id; const src = outer ? S.outerChart : ch;
   if (!src || !src.pos[pid]) { S.focus = null; return renderFocus(); }
   const p = src.pos[pid], s = signOf(p.lon), dg = dignity(pid, s.id);
@@ -1817,6 +1829,7 @@ function setFocus(id, silent) {
   if (!silent && id === 'lilith' && S.eggs) bubble($('#focus'), 'khimera', 'Тёмная Луна — это про меня. Уважай.');
 }
 $('#wheel').addEventListener('click', e => {
+  const ax = e.target.closest('[data-axis]'); if (ax) { setFocus(S.focus === ax.dataset.axis ? null : ax.dataset.axis); return; }
   const g = e.target.closest('.w-pl'); setFocus(g ? (S.focus === g.dataset.p ? null : g.dataset.p) : null);
 });
 $('#wheel').addEventListener('keydown', e => { const g = e.target.closest('.w-pl'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setFocus(g.dataset.p); } });
@@ -1833,7 +1846,6 @@ function renderBig3() {
 }
 $('#big3').addEventListener('click', e => {
   const b = e.target.closest('[data-focus]'); if (!b) return;
-  if (b.dataset.focus === 'asc') { selectTab('interp'); return; }
   setFocus(b.dataset.focus);
 });
 

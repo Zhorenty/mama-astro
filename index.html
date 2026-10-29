@@ -127,6 +127,11 @@ details.more > div { display: grid; gap: 12px; margin-top: 12px; }
 /* Chart section */
 .chart-sec { padding-block: 10px 30px; scroll-margin-top: 10px; }
 .chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 24px; margin-bottom: 18px; }
+.chart-head { position: relative; }
+.peek { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(-18px + env(safe-area-inset-bottom, 0px)); width: 112px; z-index: 55; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) { .peek { animation: peekIn .5s cubic-bezier(.2,.8,.2,1.2) both; } .peek.out { animation: peekOut .45s ease-in both; } }
+@keyframes peekIn { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes peekOut { to { transform: translateY(110%); } }
 .chart-head .meta { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
 .chart-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .chart-tools select { width: auto; min-height: 40px; padding-block: 8px; font-size: 14.5px; border-radius: 999px; }
@@ -2103,10 +2108,24 @@ function build(inp, opts = {}) {
   const run = () => {
     try { S.chart = computeFrom(inp); } catch (e) { $('#loader').hidden = true; $('#formError').textContent = 'Не получилось посчитать карту. Проверьте дату и место.'; $('#formError').hidden = false; if (S.eggs) bubble($('#btnBuild'), 'khimera', PHRASES.khimera[0]); console.error(e); return; }
     renderAll(true); $('#loader').hidden = true; S.builds++;
-    if (S.eggs && !opts.silent) nameEgg(inp.name);
+    if (S.eggs && !opts.silent) { const bd = BIRTHDAYS[inp.date]; if (bd) peek(bd[0], bd[1]); else nameEgg(inp.name); }
   };
   if (opts.silent || REDUCED) { run(); return; }
   $('#loader').hidden = false; setTimeout(run, 750);
+}
+const BIRTHDAYS = {
+  '2003-06-17': ['me', 'Это же мой день рождения! Близнецы в деле: сайт написал, теперь читай мою карту.'],
+  '2010-06-23': ['elya', 'Мой день рождения! Рак с замашками Венеры. Посмотри мою Луну, там всё про меня.'],
+  '1979-06-29': ['dad', 'Мой день рождения! Рак — значит, поближе к воде и с удочкой. Всё сходится.'],
+  '1998-07-07': ['brother', 'Мой день рождения! По знаку Рак, а душой давно в горах.'],
+};
+function peek(who, text) {
+  const head = document.body; const old = $('.peek'); if (old) old.remove();
+  const c = Chars.ALL[who];
+  head.insertAdjacentHTML('beforeend', `<button type="button" class="portrait peek" data-char="${who}" aria-label="${esc(c.name)}"></button>`);
+  const el = $('.peek'); paintPortraits(el.parentNode);
+  setTimeout(() => bubble(el, who, text), 550);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 500); }, 4600);
 }
 function nameEgg(name) {
   const n = (name || '').toLowerCase();

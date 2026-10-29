@@ -1070,6 +1070,19 @@ const Chars = (() => {
     ${o.mouth}`;
   };
   const neck = (sk, sh) => `<path d="M52.5 68V100Q60 104.5 67.5 100V68Z" fill="${sk}"/><path d="M52.5 74Q60 82.5 67.5 74V80Q60 87 52.5 80Z" fill="${sh}" opacity=".7"/>`;
+  const eyesOpen = (id, iris, o = {}) => {
+    const y = o.y || 54.2, w = o.w || 3.4;
+    const one = (cx, n) => {
+      const d = `M${cx - w} ${y}Q${cx} ${y - 3.6} ${cx + w} ${y}Q${cx} ${y + 2.6} ${cx - w} ${y}Z`;
+      return `<clipPath id="${id}o${n}"><path d="${d}"/></clipPath><path d="${d}" fill="#FBF7F4"/>
+        <g clip-path="url(#${id}o${n})"><circle cx="${cx + .1}" cy="${y - .15}" r="1.85" fill="${iris}"/><circle cx="${cx + .1}" cy="${y - .15}" r=".9" fill="#1C1418"/></g>
+        <circle cx="${cx + .75}" cy="${y - .8}" r=".55" fill="#fff"/>
+        <path d="M${cx - w - .3} ${y + .1}Q${cx} ${y - 3.9} ${cx + w + .3} ${y - .1}" stroke="#2A1E22" stroke-width="${o.lid || 1.3}" fill="none" stroke-linecap="round"/>
+        ${o.lower ? `<path d="M${cx - w + .8} ${y + 1.2}Q${cx} ${y + 2.4} ${cx + w - .8} ${y + 1.2}" stroke="#2A1E22" stroke-opacity=".3" stroke-width=".7" fill="none"/>` : ''}`;
+    };
+    const wing = o.wing ? `<path d="M${52.6 - w - .2} ${y - .1}l-1.4 -1M${67.4 + w + .2} ${y - .1}l1.4 -1" stroke="#2A1E22" stroke-width="1.05" stroke-linecap="round"/>` : '';
+    return one(52.6, 1) + one(67.4, 2) + wing;
+  };
   const SK1 = '#F3D3BE', SH1 = '#DDA98F';
 
   const mom = wrap(id => `
@@ -1081,13 +1094,13 @@ const Chars = (() => {
     <path d="M47 99L42 110L49 112.5L58.5 125L60 122Z" fill="#E4DED3"/><path d="M73 99L78 110L71 112.5L61.5 125L60 122Z" fill="#E4DED3"/>
     <path d="M60 122V140" stroke="#DCD5C9" stroke-width="1.2"/>
     ${star(83, 116, 3.2, '#E2B65A', .6)}
-    ${face(id, { skin: SK1, shade: SH1, brow: '#1E1A22',
-      eyes: `<path d="M49.6 54.2Q52.6 51.6 55.6 54.2Q52.6 55.8 49.6 54.2Z" fill="#2A1E22"/><path d="M64.4 54.2Q67.4 51.6 70.4 54.2Q67.4 55.8 64.4 54.2Z" fill="#2A1E22"/>
-        <path d="M49.2 54L47.8 53M70.8 54L72.2 53" stroke="#2A1E22" stroke-width="1" stroke-linecap="round"/><circle cx="53.4" cy="53.6" r=".6" fill="#fff"/><circle cx="68.2" cy="53.6" r=".6" fill="#fff"/>`,
-      mouth: `<path d="M55.2 68.4Q57.6 66.8 60 67.8Q62.4 66.8 64.8 68.4Q62.4 71.6 60 71.6Q57.6 71.6 55.2 68.4Z" fill="#B65A6A"/><path d="M55.6 68.5Q60 69.6 64.4 68.5" stroke="#8E3E4E" stroke-width=".8" fill="none"/>` })}
+    ${face(id, { skin: SK1, shade: SH1, brow: '#2A2228', bw: 1.6, browL: '48.6 48.8Q52.6 46.4 56.4 48.2', browR: '63.6 48.2Q67.4 46.4 71.4 48.8',
+      eyes: eyesOpen(id, '#5E3B28', { wing: true, lid: 1.45 }),
+      mouth: `<path d="M55.6 68.4Q57.8 67 60 67.8Q62.2 67 64.4 68.4Q60 69.6 55.6 68.4Z" fill="#A9505F"/><path d="M55.9 68.6Q60 72 64.1 68.6Q60 69.8 55.9 68.6Z" fill="#C2697A"/>
+        <path d="M54.8 68.2Q55.4 68.9 56 68.7M65.2 68.2Q64.6 68.9 64 68.7" stroke="#A9505F" stroke-width=".7" fill="none" stroke-linecap="round"/>` })}
     <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#1E1A22"/>
-    <path d="M41 50C40.5 36 48.5 28 60 28.5C60 33 55 37.5 48.5 40.5C45 42.5 42.5 46 41 50Z" fill="#1E1A22"/>
-    <path d="M79 50C79.5 36 71.5 28 60 28.5C60 33 65 37.5 71.5 40.5C75 42.5 77.5 46 79 50Z" fill="#1E1A22"/>
+    <path d="M41 49C40.5 36 48.5 28 60 28.5C60 33 55.5 36.5 49.5 39C45.5 41 42.5 44.5 41 49Z" fill="#1E1A22"/>
+    <path d="M79 49C79.5 36 71.5 28 60 28.5C60 33 64.5 36.5 70.5 39C74.5 41 77.5 44.5 79 49Z" fill="#1E1A22"/>
     <path d="M41.2 44C39 58 39.5 74 41 88L45 88C44 74 43.5 60 44.5 48Z" fill="#1E1A22"/><path d="M78.8 44C81 58 80.5 74 79 88L75 88C76 74 76.5 60 75.5 48Z" fill="#1E1A22"/>
     <path d="M50 30Q55 27.6 59 28.2M61 28.2Q65 27.6 70 30" stroke="#4A4252" stroke-width="1.3" fill="none" stroke-linecap="round"/>
     <circle cx="43.4" cy="67" r="1.3" fill="#E2B65A"/><circle cx="76.6" cy="67" r="1.3" fill="#E2B65A"/>
@@ -1102,18 +1115,19 @@ const Chars = (() => {
     <path d="M12 140C14 110 33 97 60 96C87 97 106 110 108 140Z" fill="#55545E"/>
     <path d="M44 97.5L52 110L60 101L68 110L76 97.5C71 96.5 65.5 96 60 96C54.5 96 49 96.5 44 97.5Z" fill="#4A4952"/>
     <path d="M60 103V140" stroke="#44434C" stroke-width="1.4"/>
+    <path d="M40.6 52C40.6 30 49.5 21.5 60 21.5C70.5 21.5 79.4 30 79.4 52Z" fill="${SK2}"/>
     ${face(id, { skin: SK2, shade: SH2, brow: '#5A524A', bw: 2.3,
       eyes: `<path d="M49 55Q52.6 51.8 56.2 55" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/><path d="M63.8 55Q67.4 51.8 71 55" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/>
         <path d="M47.2 56.2l-1.8.8M72.8 56.2l1.8.8" stroke="${SH2}" stroke-width="1" stroke-linecap="round"/>`,
       mouth: '' })}
+    <path d="M66 22.6C73.5 25.5 79.4 33 79.4 46L71.4 46C71.4 36 69.5 28 66 22.6Z" fill="${SH2}" opacity=".45"/>
+    <ellipse cx="52" cy="28.5" rx="7" ry="3.2" fill="#fff" opacity=".22" transform="rotate(-18 52 28.5)"/>
+    <path d="M41 50.5C40.6 44 41.6 39.5 43.6 37L45 46.5C44.2 48 43.8 50 43.8 52Z" fill="#8F877D"/>
+    <path d="M79 50.5C79.4 44 78.4 39.5 76.4 37L75 46.5C75.8 48 76.2 50 76.2 52Z" fill="#8F877D"/>
     <path d="M42.5 58C42 76 50 87 60 87C70 87 78 76 77.5 58C75.5 66 71 70.5 66 69.5Q60 67.8 54 69.5C49 70.5 44.5 66 42.5 58Z" fill="#857B71"/>
     <path d="M47 70l1.4 3M50 77l1 2.4M73 70l-1.4 3M70 77l-1 2.4M57 82v2.4M63 82v2.4M60 77v2" stroke="#C9C1B5" stroke-width="1.1" stroke-linecap="round"/>
     <path d="M52.5 68.6Q56 65.8 60 67.4Q64 65.8 67.5 68.6Q63.5 70.2 60 69.3Q56.5 70.2 52.5 68.6Z" fill="#6A6158"/>
     <path d="M55.6 72.4Q60 76.6 64.4 72.4Z" fill="#8A3E40"/><path d="M56.8 72.8Q60 74 63.2 72.8" stroke="#fff" stroke-width=".9" fill="none"/>
-    <path d="M40.5 45C40 27 49 21 60 21C71 21 80 27 79.5 45Z" fill="#302F37"/>
-    <path d="M40.5 40.5H79.5V45H40.5Z" fill="#45444E"/>
-    <path d="M21 47C31 40.5 89 40.5 99 47C91 53 29 53 21 47Z" fill="#26252C"/>
-    <path d="M50 24.5Q60 28 70 24.5" stroke="#1E1D24" stroke-width="1.2" fill="none"/>
   `, 'Папа — Хранитель Лунных Вод');
 
   const SK3 = '#F2CDB2', SH3 = '#DAA486';
@@ -1124,36 +1138,38 @@ const Chars = (() => {
     <path d="M42 100C46 92 74 92 78 100L71 105C65 99 55 99 49 105Z" fill="#2E3758"/>
     <path d="M60 104V140" stroke="#161C30" stroke-width="1.4"/>
     <path d="M33 106L36 140M87 106L84 140" stroke="#121520" stroke-width="5" stroke-linecap="round"/>
-    ${face(id, { skin: SK3, shade: SH3, brow: '#6B4428', bw: 2.2,
-      eyes: `<path d="M49.2 55.4Q52.6 52.4 56 55.4" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/><path d="M64 55.4Q67.4 52.4 70.8 55.4" stroke="#2A1E22" stroke-width="1.9" fill="none" stroke-linecap="round"/>`,
+    ${face(id, { skin: SK3, shade: SH3, brow: '#6B4428', bw: 2.2, browL: '48 49.4Q52.4 47.6 56.4 49', browR: '63.6 49Q67.6 47.6 72 49.4',
+      eyes: eyesOpen(id, '#5D6E7A', { y: 55, lower: true, lid: 1.4 }),
       mouth: '' })}
-    <path d="M42 56C41 82 50 93 60 93C70 93 79 82 78 56C76.5 66 73 73 67.5 75.5Q60 78.2 52.5 75.5C47 73 43.5 66 42 56Z" fill="#94603A"/>
-    <path d="M46 72l1.2 3M49 80l1 2.4M74 72l-1.2 3M71 80l-1 2.4M57 87v2.4M63 87v2.4" stroke="#6E4428" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M53 67.6Q60 65 67 67.6Q60 69.2 53 67.6Z" fill="#7A4A2A"/>
-    <path d="M52 70.6Q60 80.6 68 70.6Z" fill="#fff"/><path d="M52 70.6Q60 73 68 70.6" stroke="#E6DED8" stroke-width=".8" fill="none"/>
-    <path d="M42 46C42 29 50 22.5 60 22.5C70 22.5 78 29 78 46Z" fill="#6E717C"/>
-    <path d="M31 53.5L38 43H82L89 53.5C77 58 43 58 31 53.5Z" fill="#5E616B"/>
-    <rect x="62.5" y="31" width="8.5" height="8.5" rx="1.2" fill="#18181F"/><circle cx="66.75" cy="35.25" r="2" fill="none" stroke="#fff" stroke-width=".7"/>
+    <path d="M43 58.5C42.5 77 51 85.5 60 85.5C69 85.5 77.5 77 77 58.5C75.5 66 72 71 67 72.6Q60 75.2 53 72.6C48 71 44.5 66 43 58.5Z" fill="#94603A"/>
+    <path d="M47 70l1 2.6M51 77l.8 2M73 70l-1 2.6M69 77l-.8 2M60 80.5v2" stroke="#6E4428" stroke-width="1.05" stroke-linecap="round"/>
+    <path d="M53.5 67.4Q60 65.2 66.5 67.4Q60 68.8 53.5 67.4Z" fill="#7A4A2A"/>
+    <path d="M53.6 69.8Q60 76.4 66.4 69.8Z" fill="#fff"/><path d="M53.6 69.8Q60 71.6 66.4 69.8" stroke="#E6DED8" stroke-width=".7" fill="none"/>
+    <path d="M42 35C42 21 50 15 60 15C70 15 78 21 78 35Z" fill="#6E717C"/>
+    <path d="M46 24q4-3 7 1m9-7q5-1 7 3" stroke="#82858F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M31 44L38 34.5H82L89 44C77 48.5 43 48.5 31 44Z" fill="#5E616B"/>
+    <rect x="62.5" y="20.5" width="8.5" height="8.5" rx="1.2" fill="#18181F"/><circle cx="66.75" cy="24.75" r="2" fill="none" stroke="#fff" stroke-width=".7"/>
   `, 'Шамиль — Звёздный Странник');
 
-  const SK4 = '#F4D5C0', SH4 = '#DDAA90';
+  const SK4 = '#F4D5C0', SH4 = '#DDAA90', HC = '#4E3020', HD = '#3A2216', HL = '#7A5038';
+  const curls = (pts, r, fill) => pts.map(([x, y, rr]) => `<circle cx="${x}" cy="${y}" r="${rr || r}" fill="${fill}"/>`).join('');
+  const curlMarks = pts => pts.map(([x, y]) => `<path d="M${x - 2} ${y + .6}q1.4-2.6 3.4-.6" stroke="${HL}" stroke-width="1" fill="none" stroke-linecap="round"/>`).join('');
+  const zBack = [[38, 46, 5.4], [37.5, 56, 5.6], [37.8, 66, 5.6], [39, 76, 5.4], [41.5, 85, 5], [82, 46, 5.4], [82.5, 56, 5.6], [82.2, 66, 5.6], [81, 76, 5.4], [78.5, 85, 5], [41.5, 36.5, 5.4], [47, 29.5, 5.4], [54, 25.5, 5.4], [61.5, 24.5, 5.4], [68.5, 26.5, 5.4], [74.5, 31, 5.4], [79, 38, 5.4]];
+  const zFront = [[44.5, 39.5, 4], [49.5, 35, 4.2], [55.5, 33, 4], [64.5, 33, 4], [70.5, 35, 4.2], [75.5, 39.5, 4], [42.5, 46, 3.6], [77.5, 46, 3.6]];
   const zhora = wrap(id => `
-    <path d="M37 58C35 33 46 22 60 22C74 22 85 33 83 58C85 71 84 83 78 91H42C36 83 35 71 37 58Z" fill="#4E3020"/>
+    <path d="M38 58C36 34 47 24 60 24C73 24 84 34 82 58C84 71 83 83 77 90H43C37 83 36 71 38 58Z" fill="${HC}"/>
+    ${curls(zBack, 5.4, HC)}
     ${neck(SK4, SH4)}
     <path d="M14 140C16 112 35 100 60 99C85 100 104 112 106 140Z" fill="#A6A5A0"/>
     <path d="M50.5 99.5Q60 107 69.5 99.5" stroke="#8C8B86" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-    ${face(id, { skin: SK4, shade: SH4, brow: '#4E3020', bw: 2,
-      eyes: `<ellipse cx="52.6" cy="54.2" rx="2.9" ry="1.9" fill="#fff"/><ellipse cx="67.4" cy="54.2" rx="2.9" ry="1.9" fill="#fff"/>
-        <circle cx="52.8" cy="54.2" r="1.6" fill="#6F8DAD"/><circle cx="67.6" cy="54.2" r="1.6" fill="#6F8DAD"/><circle cx="52.8" cy="54.2" r=".75" fill="#1E1A22"/><circle cx="67.6" cy="54.2" r=".75" fill="#1E1A22"/>
-        <path d="M49.6 53.4Q52.6 51.2 55.6 53.4M64.4 53.4Q67.4 51.2 70.4 53.4" stroke="#3A2A24" stroke-width="1.1" fill="none" stroke-linecap="round"/>`,
+    ${face(id, { skin: SK4, shade: SH4, brow: HC, bw: 2,
+      eyes: eyesOpen(id, '#6F8DAD', { w: 3.2 }),
       mouth: `<path d="M55.8 69.4Q60 71.6 64.2 69.4" stroke="#A55E57" stroke-width="1.6" fill="none" stroke-linecap="round"/>` })}
-    <path d="M44 61C44.5 75 52 81 60 81C68 81 75.5 75 76 61C73.5 69 69 72.6 65 73.2Q60 74 55 73.2C51 72.6 46.5 69 44 61Z" fill="#7A4E33" opacity=".32"/>
-    <path d="M55.4 66.2Q60 64.8 64.6 66.2" stroke="#7A4E33" stroke-width="1.3" fill="none" opacity=".4"/>
-    <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#4E3020"/>
-    <path d="M41.5 56C40 38 49 29.5 60 30.5C60 34.5 55 37 49 39C45 40.5 42.5 47 41.5 56Z" fill="#4E3020"/>
-    <path d="M78.5 56C80 38 71 29.5 60 30.5C60 34.5 65 37 71 39C75 40.5 77.5 47 78.5 56Z" fill="#4E3020"/>
-    <path d="M41.5 52C38.5 62 41.5 72 38.5 84M78.5 52C81.5 62 78.5 72 81.5 84" stroke="#3A2216" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-    <path d="M47 34Q52 31 57 31.6M63 31.6Q68 31 73 34" stroke="#6E4A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <path d="M44 61C44.5 75 52 81 60 81C68 81 75.5 75 76 61C73.5 69 69 72.6 65 73.2Q60 74 55 73.2C51 72.6 46.5 69 44 61Z" fill="#7A4E33" opacity=".3"/>
+    <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="${HC}"/>
+    ${curls(zFront, 4, HC)}
+    ${curlMarks([...zFront, [38, 56], [38, 70], [82, 56], [82, 70], [47, 29.5], [61.5, 24.5], [74.5, 31]])}
+    <path d="M40 80q-2 4 1 7M80 80q2 4-1 7" stroke="${HD}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
   `, 'Жора — Звездочёт-программист');
 
   const SK5 = '#F6DACA', SH5 = '#E2B09A';
@@ -1166,13 +1182,13 @@ const Chars = (() => {
     <path d="M49 102L60 122L71 102" fill="#1E1A22"/>
     <path d="M49 102L43 113L51 116L60 122M71 102L77 113L69 116L60 122" fill="#E6D9C1"/>
     <circle cx="52" cy="128" r="2" fill="#D3A24A"/><circle cx="68" cy="128" r="2" fill="#D3A24A"/><circle cx="52" cy="136.5" r="2" fill="#D3A24A"/><circle cx="68" cy="136.5" r="2" fill="#D3A24A"/>
-    ${face(id, { skin: SK5, shade: SH5, brow: '#4A2E20', bw: 1.7,
-      eyes: `<path d="M49.4 55Q52.6 57.2 55.8 55" stroke="#2A1E22" stroke-width="1.7" fill="none" stroke-linecap="round"/>
-        <path d="M64.4 54.6Q67.4 52 70.4 54.6Q67.4 56.2 64.4 54.6Z" fill="#2A1E22"/><circle cx="68.2" cy="54" r=".6" fill="#fff"/><path d="M70.8 54.4L72.2 53.4" stroke="#2A1E22" stroke-width="1" stroke-linecap="round"/>`,
-      mouth: `<ellipse cx="60.4" cy="69.8" rx="3.1" ry="2.2" fill="#C94A5E"/><path d="M58 68.6Q60.4 67.6 62.8 68.6" stroke="#9E3346" stroke-width=".8" fill="none"/>` })}
+    ${face(id, { skin: SK5, shade: SH5, brow: '#4A2E20', bw: 1.6, browL: '48.6 49.2Q52.6 47 56.4 48.6', browR: '63.6 48.6Q67.4 47 71.4 49.2',
+      eyes: eyesOpen(id, '#6A4430', { wing: true, lid: 1.45, y: 54.6 }),
+      mouth: `<path d="M55.8 68.6Q58 67.2 60 68Q62 67.2 64.2 68.6Q60 69.8 55.8 68.6Z" fill="#B8445A"/><path d="M56.2 68.8Q60 72.4 63.8 68.8Q60 70 56.2 68.8Z" fill="#CF5A6D"/>
+        <ellipse cx="60.6" cy="70.4" rx="1.2" ry=".5" fill="#fff" opacity=".45"/>` })}
     <path d="M41.6 47C41.6 32.5 49.6 25.6 60 25.6C70.4 25.6 78.4 32.5 78.4 47C76 39 70 33.6 60 32.2C50 33.6 44 39 41.6 47Z" fill="#5C3A2A"/>
-    <path d="M41 58C39.5 39 49 29.5 61 30.5C72 31 80 39 79 55C75.5 44.5 69 39.5 62.5 38.5C57 42.5 49.5 48.5 41 58Z" fill="#5C3A2A"/>
-    <path d="M52 33.5Q58 31 65 32.2" stroke="#8A6248" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M41 51C40 38 49 30 61 30.5C72 31 79.5 38 79 51C76.5 43.5 70.5 39 63.5 38.2C58 40.6 50 44.6 41 51Z" fill="#5C3A2A"/>
+    <path d="M52 33.5Q58 31 65 32.2M45 45q4-3.6 9-5.6" stroke="#8A6248" stroke-width="1.4" fill="none" stroke-linecap="round"/>
     ${star(93, 46, 3.6, '#F2C76A', .5)}${star(99.5, 56, 2.2, '#F2C76A', .4)}
   `, 'Эля — Посланница Венеры');
 

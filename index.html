@@ -1,6 +1,12 @@
 <!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0F0D1C"><meta name="description" content="Мамина Астролябия — натальные карты семьи">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%229%22%20fill%3D%22%230F0D1C%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E6C27A%22%20stroke-width%3D%222%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%2212%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M20%2010V5M8%2022h24M20%2022l7-6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Астролябия"><meta name="application-name" content="Астролябия">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Мамина Астролябия</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -325,6 +331,23 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
 .onb-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); }
 .onb-dots i.on { background: var(--gold); }
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 80; background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 99px; font-size: 14.5px; font-weight: 500; box-shadow: var(--shadow); }
+
+/* Install hint & guide */
+.install-hint { position: fixed; z-index: 58; left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  max-width: 520px; margin: 0 auto; padding: 14px 16px; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 4px 14px; align-items: center; border-color: var(--gold-2); }
+.install-hint img { border-radius: 12px; }
+.install-hint p { font-size: 14.5px; line-height: 1.35; }
+.install-hint .ih-acts { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+@media (prefers-reduced-motion: no-preference) { .install-hint { animation: slideUp .35s cubic-bezier(.2,.7,.2,1); } }
+@keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+.ih-app { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.ih-app img { border-radius: 14px; flex: none; }
+.ih-app p { font-size: 14px; margin-top: 2px; }
+.ih-steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+.ih-steps li { counter-increment: s; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.ih-steps li::before { content: counter(s); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: var(--gold-ink); font-weight: 600; font-size: 14px; }
+.ih-steps p { font-size: 14px; margin-top: 2px; }
+.ih-ico { width: 20px; height: 20px; vertical-align: -4px; margin-left: 4px; color: var(--gold); }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; }
@@ -1525,7 +1548,10 @@ const Cloud = {
   async pull() { const rows = await this.rest('GET', '?select=data&user_id=eq.' + this.sess.uid); return rows[0] ? rows[0].data : null; },
   detect() {
     if (!/^https?:$/.test(location.protocol) || !SB.url.startsWith('https://')) return Promise.resolve(false);
-    this.enabled = true; return this.fresh().then(ok => ok ? 'in' : 'out');
+    if (!this.sess && store.get('skipLogin', false)) return Promise.resolve(false);
+    this.enabled = true;
+    if (!navigator.onLine && this.sess) return Promise.resolve('offline');
+    return this.fresh().then(ok => ok ? 'in' : (!navigator.onLine && this.sess ? 'offline' : 'out'));
   },
   snapshot() { const settings = {}; SYNC_KEYS.slice(2).forEach(k => { settings[k] = store.get(k, null); }); return { profiles: store.get('profiles', []), current: store.get('current', null), settings }; },
   schedule() { if (!this.enabled || !this.sess) return; clearTimeout(this.timer); this.timer = setTimeout(() => this.push(), 800); },
@@ -1537,6 +1563,7 @@ const Cloud = {
     }
   },
 };
+addEventListener('online', () => { if (Cloud.enabled && Cloud.sess) Cloud.schedule(); });
 const _set = store.set.bind(store);
 store.set = (k, v) => { _set(k, v); if (SYNC_KEYS.includes(k)) Cloud.schedule(); };
 const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2199,6 +2226,7 @@ function settingsHtml() {
     <div class="set-row"><span>Малые аспекты на круге</span>${seg('minorOnWheel', [[true, 'Показывать'], [false, 'Скрыть']])}</div>
     <div class="set-row"><span>Семейные пасхалки</span>${seg('eggs', [[true, 'Включены'], [false, 'Выключены']])}</div>
     ${Cloud.enabled && Cloud.login ? `<div class="set-row"><span>Аккаунт: <b>${esc(Cloud.login)}</b></span><button class="btn small" type="button" data-logout>Выйти</button></div>` : (SB.url.startsWith('https://') && /^https?:$/.test(location.protocol) ? `<div class="set-row"><span>Вход не выполнен</span><button class="btn small primary" type="button" data-login>Войти</button></div>` : '')}
+    ${PWA.row()}
     <div class="set-row"><span>Знакомство с сайтом</span><button class="btn small" type="button" data-onb>Показать ещё раз</button></div>
     ${Cloud.enabled ? '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся на сервере и открываются с любого устройства после входа.</p>' : '<p class="muted" style="font-size:13.5px">Карты и настройки хранятся в этом браузере.</p>'}`;
 }
@@ -2216,9 +2244,14 @@ function openSettings() {
     if (e.target.closest('[data-onb]')) { closeSheet(); onboarding(0); }
     if (e.target.closest('[data-logout]')) logout();
     if (e.target.closest('[data-login]')) { closeSheet(); Cloud.enabled = true; showGate('login'); }
+    if (e.target.closest('[data-install]')) { closeSheet(); PWA.install(); }
   });
 }
-function setSkin(v) { S.skin = v; store.set('skin', v); document.documentElement.dataset.skin = v; drawSky(performance.now()); }
+function setSkin(v) { S.skin = v; store.set('skin', v); document.documentElement.dataset.skin = v; drawSky(performance.now()); syncThemeColor(); }
+function syncThemeColor() {
+  const m = document.querySelector('meta[name="theme-color"]'); if (!m) return;
+  m.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0F0D1C');
+}
 $('#btnTheme').addEventListener('click', () => {
   const cur = S.skin || (document.documentElement.dataset.theme === 'light' ? 'day' : 'night'); setSkin(cur === 'night' ? 'day' : 'night');
   toast(S.skin === 'day' ? 'Утреннее оформление' : 'Ночное оформление');
@@ -2321,7 +2354,7 @@ async function afterLogin() {
     const d = await Cloud.pull(); const local = store.get('profiles', []);
     if ((!d || !d.profiles || !d.profiles.length) && local.length) await Cloud.push(); else if (d) applyData(d); else await Cloud.push();
   } catch (e) { toast('Вошли, но данные не загрузились. Обновите страницу.'); }
-  _set('wasIn', true); $('#layer').innerHTML = ''; $('#bubble').hidden = true; toast('Добро пожаловать, ' + Cloud.login + '!');
+  _set('wasIn', true); _set('skipLogin', false); $('#layer').innerHTML = ''; $('#bubble').hidden = true; toast('Добро пожаловать, ' + Cloud.login + '!');
   if (!store.get('onb', false)) setTimeout(() => onboarding(0), 500);
 }
 function showGate(mode = 'login', msg = '') {
@@ -2339,7 +2372,7 @@ function showGate(mode = 'login', msg = '') {
   paintPortraits(layer); $('#gLogin').focus();
   $('#gShow').addEventListener('change', e => { $('#gPass').type = e.target.checked ? 'text' : 'password'; });
   $('#gSwitch').addEventListener('click', () => showGate(reg ? 'login' : 'register'));
-  $('#gSkip').addEventListener('click', () => { Cloud.enabled = false; layer.innerHTML = ''; toast('Работаем без входа: карты сохраняются на этом устройстве'); if (!store.get('onb', false)) setTimeout(() => onboarding(0), 400); });
+  $('#gSkip').addEventListener('click', () => { Cloud.enabled = false; _set('skipLogin', true); layer.innerHTML = ''; toast('Работаем без входа: карты сохраняются на этом устройстве'); if (!store.get('onb', false)) setTimeout(() => onboarding(0), 400); });
   $('#gateForm').addEventListener('submit', async e => {
     e.preventDefault(); const btn = $('#gateForm [type=submit]'); btn.disabled = true; btn.textContent = 'Секунду…';
     const login = $('#gLogin').value.trim(), pass = $('#gPass').value; let err = '';
@@ -2350,6 +2383,63 @@ function showGate(mode = 'login', msg = '') {
   });
 }
 function logout() { Cloud.sess = null; _set('sess', null); closeSheet(); showGate('login'); }
+
+/* ---------- PWA: install to home screen + offline ---------- */
+const PWA = {
+  prompt: null,
+  get supported() { return !!document.querySelector('link[rel="manifest"]'); },
+  get standalone() { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; },
+  get ios() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); },
+  get iosNotSafari() { return this.ios && /crios|fxios|edgios|yabrowser|opios/i.test(navigator.userAgent); },
+  init() {
+    syncThemeColor();
+    if (!this.supported) return;
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+    addEventListener('beforeinstallprompt', e => { e.preventDefault(); this.prompt = e; });
+    addEventListener('appinstalled', () => { this.prompt = null; store.set('installHint', 'done'); $('.install-hint')?.remove(); toast('Астролябия добавлена на главный экран'); });
+    if (!this.standalone && matchMedia('(pointer: coarse)').matches && !store.get('installHint', null)) this.hintLater(30000);
+  },
+  hintLater(ms) {
+    setTimeout(() => {
+      if (this.standalone || store.get('installHint', null)) return;
+      if ($('#layer').children.length || !$('#bubble').hidden) { this.hintLater(15000); return; }
+      document.body.insertAdjacentHTML('beforeend', `<div class="install-hint card" role="dialog" aria-labelledby="ihT">
+        <img src="icon-192.png" alt="" width="48" height="48"><div><p id="ihT"><b>Астролябия на главном экране</b></p><p class="muted">Будет открываться как приложение, одним касанием.</p></div>
+        <div class="ih-acts"><button class="btn small ghost" type="button" data-ih="no">Не сейчас</button><button class="btn small primary" type="button" data-ih="yes">${this.prompt ? 'Установить' : 'Как добавить'}</button></div></div>`);
+      $('.install-hint').addEventListener('click', e => {
+        const b = e.target.closest('[data-ih]'); if (!b) return;
+        $('.install-hint').remove(); store.set('installHint', b.dataset.ih === 'yes' ? 'shown' : 'later');
+        if (b.dataset.ih === 'yes') this.install();
+      });
+    }, ms);
+  },
+  row() {
+    if (!this.supported) return '';
+    if (this.standalone) return `<div class="set-row"><span>Приложение на главном экране</span><span class="tag good">Установлено</span></div>`;
+    return `<div class="set-row"><span>Приложение на главном экране</span><button class="btn small primary" type="button" data-install>${this.prompt ? 'Установить' : 'Как добавить'}</button></div>`;
+  },
+  async install() {
+    if (this.prompt) {
+      const p = this.prompt; this.prompt = null; p.prompt();
+      try { const r = await p.userChoice; if (r.outcome === 'dismissed') toast('Можно установить позже в настройках'); } catch (e) { /* ignore */ }
+      return;
+    }
+    this.howTo();
+  },
+  howTo() {
+    const share = `<svg class="ih-ico" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5v10M6.5 6L10 2.5 13.5 6M6 9H4.5v8.5h11V9H14"/></svg>`;
+    const dots = `<svg class="ih-ico" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="4" r="1.6"/><circle cx="10" cy="10" r="1.6"/><circle cx="10" cy="16" r="1.6"/></svg>`;
+    const plus = `<svg class="ih-ico" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="3.5"/><path d="M10 6.5v7M6.5 10h7"/></svg>`;
+    let steps;
+    if (this.ios && this.iosNotSafari) steps = [['Откройте этот сайт в Safari', 'На iPhone добавить на главный экран можно только из Safari. Скопируйте адрес и вставьте его в Safari.', '']];
+    else if (this.ios) steps = [['Нажмите «Поделиться»', 'Кнопка-квадрат со стрелкой вверх внизу экрана Safari.', share], ['Выберите «На экран „Домой“»', 'Пролистайте список вниз, если не видно сразу.', plus], ['Нажмите «Добавить»', 'Иконка Астролябии появится среди приложений.', '']];
+    else steps = [['Откройте меню браузера', 'Три точки в углу экрана.', dots], ['Выберите «Установить приложение»', 'Или «Добавить на главный экран» — название зависит от браузера.', plus], ['Подтвердите', 'Иконка Астролябии появится среди приложений.', '']];
+    openSheet(`<div class="sheet-head"><h2>Как добавить на главный экран</h2><button class="icon-btn" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div>
+      <div class="ih-app"><img src="icon-192.png" alt="" width="64" height="64"><div><b>Мамина Астролябия</b><p class="muted">Откроется на весь экран, без адресной строки, и будет работать даже без интернета.</p></div></div>
+      <ol class="ih-steps">${steps.map(([t, d, ic]) => `<li><div><b>${t}</b> ${ic}<p class="muted">${d}</p></div></li>`).join('')}</ol>
+      ${Cloud.enabled ? '<p class="muted" style="font-size:13.5px">После установки один раз войдите под своим логином — карты подтянутся сами.</p>' : ''}`);
+  },
+};
 
 /* ---------- Boot ---------- */
 function boot() {
@@ -2364,8 +2454,10 @@ function boot() {
   Cloud.detect().then(state => {
     if (state === 'out') showGate(store.get('wasIn', false) ? 'login' : 'register', Cloud.sess ? 'Сессия закончилась, войдите снова.' : '');
     else if (state === 'in') Cloud.pull().then(d => { if (d) applyData(d); }).catch(e => { if (e.auth) showGate('login', 'Сессия закончилась, войдите снова.'); }).finally(() => { if (!store.get('onb', false)) setTimeout(() => onboarding(0), 500); });
+    else if (state === 'offline') toast('Нет интернета: показываю карты, сохранённые на устройстве');
     else if (!store.get('onb', false)) setTimeout(() => onboarding(0), 700);
   });
+  PWA.init();
 }
 boot();
 })();
